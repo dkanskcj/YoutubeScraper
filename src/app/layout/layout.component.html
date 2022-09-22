@@ -1,0 +1,41 @@
+<div class="w-full h-full p-6">
+  <!-- 제목 -->
+  <div class="flex gap-2 justify-center items-center">
+    <div
+      class="flex items-center justify-center rounded px-2 bg-[#FF0000] text-white min-w-max"
+    >
+      ▶
+    </div>
+    <div class="text-black text-xl font-extrabold">
+      {{ maintitle | uppercase }}
+    </div>
+  </div>
+  <!-- 제목 -->
+  <div class="bg-[#E7E7E7] border border-1 mt-6"></div>
+  <!-- 카테고리 -->
+  <div class="flex justify-between items-center">
+    <div class="flex gap-3 mt-3 items-center">
+      <app-category>전체</app-category>
+      <app-category>필라테스</app-category>
+      <app-category>식품·건강</app-category>
+      <app-category>게임</app-category>
+      <app-category>피트니스</app-category>
+      <app-category>축구</app-category>
+      <app-category>카테고리</app-category>
+    </div>
+    <div class="text-gray-900 justify-center items-center text-sm font-bold">
+      >
+    </div>
+  </div>
+  <!-- 카테고리 -->
+  <div class="mt-5 flex justify-end">
+    <app-button>영상 등록하기</app-button>
+  </div>
+  <!-- 비디오들 -->
+  <app-videos
+    title="필라테스"
+    icon="assets/icons/img1.svg"
+    videoTitle="9월 18일 야외 필라테스"
+    tag="필라테스"
+  ></app-videos>
+</div>
