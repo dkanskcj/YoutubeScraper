@@ -1,1 +1,30 @@
-<div>test</div>
+<div class="w-full h-full p-6">
+  <!-- 제목 -->
+  <div class="flex gap-2 justify-center items-center">
+    <div
+      class="flex items-center justify-center rounded px-2 bg-[#FF0000] text-white min-w-max"
+    >
+      ▶
+    </div>
+    <div class="text-black text-xl font-extrabold">{{ title | uppercase }}</div>
+  </div>
+  <!-- 제목 -->
+  <div class="bg-[#E7E7E7] border border-1 mt-6"></div>
+  <!-- 카테고리 -->
+  <div class="flex justify-between items-center">
+    <div class="flex gap-3 mt-3 items-center">
+      <app-category tilte="전체"></app-category>
+      <app-category title="필라테스"></app-category>
+      <app-category title="식품·건강"></app-category>
+      <app-category title="게임"></app-category>
+      <app-category title="피트니스"></app-category>
+      <app-category title="축구"></app-category>
+      <app-category title="카테고리"></app-category>
+    </div>
+    <div class="text-gray-900 justify-center items-center text-sm font-bold">
+      >
+    </div>
+  </div>
+  <!-- 카테고리 -->
+  <app-button></app-button>
+</div>
