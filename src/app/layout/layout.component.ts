@@ -24,9 +24,10 @@ export class LayoutComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.router.events.pipe(filter(ev=>ev instanceof NavigationEnd)).subscribe({
+    this.router.events.pipe(filter(ev => ev instanceof NavigationEnd)).subscribe({
       next: (res) => {
         this.getUsers();
+        // console.log(res)
       },
       error: (error) => {
         console.log(error);
@@ -45,14 +46,18 @@ export class LayoutComponent implements OnInit {
 
   submit() {
     const body = this.createForm.getRawValue();
-    console.log(body)
-    this.userService.createUser(body).subscribe({
-      next: (res) => {
-        this.router.navigateByUrl('/')
-      },
-      error: (error) => {
-        console.log(error)
-      }
-    })
+    if (body.name === null || body.password === null) {
+      console.log(body)
+    }
+    else {
+      this.userService.createUser(body).subscribe({
+        next: (res) => {
+          this.router.navigateByUrl('/userlist')
+        },
+        error: (error) => {
+          console.log(error)
+        }
+      })
+    }
   }
 }

@@ -6,6 +6,10 @@ const routes: Routes = [
   {
     path: '',
     component: LayoutComponent
+  },
+  {
+    path: 'userlist',
+    loadChildren: () => import('../pages/userlist/userlist.module').then(m=>m.UserlistModule)
   }
 ];
 
