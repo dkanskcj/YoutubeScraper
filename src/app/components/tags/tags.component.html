@@ -1,3 +1,7 @@
-<p>tags works!</p>
-
-<div class="px-3 py-2 rounded-full bg-gray-100 text-gray-400">{{tagname}}</div>
+<div>
+    <div class="flex gap-2 py-3 px-10">
+        <ng-container *ngFor="let tag of tags">
+            <div class="bg-gray-100 rounded-full px-3 py-2">{{ tag.name }}</div>
+        </ng-container>
+    </div>
+</div>

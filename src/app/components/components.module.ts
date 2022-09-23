@@ -1,14 +1,15 @@
-import { NgModule } from '@angular/core';
+import { TagsComponent } from './tags/tags.component';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
-import { ComponentsRoutingModule } from './components-routing.module';
 
+const componetns = [TagsComponent]
 
 @NgModule({
-  declarations: [],
+  declarations: componetns,
   imports: [
     CommonModule,
-    ComponentsRoutingModule
-  ]
+  ],
+  exports: componetns
 })
 export class ComponentsModule { }

@@ -1,15 +1,19 @@
-import { TagsComponent } from './../../tags/tags.component';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+
+type tagList = {
+  name: string;
+}
+
+
 
 @Component({
   selector: 'app-tags',
   templateUrl: './tags.component.html',
   styleUrls: ['./tags.component.scss']
 })
-
 export class TagsComponent implements OnInit {
-
-  @input() tagname: string[];
+  @Input() tags: tagList[] = [];
+  // tags: tagList[] = [];
 
   constructor() { }
 
