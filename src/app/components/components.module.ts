@@ -1,9 +1,10 @@
-import { TagsComponent } from './tags/tags.component';
+import { InputComponent } from './input/input.component';
+import { TagComponent } from './tag/tag.component';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 
-const componetns = [TagsComponent]
+const componetns = [TagComponent, InputComponent]
 
 @NgModule({
   declarations: componetns,
