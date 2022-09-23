@@ -28,7 +28,11 @@
                 routerLink="/userlist">
                 목록</div>
         </div>
-        <div class="border box-border shadow rounded-lg px-3 py-2 cursor-pointer text-primary border-primary"
-           (click)="submit()" >저장</div>
+        <div *ngIf="isLoading === false" class="relative border box-border shadow rounded-lg px-3 py-2 cursor-pointer text-yellow-400 border-yellow-300 bg-yellow-50"
+           (click)="submit()" >저장
+        </div>
+        <div *ngIf="isLoading === true" class="relative border box-border shadow rounded-lg px-3 py-2 cursor-pointer text-yellow-200 border-yellow-100 bg-yellow-50">저장
+           <img src="assets/icons/spinner.svg" class="myAbsolute">
+        </div>
     </div>
 </form>

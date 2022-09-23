@@ -6,16 +6,17 @@ import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
+import { ComponentsModule } from './components/components.module';
 import { LayoutComponent } from './layout/layout.component';
-import { UserlistComponent } from './pages/userlist/userlist.component';
 import { CommentpageComponent } from './pages/commentpage/commentpage.component';
+import { UserlistComponent } from './pages/userlist/userlist.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LayoutComponent,
     UserlistComponent,
-    CommentpageComponent
+    CommentpageComponent,
   ],
   imports: [
     BrowserModule,
@@ -23,7 +24,8 @@ import { CommentpageComponent } from './pages/commentpage/commentpage.component'
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ComponentsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

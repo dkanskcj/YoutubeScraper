@@ -22,7 +22,7 @@ export class LayoutComponent implements OnInit {
     private userService: UserService,
     private router: Router
   ) { }
-
+  isLoading: boolean = false;
   ngOnInit(): void {
     this.router.events.pipe(filter(ev => ev instanceof NavigationEnd)).subscribe({
       next: (res) => {
@@ -45,6 +45,7 @@ export class LayoutComponent implements OnInit {
   }
 
   submit() {
+    this.isLoading = true;
     const body = this.createForm.getRawValue();
     if (body.name === null || body.password === null) {
       console.log(body)

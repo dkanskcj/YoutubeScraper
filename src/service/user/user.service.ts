@@ -22,12 +22,17 @@ export class UserService {
   getUser(id: number){
     return this.httpClient.get(`${this.baseUrl}/${id}`);
   }
+
   createUser(body: any){
     return this.httpClient.post(`${this.baseUrl}`, body);
+  }
+  createUserwithComment(name: any, password: any){
+    return this.httpClient.post(`${this.baseUrl}`, name, password);
   }
   updateUser(id: number, body: any){
     return this.httpClient.put(`${this.baseUrl}/${id}`, body);
   }
+
   deleteUser(id: number){
     return this.httpClient.delete(`${this.baseUrl}/${id}`);
   }

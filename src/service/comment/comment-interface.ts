@@ -1,4 +1,4 @@
-export interface Comment {
+export interface Comments {
     context: string,
     userId: number,
     createdAt: Date,
