@@ -1,0 +1,39 @@
+<div class="p-20">
+    <div class="flex gap-2 justify-center items-center px-3 py-2">
+        <form [formGroup]="createComment">
+            <div class="space-y-2">
+                <div class="flex gap-2 justify-center items-center">
+                    <img src="assets/icons/userIcon.svg">
+                    <input class="border box-border shadow rounded-md px-3 py-2 cursor-pointer text-green-500"
+                        type="text" value="아이디">
+                    <input class="border box-border shadow rounded-md px-3 py-2 cursor-pointer text-red-500"
+                        type="password" value="password">
+                </div>
+                <input formControlName="context" class="w-full px-3 py-2 border box-border shadow rounded-md cursor-pointer" type="text">
+                <div class="flex justify-end">
+                    <div (click)="submit()"
+                        class="px-3 py-2 border box-border shadow rounded-md cursor-pointer border-blue-300 text-blue-400 bg-blue-50">
+                        등록
+                    </div>
+                </div>
+                <!-- comment Frame -->
+                <div class="flex gap-1">
+                    <div>댓글</div>
+                    <div class="text-blue-300">3</div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!-- comment Frame -->
+    <div class="flex justify-center items-center">
+
+    </div>
+    <div class="flex gap-4 justify-center">
+        <div class="border box-border shadow rounded-lg px-3 py-2 cursor-pointer text-gray-500 border-gray-400"
+            routerLink="/">
+            유저 등록</div>
+        <div class="border box-border shadow rounded-lg px-3 py-2 cursor-pointer text-gray-500 border-gray-400"
+            routerLink="/userlist">
+            유저 목록</div>
+    </div>
+</div>

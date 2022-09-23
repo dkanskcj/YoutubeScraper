@@ -3,8 +3,9 @@
         유저 리스트 입니다
     </div>
     <ng-container *ngFor="let user of users">
-        <div class="w-full flex justify-start gap-4">
-            <div class="flex justify-start items-center px-3 py-2 text-green-500 w-[15rem]">
+        <div class="w-full flex justify-start items-center gap-4">
+            <div class="flex gap-2 justify-start items-center px-3 py-2 text-green-500 w-[15rem]">
+                <img src="assets/icons/userIcon.svg">
                 <div>아이디 : </div>
                 <div>{{ user?.name }}</div>
             </div>
@@ -16,9 +17,12 @@
                 (click)="deleteUser(user.id)">삭제</div>
         </div>
     </ng-container>
-    <div class="flex space-x-4">
+    <div class="flex space-x-4 justify-between">
         <div class="border box-border shadow rounded-lg px-3 py-2 cursor-pointer text-gray-500 border-gray-400"
             routerLink="/">
             유저 등록</div>
+        <div class="border box-border shadow rounded-lg px-3 py-2 cursor-pointer text-gray-500 border-gray-400"
+            routerLink="/commentPage">
+            댓글 페이지</div>
     </div>
 </div>

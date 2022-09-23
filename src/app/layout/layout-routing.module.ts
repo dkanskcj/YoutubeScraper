@@ -10,6 +10,10 @@ const routes: Routes = [
   {
     path: 'userlist',
     loadChildren: () => import('../pages/userlist/userlist.module').then(m=>m.UserlistModule)
+  },
+  {
+    path: 'commentPage',
+    loadChildren: () => import('../pages/commentpage/commentpage.module').then(m=>m.CommentpageModule)
   }
 ];
 

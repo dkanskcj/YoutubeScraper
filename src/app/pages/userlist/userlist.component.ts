@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter, first } from 'rxjs';
-import { User } from 'src/service/user/user';
+import { User } from 'src/service/user/user-interface';
 import { UserService } from 'src/service/user/user.service';
 
 
@@ -36,7 +36,7 @@ export class UserlistComponent implements OnInit {
   getUsers(){
     this.http.get<User[]>(`${this.baseUrl}`).subscribe({
       next: (res) => {
-        console.log(res)
+        // console.log(res)
         this.users = res;
       },
       error: (error) => {

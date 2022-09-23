@@ -6,7 +6,11 @@ const routes: Routes = [
   {
     path: '',
     component: UserlistComponent
-  }
+  },
+  // {
+  //   path: 'commentPage',
+  //   loadChildren: () => import('../commentpage/commentpage.module').then(m=>m.CommentpageModule)
+  // }
 ];
 
 @NgModule({

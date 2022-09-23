@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
-import { User } from 'src/service/user/user';
+import { User } from 'src/service/user/user-interface';
 import { UserService } from 'src/service/user/user.service';
 @Component({
   selector: 'app-layout',
@@ -39,7 +39,7 @@ export class LayoutComponent implements OnInit {
 
   getUsers() {
     this.http.get<User[]>(`http://localhost:3000/user`).subscribe(res => {
-      console.log(res);
+      // console.log(res);
       this.user = res;
     })
   }
