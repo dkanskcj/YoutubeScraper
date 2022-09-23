@@ -4,7 +4,6 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { LayoutRoutingModule } from './layout/layout-routing.module';
-import { CategorypageComponent } from './categorypage/categorypage.component';
 
 @NgModule({
   declarations: [AppComponent],

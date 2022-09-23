@@ -18,6 +18,7 @@ export class VideosComponent implements OnInit {
   // @Input() videoTitle: string;
   // @Input() tag: string;
   @Input() seeAll: string;
+  @Input() link: string;
 
   videos: Videos[] = [
     {
