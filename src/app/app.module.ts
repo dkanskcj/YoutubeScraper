@@ -4,10 +4,10 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { LayoutRoutingModule } from './layout/layout-routing.module';
-import { WholepageComponent } from './wholepage/wholepage.component';
+import { CategorypageComponent } from './categorypage/categorypage.component';
 
 @NgModule({
-  declarations: [AppComponent, WholepageComponent],
+  declarations: [AppComponent],
   imports: [BrowserModule, LayoutRoutingModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent],

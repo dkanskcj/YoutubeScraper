@@ -6,6 +6,22 @@ const routes: Routes = [
   {
     path: '',
     component: LayoutComponent,
+    children: [
+      {
+        path: '',
+        loadChildren: () =>
+          import('../wholepage/wholepage.module').then(
+            (m) => m.WholepageModule
+          ),
+      },
+      {
+        path: 'category',
+        loadChildren: () =>
+          import('../categorypage/categorypage.module').then(
+            (m) => m.CategorypageModule
+          ),
+      },
+    ],
   },
 ];
 
