@@ -15,7 +15,7 @@ import { UserService } from 'src/service/user/user.service';
 export class UserlistComponent implements OnInit {
   private baseUrl = 'http://localhost:3000/user';
   users: User[] = [];
-  isLoading: boolean = false;
+  currentDeletingUserId: number;
   currentNum: number;
   
   
@@ -53,7 +53,7 @@ export class UserlistComponent implements OnInit {
 
   deleteUser(id: number){
     const user = this.users.find(x => x.id === id);
-    this.isLoading = true;
+    this.currentDeletingUserId = id;
     if(!user){
       return ;
     }

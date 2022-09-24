@@ -37,7 +37,7 @@ export class CommentpageComponent implements OnInit {
   is_clicked: number = 1;
 
   createComment = new FormGroup({
-    context: new FormControl(null),
+    content: new FormControl(null),
     name: new FormControl(null),
     password: new FormControl(null),
   })
@@ -71,7 +71,6 @@ export class CommentpageComponent implements OnInit {
     });
     this.getUsers();
     this.getUser();
-    // this.createdAt.setDate(this.createdAt.getDate());
   }
 
   isClicked(ev: any) {
@@ -112,54 +111,16 @@ export class CommentpageComponent implements OnInit {
   }
   submit() {
     const body = this.createComment.getRawValue();
-    if (body) {
-      for (let input of this.inputs) {
-        // console.log(input);
-        if (input.name === body.name && input.password === body.password) {
-          if (body.context) {
-            this.userSerivce.getUser(input.id).subscribe({
-              next: (res) => {
-                console.log(res)
-              },
-              error: (e) => {
-                console.log(e)
-              }
-            })
-            console.log(this.testContexts)
-            console.log(input.name, input.password)
-            this.whatDate = new Date();
-            console.log('test = > ', this.whatDate)
-            // const cValue = formatDate(this.currentDate, 'yyyy-MM-dd', 'en-US');
-
-            this.testContexts.push({
-              id: input.id,
-              name: input.name,
-              context: body.context,
-              date: this.whatDate
-            })
-          }
-          else {
-            console.log('test')
-          }
-        }
-      }
+    if(!body){
+      console.log('t')
     }
-    // const body = this.createComment.getRawValue();
-    // if (!body) {
-    //   console.log(body)
-    // }
-    // else {
-    //   console.log(body)
-    //   this.commentService.createComment(body).subscribe({
-    //     next: (res) => {
-    //       console.log(res)
-    //     },
-    //     error: (error) => {
-    //       console.log(error)
-    //     }
-    //   })
-    // }
+    else{
+      // this.commentService.createComment(body, )
+    }
   }
+
+
+
 
   getComment() {
     this.http.get<Comment[]>(`${this.baseUrlComment}`).subscribe({

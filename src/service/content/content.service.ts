@@ -17,7 +17,7 @@ export class ContentService {
     return this.httpClient.get(`${this.baseUrl}/${id}`);
   }
 
-  createComment(body: any){
-    return this.httpClient.put(`${this.baseUrl}`, body);
+  createComment(body: any, id: number){
+    return this.httpClient.post(`${this.baseUrl}/${id}`, body);
   }
 }
