@@ -6,7 +6,9 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./category.component.scss'],
 })
 export class CategoryComponent implements OnInit {
-  // @Input() title: string;
+  @Input() value: string;
+  @Input() isSelected: boolean;
+
   constructor() {}
 
   ngOnInit(): void {}
