@@ -1,0 +1,13 @@
+<div class="flex py-4 gap-3">
+    <img src="assets/icons/profile.png">
+    <div>
+        <div class="flex gap-4">
+            <div class="text-lg font-semibold text-gray-900">{{id}}</div>
+            <div class="flex items-center gap-1">
+                <img src="assets/icons/time.png">
+                <div class="min-w-max text-gray-400">{{createdAt | date:"YYYY-MM-dd HH:mm"}}</div>
+            </div>
+        </div>
+        <div class="pt-1.25 font-semibold text-gray-900">{{comment}}</div>
+    </div>
+</div>

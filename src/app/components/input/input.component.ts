@@ -8,6 +8,8 @@ import { Component, HostBinding, Input, OnInit } from '@angular/core';
 export class InputComponent implements OnInit {
 
   // @Input() unit: string;
+  
+  @Input() placeholder? : string;
   @HostBinding ('class') class = 'h-full';
 
   constructor() { }
