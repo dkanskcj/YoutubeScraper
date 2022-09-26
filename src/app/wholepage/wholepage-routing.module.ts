@@ -7,6 +7,11 @@ const routes: Routes = [
     path: '',
     component: WholepageComponent,
   },
+  {
+    path: ':id',
+    loadChildren: () =>
+      import('../pages/detail/detail.module').then((m) => m.DetailModule),
+  },
 ];
 
 @NgModule({

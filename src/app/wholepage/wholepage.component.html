@@ -56,3 +56,10 @@
 <div class="mt-11">
   <app-videos seeAll="모두보기" title="피트니스"></app-videos>
 </div>
+
+<ng-container *ngFor="let video of videos">
+  <div class="cursor-pointer" [routerLink]="video?.id">
+    <div>제목 : {{ video?.title }}</div>
+    <div>카테고리 : {{ video?.category }}</div>
+  </div>
+</ng-container>
