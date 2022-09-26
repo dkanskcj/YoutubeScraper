@@ -11,7 +11,9 @@
 
   <!-- 카테고리 -->
   <div class="w-full px-10 flex justify-between border-b-2 border-gray-100">
-    <app-category [categories]="['전체', '카테고리1', '카테고리2']"></app-category>
+    <app-category
+      [categories]="['전체', '카테고리1', '카테고리2']"
+    ></app-category>
     <div class="flex items-center cursor-pointer">
       <img class="w-6 h-6" src="assets/icons/rt-arrow.png" />
     </div>
@@ -20,41 +22,91 @@
 
   <!-- 내용 -->
   <div class="pt-10 flex justify-center">
-
     <div>
-
       <div class="w-[54rem] h-[30rem] bg-gray-200">영상</div>
       <div class="pt-5 text-bold text-2xl">영상제목</div>
       <div class="pt-2 pb-5 text-semibold text-xl text-gray-500">카테고리</div>
 
       <!-- 댓글 입력-->
       <div class="pt-5 border-t-2 border-gray-200">
-        <div class="flex gap-5">
-          <img src="assets/icons/profile.png" alt="">
-          <div class="w-1/2">
-            <app-input placeholder="아이디"></app-input>
+        <form [formGroup]="createForm">
+          <div class="flex gap-5">
+            <img src="assets/icons/profile.png" />
+            <div class="w-1/2">
+              <div class="w-full flex justify-center items-center gap-2">
+                <div
+                  class="w-full flex justify-between border bg-white border-gray-200 rounded-md outline-none focus-within:ring-gray-400 transition-colors focus-within:ring-1"
+                >
+                  <input
+                    formControlName="name"
+                    placeholder="아이디"
+                    type="text"
+                    g
+                    class="w-full outline-none px-3 py-2.5 rounded-md cursor-pointer"
+                  />
+                  <div></div>
+                </div>
+              </div>
+            </div>
+            <div class="w-1/2">
+              <div class="w-full flex justify-center items-center gap-2">
+                <div
+                  class="w-full flex justify-between border bg-white border-gray-200 rounded-md outline-none focus-within:ring-gray-400 transition-colors focus-within:ring-1"
+                >
+                  <input
+                    formControlName="password"
+                    placeholder="비밀번호"
+                    type="password"
+                    class="w-full outline-none px-3 py-2.5 rounded-md cursor-pointer"
+                  />
+                  <div></div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="w-1/2">
-            <app-input placeholder="비밀번호"></app-input>
+          <div class="pt-3">
+            <div class="w-full flex justify-center items-center gap-2">
+              <div
+                class="w-full flex justify-between border bg-white border-gray-200 rounded-md outline-none focus-within:ring-gray-400 transition-colors focus-within:ring-1"
+              >
+                <input
+                  formControlName="content"
+                  placeholder="댓글"
+                  type="text"
+                  class="w-full outline-none px-3 py-2.5 rounded-md cursor-pointer"
+                />
+                <div></div>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="pt-3">
-          <app-input placeholder="댓글을 남겨주세요."></app-input>
-        </div>
-        <div class="pt-4 flex justify-end">
-          <app-button name="등록"></app-button>
-        </div>
+          <div class="pt-4 flex justify-end">
+            <app-button name="등록" (click)="submit()"></app-button>
+          </div>
+        </form>
       </div>
       <!-- 댓글 입력-->
 
       <!-- 댓글 보기 -->
       <div class="pt-5">
-        <div class="flex gap-1 text-lg font-semibold text-gray-900">
+        <div
+          class="flex gap-1 text-lg font-semibold text-gray-900 cursor-pointer"
+        >
           댓글
-          <div class="text-lg font-semibold text-blue-500">3</div>
+          <div class="text-lg font-semibold text-blue-500">
+            {{ commentsTest?.length }}
+          </div>
         </div>
         <div>
-          <app-comment
+          <ng-container *ngFor="let comment of commentsTest">
+            <app-comment
+              [id]="comment?.name"
+              [comment]="comment?.content"
+              [createdAt]="comment?.createdAt | date: 'YYYY-MM-dd hh:mm'"
+              (click)="getCommentsWithVideoId(comment?.videoId)"
+              class="cursor-pointer"
+            ></app-comment>
+          </ng-container>
+          <!-- <app-comment
           id="예니"
           comment="좋구만융!.!"></app-comment>
           <app-comment
@@ -62,15 +114,12 @@
           comment="ㅋㅋㅋㅋㅋㅋㅋ재밌네연"></app-comment>
           <app-comment
           id="설빈"
-          comment="괜춘ㅋㅋ"></app-comment>
+          comment="괜춘ㅋㅋ"></app-comment> -->
         </div>
       </div>
       <!-- 댓글 보기 -->
-
     </div>
-
   </div>
   <!-- 내용 -->
-
 </div>
 <!-- 전체 -->

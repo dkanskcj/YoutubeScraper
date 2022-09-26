@@ -9,7 +9,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class CommentComponent implements OnInit {
 
   @Input() id: any;
-  @Input() createdAt: Date = new Date();
+  @Input() createdAt: string;
   @Input() comment: any;
 
   constructor() { }
