@@ -6,7 +6,7 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () =>
-      import('./pages/layout/layout.module').then((m) => m.LayoutModule),
+      import('./layout/layout.module').then((m) => m.LayoutModule),
   },
 ];
 
