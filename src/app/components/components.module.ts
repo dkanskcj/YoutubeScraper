@@ -3,8 +3,14 @@ import { CommonModule } from '@angular/common';
 import { ButtonComponent } from './button/button.component';
 import { CategoryComponent } from './category/category.component';
 import { VideosComponent } from './videos/videos.component';
+import { CommentComponent } from './comment/comment.component';
 
-const components = [ButtonComponent, CategoryComponent, VideosComponent];
+const components = [
+  ButtonComponent,
+  CategoryComponent,
+  VideosComponent,
+  CommentComponent,
+];
 
 @NgModule({
   declarations: components,
