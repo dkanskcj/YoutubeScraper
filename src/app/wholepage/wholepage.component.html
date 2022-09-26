@@ -12,7 +12,7 @@
       value="필라테스"
     ></app-category>
     <app-category
-      [isSelected]="currentCategory == '음식·건강'"
+      [isSelected]="currentCategory == '식품·건강'"
       (click)="currentCategory = '식품·건강'"
       value="식품·건강"
     ></app-category>
@@ -44,7 +44,7 @@
 <!-- 카테고리 -->
 <div class="bg-[#E7E7E7] border border-0.5 mt-3"></div>
 <div class="mt-5 flex justify-end mb-7">
-  <app-button>영상 등록하기</app-button>
+  <app-button name="영상 등록하기"></app-button>
 </div>
 <app-videos seeAll="모두보기" title="필라테스"></app-videos>
 <div class="mt-11">

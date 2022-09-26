@@ -19,6 +19,8 @@ type commentList = {
   styleUrls: ['./detail.component.scss'],
 })
 export class DetailComponent implements OnInit {
+  currentCategory = '전체';
+
   private baseUrl: string = 'http://localhost:80/comment';
 
   createForm = new FormGroup({
