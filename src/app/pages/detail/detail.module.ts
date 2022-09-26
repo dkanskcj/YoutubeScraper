@@ -6,17 +6,14 @@ import { DetailRoutingModule } from './detail-routing.module';
 import { DetailComponent } from './detail.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-
 @NgModule({
-  declarations: [
-    DetailComponent
-  ],
+  declarations: [DetailComponent],
   imports: [
     CommonModule,
     DetailRoutingModule,
     ComponentsModule,
     ReactiveFormsModule,
     FormsModule,
-  ]
+  ],
 })
-export class DetailModule { }
+export class DetailModule {}

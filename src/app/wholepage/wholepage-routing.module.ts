@@ -1,15 +1,16 @@
-import { DetailComponent } from './detail.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { WholepageComponent } from './wholepage.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: DetailComponent,
+    component: WholepageComponent,
   },
   {
     path: ':id',
-    component: DetailComponent,
+    loadChildren: () =>
+      import('../pages/detail/detail.module').then((m) => m.DetailModule),
   },
 ];
 
@@ -17,4 +18,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class DetailRoutingModule {}
+export class WholepageRoutingModule {}

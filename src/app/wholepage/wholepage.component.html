@@ -1,0 +1,65 @@
+<!-- 카테고리 -->
+<div class="flex justify-between items-center">
+  <div class="flex gap-3 mt-3 items-center">
+    <app-category
+      [isSelected]="currentCategory === '전체'"
+      (click)="currentCategory = '전체'"
+      value="전체"
+    ></app-category>
+    <app-category
+      [isSelected]="currentCategory == '필라테스'"
+      (click)="currentCategory = '필라테스'"
+      value="필라테스"
+    ></app-category>
+    <app-category
+      [isSelected]="currentCategory == '음식·건강'"
+      (click)="currentCategory = '식품·건강'"
+      value="식품·건강"
+    ></app-category>
+    <app-category
+      [isSelected]="currentCategory === '게임'"
+      (click)="currentCategory = '게임'"
+      value="게임"
+    ></app-category>
+    <app-category
+      [isSelected]="currentCategory == '피트니스'"
+      (click)="currentCategory = '피트니스'"
+      value="피트니스"
+    ></app-category>
+    <app-category
+      [isSelected]="currentCategory == '카테고리1'"
+      (click)="currentCategory = '카테고리1'"
+      value="카테고리1"
+    ></app-category>
+    <app-category
+      [isSelected]="currentCategory == '카테고리2'"
+      (click)="currentCategory = '카테고리2'"
+      value="카테고리2"
+    ></app-category>
+  </div>
+  <div class="text-gray-900 justify-center items-center text-sm font-bold">
+    >
+  </div>
+</div>
+<!-- 카테고리 -->
+<div class="bg-[#E7E7E7] border border-0.5 mt-3"></div>
+<div class="mt-5 flex justify-end mb-7">
+  <app-button>영상 등록하기</app-button>
+</div>
+<app-videos seeAll="모두보기" title="필라테스"></app-videos>
+<div class="mt-11">
+  <app-videos seeAll="모두보기" title="식품 건강"></app-videos>
+</div>
+<div class="mt-11">
+  <app-videos seeAll="모두보기" title="게임"></app-videos>
+</div>
+<div class="mt-11">
+  <app-videos seeAll="모두보기" title="피트니스"></app-videos>
+</div>
+
+<ng-container *ngFor="let video of videos">
+  <div class="cursor-pointer" [routerLink]="video?.id">
+    <div>제목 : {{ video?.title }}</div>
+    <div>카테고리 : {{ video?.category }}</div>
+  </div>
+</ng-container>

@@ -1,18 +1,20 @@
-import { ButtonComponent } from './button/button.component';
-import { InputComponent } from './input/input.component';
-import { CategoryComponent } from './category/category.component';
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ButtonComponent } from './button/button.component';
+import { CategoryComponent } from './category/category.component';
+import { VideosComponent } from './videos/videos.component';
 import { CommentComponent } from './comment/comment.component';
 
-
-const components = [CategoryComponent, InputComponent, ButtonComponent, CommentComponent]
+const components = [
+  ButtonComponent,
+  CategoryComponent,
+  VideosComponent,
+  CommentComponent,
+];
 
 @NgModule({
   declarations: components,
-  imports: [
-    CommonModule,
-  ],
-  exports: components
+  imports: [CommonModule],
+  exports: components,
 })
-export class ComponentsModule { }
+export class ComponentsModule {}
