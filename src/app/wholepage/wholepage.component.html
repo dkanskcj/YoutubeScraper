@@ -4,7 +4,7 @@
 </div>
 <app-videos seeAll="모두보기" title="필라테스"></app-videos>
 <div class="mt-11">
-  <app-videos seeAll="모두보기" title="식품 건강"></app-videos>
+  <app-videos seeAll="모두보기" title="식품·건강"></app-videos>
 </div>
 <div class="mt-11">
   <app-videos seeAll="모두보기" title="게임"></app-videos>
@@ -13,6 +13,8 @@
   <app-videos seeAll="모두보기" title="피트니스"></app-videos>
 </div>
 
+<button class="bg-gray-800 text-white">버튼1</button>
+<button class="bg-gray-800 text-white">버튼2</button>
 <ng-container *ngFor="let video of videos">
   <div class="cursor-pointer" [routerLink]="video?.id">
     <div>제목 : {{ video?.title }}</div>
