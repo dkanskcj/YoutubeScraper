@@ -11,7 +11,7 @@ import { VideoService } from '../service/video/video.service';
 })
 export class WholepageComponent implements OnInit {
   private baseUrl = 'http://localhost/video';
-  currentCategory = null;
+  currentCategory = '전체';
 
   videos: any;
 
