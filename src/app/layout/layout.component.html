@@ -1,0 +1,62 @@
+<div class="w-full h-full p-6">
+  <!-- 탑바 -->
+  <!-- 제목 -->
+  <div
+    class="flex gap-2 justify-center items-center cursor-pointer"
+    routerLink="/"
+  >
+    <img src="assets/icons/youtube.svg" alt="" />
+    <div class="text-black text-xl font-extrabold">
+      {{ maintitle | uppercase }}
+    </div>
+  </div>
+  <!-- 제목 -->
+  <div class="bg-[#E7E7E7] border border-1 mt-6"></div>
+  <!-- 탑바 -->
+  <!-- 카테고리 -->
+  <div class="flex justify-between items-center">
+    <div class="flex gap-3 mt-3 items-center">
+      <app-category
+        [isSelected]="currentCategory === '전체'"
+        (click)="currentCategory = '전체'"
+        value="전체"
+      ></app-category>
+      <app-category
+        [isSelected]="currentCategory == '필라테스'"
+        (click)="currentCategory = '필라테스'"
+        value="필라테스"
+      ></app-category>
+      <app-category
+        [isSelected]="currentCategory == '식품·건강'"
+        (click)="currentCategory = '식품·건강'"
+        value="식품·건강"
+      ></app-category>
+      <app-category
+        [isSelected]="currentCategory === '게임'"
+        (click)="currentCategory = '게임'"
+        value="게임"
+      ></app-category>
+      <app-category
+        [isSelected]="currentCategory == '피트니스'"
+        (click)="currentCategory = '피트니스'"
+        value="피트니스"
+      ></app-category>
+      <app-category
+        [isSelected]="currentCategory == '카테고리1'"
+        (click)="currentCategory = '카테고리1'"
+        value="카테고리1"
+      ></app-category>
+      <app-category
+        [isSelected]="currentCategory == '카테고리2'"
+        (click)="currentCategory = '카테고리2'"
+        value="카테고리2"
+      ></app-category>
+    </div>
+    <div class="text-gray-900 justify-center items-center text-sm font-bold">
+      >
+    </div>
+  </div>
+  <!-- 카테고리 -->
+
+  <router-outlet> </router-outlet>
+</div>

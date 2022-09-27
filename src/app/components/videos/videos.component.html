@@ -1,0 +1,22 @@
+<div>
+  <div class="flex justify-between mb-3">
+    <div class="font-bold text-gray-800 text-2xl">{{ title }}</div>
+    <div class="font-semibold text-blue-500 cursor-pointer" *ngIf="seeAll">
+      {{ seeAll }}
+    </div>
+  </div>
+  <div class="flex gap-6 items-start">
+    <div *ngFor="let video of videos">
+      <img class="cursor-pointer" [src]="video.icon" />
+      <div class="text-gray-900 font-semibold text-sm cursor-pointer">
+        {{ video.videoTitle }}
+      </div>
+      <div
+        class="w-fit text-gray-500 font-medium text-xs cursor-pointer"
+        routerLink="category"
+      >
+        {{ video.tag }}
+      </div>
+    </div>
+  </div>
+</div>
