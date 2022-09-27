@@ -13,7 +13,8 @@
                 <div>비밀번호 : </div>
                 <div>{{ user?.password }}</div>
             </div>
-            <app-buttons [isLoading]="currentDeletingUserId === user.id" name="삭제" (click)="deleteUser(user.id)"></app-buttons>
+            <app-buttons [isLoading]="currentDeletingUserId === user.id" name="삭제" (click)="deleteUser(user.id)">
+            </app-buttons>
             <!-- <div *ngIf="isLoading === false" class="px-3 py-2 border box-border shadow rounded-md cursor-pointer border-blue-300 text-blue-400 bg-blue-50"
                 (click)="deleteUser(user.id)">삭제</div>
             <div *ngIf="isLoading === true"
