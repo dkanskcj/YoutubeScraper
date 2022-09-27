@@ -1,6 +1,5 @@
-<div class="bg-[#E7E7E7] border border-0.5 mt-3"></div>
 <div class="mt-5 flex justify-end mb-7">
-  <app-button name="영상 등록하기"></app-button>
+  <app-button name="영상 등록하기" [routerLink]="'register'"></app-button>
 </div>
 <app-videos seeAll="모두보기" title="필라테스"></app-videos>
 <div class="mt-11">
@@ -13,10 +12,8 @@
   <app-videos seeAll="모두보기" title="피트니스"></app-videos>
 </div>
 
-<button class="bg-gray-800 text-white">버튼1</button>
-<button class="bg-gray-800 text-white">버튼2</button>
 <ng-container *ngFor="let video of videos">
-  <div class="cursor-pointer" [routerLink]="video?.id">
+  <div class="cursor-pointer" (click)="navigateDetail(video?.id)">
     <div>제목 : {{ video?.title }}</div>
     <div>카테고리 : {{ video?.category }}</div>
   </div>
