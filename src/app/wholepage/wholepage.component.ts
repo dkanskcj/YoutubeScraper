@@ -46,4 +46,8 @@ export class WholepageComponent implements OnInit {
       },
     });
   }
+
+  navigateDetail(id:number){
+    this.router.navigateByUrl(`/detail/${id}`);
+  }
 }

@@ -33,7 +33,7 @@ export class DetailComponent implements OnInit {
   commentsTest: any;
   constructor(
     private commentService: CommentService,
-    private VideoService: VideoService,
+    private videoService: VideoService,
     private http: HttpClient,
     private router: Router
   ) {}
