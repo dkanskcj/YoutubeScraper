@@ -6,9 +6,11 @@ import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
+import { AuthModule } from './auth/auth.module';
 import { ComponentsModule } from './components/components.module';
 import { CommentpageModule } from './pages/commentpage/commentpage.module';
 import { WholepageModule } from './wholepage/wholepage.module';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -21,7 +23,9 @@ import { WholepageModule } from './wholepage/wholepage.module';
     CommentpageModule,
     FormsModule,
     ReactiveFormsModule,
-    WholepageModule
+    WholepageModule,
+    AuthModule
+    // NgxsModule.forRoot([AuthState])
   ],
   providers: [],
   bootstrap: [AppComponent],

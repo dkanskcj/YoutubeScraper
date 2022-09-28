@@ -1,11 +1,10 @@
-import { VideoService } from '../../service/video/video.service';
 import { HttpClient } from '@angular/common/http';
-import { CommentService } from '../../service/comment/comment.service';
 import { Component, OnInit } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
-import { pipe, filter } from 'rxjs';
-import { ThisReceiver } from '@angular/compiler';
 import { FormControl, FormGroup } from '@angular/forms';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs';
+import { CommentService } from '../../service/comment/comment.service';
+import { VideoService } from '../../service/video/video.service';
 
 type commentList = {
   name: string;
@@ -93,7 +92,7 @@ export class DetailComponent implements OnInit {
   submit() {
     const body = this.createForm.getRawValue();
     if (!body) {
-      console.log('존재하지가 않아~~');
+      console.log('입력 값이 없습니다.');
     }
     console.log(body);
     this.commentService.createComment(body).subscribe({
