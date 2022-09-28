@@ -11,6 +11,9 @@ import { AuthState } from './state/auth.state';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
+  title(title: any) {
+    throw new Error('Method not implemented.');
+  }
   @Select(AuthState.isAuthenticated) authenticated$: Observable<boolean>;
   @Select(AuthState.getUser) user$: Observable<boolean>;
   

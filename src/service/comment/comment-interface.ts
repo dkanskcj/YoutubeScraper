@@ -1,6 +1,6 @@
-export interface Comments {
+export interface CommentInterface {
     name: string,
     password: string,
     content: string,
-    videoId: number,
+    videoId: number
 }

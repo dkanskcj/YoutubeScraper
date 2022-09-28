@@ -18,6 +18,6 @@ export class VideoService {
   }
 
   getVideos() {
-    return this.http.get<any[]>(`${this.baseUrl}`);
+    return this.http.get<CreateVideoDTO[]>(`${this.baseUrl}?pageNo=1&pageSize=10`);
   }
 }

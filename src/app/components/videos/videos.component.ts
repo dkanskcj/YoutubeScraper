@@ -16,7 +16,7 @@ export class VideosComponent implements OnInit {
   @Input() title: string;
   // @Input() icon: string;
   // @Input() videoTitle: string;
-  // @Input() tag: string;
+  @Input() tag: string;
   @Input() seeAll: string;
   @Input() link: string;
 

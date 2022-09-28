@@ -1,7 +1,7 @@
 <div class="px-10">
 
     <!-- 페이지 제목 & 등록 버튼 -->
-    <div class="pt-4 flex justify-between">
+    <div class="pt-5 flex justify-between">
         <div class="font-bold text-gray-800 text-2xl">영상 등록</div>
         <div class="flex justify-end">
             <app-button name="등록" (click)="submit()"></app-button>
@@ -57,12 +57,20 @@
                             <img src="assets/icons/arrow-up.svg" alt="">
                         </div>
                         <!-- 페이지 크기 선택 리스트 -->
-                        <div class="absolute p-2 bg-white rounded-md shadow-md flex flex-col justify-center items-center -top-[350%]" *ngIf="showCategory">
-                            <div class="px-3 cursor-pointer rounded-md hover:bg-primary hover:text-white py-2.5" (click)="changeCategory('HTML')">HTML</div>
-                            <div class="px-3 cursor-pointer rounded-md hover:bg-primary hover:text-white py-2.5" (click)="changeCategory('tailwindcss')">tailwindcss</div>
-                            <div class="px-3 cursor-pointer rounded-md hover:bg-primary hover:text-white py-2.5" (click)="changeCategory('JavaScript')">JavaScript</div>
-                            <div class="px-3 cursor-pointer rounded-md hover:bg-primary hover:text-white py-2.5" (click)="changeCategory('React')">React</div>
-                            <div class="px-3 cursor-pointer rounded-md hover:bg-primary hover:text-white py-2.5" (click)="changeCategory('Angular')">Angular</div>
+                        <!-- 설빈님 여기는 알아서 골라여 맨 처음에 설빈님이 설정한 스타일로 하실지 아니면 그라데이션으로 할 지 아니면 그냥 색상만 다른 호버를 할지~_~ -->
+                        <div class="absolute px-3 py-2.5 bg-white rounded-md shadow-md flex flex-col justify-center items-center top-[1%]" *ngIf="showCategory">
+                            <!-- 그라데이션 -->
+                            <div class="myGradient px-3 w-full cursor-pointer rounded-md hover:bg-blue-50 hover:border-blue-300 hover:text-blue-400 py-2.5" (click)="changeCategory('HTML')">HTML</div>
+                            <div class="myGradient2 px-3 w-full cursor-pointer rounded-md hover:bg-yellow-50 hover:border-yellow-300 hover:text-yellow-400 py-2.5" (click)="changeCategory('tailwindcss')">tailwindcss</div>
+                            <div class="myGradient3 px-3 w-full cursor-pointer rounded-md hover:bg-green-50 hover:border-green-300 hover:text-green-400 py-2.5" (click)="changeCategory('JavaScript')">JavaScript</div>
+                            <div class="myGradient4 px-3 w-full cursor-pointer rounded-md hover:bg-pink-50 hover:border-pink-300 hover:text-pink-400 py-2.5" (click)="changeCategory('React')">React</div>
+                            <div class="myGradient5 px-3 w-full cursor-pointer rounded-md hover:bg-purple-50 hover:border-purple-300 hover:text-purple-400 py-2.5" (click)="changeCategory('Angular')">Angular</div>
+                            <!-- 호버 색상만 다름 -->
+                            <div class="px-3 w-full cursor-pointer rounded-md hover:bg-blue-50 hover:border-blue-300 hover:text-blue-400 py-2.5" (click)="changeCategory('HTML')">HTML</div>
+                            <div class="px-3 w-full cursor-pointer rounded-md hover:bg-yellow-50 hover:border-yellow-300 hover:text-yellow-400 py-2.5" (click)="changeCategory('tailwindcss')">tailwindcss</div>
+                            <div class="px-3 w-full cursor-pointer rounded-md hover:bg-green-50 hover:border-green-300 hover:text-green-400 py-2.5" (click)="changeCategory('JavaScript')">JavaScript</div>
+                            <div class="px-3 w-full cursor-pointer rounded-md hover:bg-pink-50 hover:border-pink-300 hover:text-pink-400 py-2.5" (click)="changeCategory('React')">React</div>
+                            <div class="px-3 w-full cursor-pointer rounded-md hover:bg-purple-50 hover:border-purple-300 hover:text-purple-400 py-2.5" (click)="changeCategory('Angular')">Angular</div>
                         </div>
                     </div>
                 </div>

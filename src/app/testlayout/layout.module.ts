@@ -4,10 +4,11 @@ import { CommonModule } from '@angular/common';
 import { LayoutRoutingModule } from './layout-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ComponentsModule } from '../components/components.module';
+import { LayoutComponent } from './layout.component';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [LayoutComponent],
   imports: [
     CommonModule,
     LayoutRoutingModule,

@@ -1,4 +1,4 @@
-import { Comments } from "../comment/comment-interface";
+// import { Comments } from "../comment/comment-interface";
 import { Contents } from "../content/content-interface";
 
 export interface User {
@@ -6,7 +6,7 @@ export interface User {
     name?: string,
     password: string,
     contents?: Contents[],
-    comments?: Comments[]
+    // comments?: Comments[]
     createdAt: Date,
     updatedAt: Date,
     deletedAt: Date | null;

@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
-import { CommentService } from '../../service/comment/comment.service';
-import { VideoService } from '../../service/video/video.service';
+import { CommentService } from 'src/service/comment/comment.service';
+import { VideoService } from 'src/service/video/video.service';
 
 type commentList = {
   name: string;
