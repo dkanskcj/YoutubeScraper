@@ -1,0 +1,68 @@
+.myGradient {
+    color: white;
+    background: linear-gradient(-45deg, #a1be51, #23a65d, #ee7752, #f06e03);
+    background-size: 600% 600%;
+    animation: gradient 6s ease infinite;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.myGradient2 {
+    color: white;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 600% 600%;
+    animation: gradient 6s ease infinite;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.myGradient3 {
+    color: white;
+    background: linear-gradient(-45deg, #23d5ab, #23d5ab, #ee7752, #e73c7e);
+    background-size: 600% 600%;
+    animation: gradient 6s ease infinite;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.myGradient4 {
+    color: white;
+    background: linear-gradient(-45deg, #754460, #035a46, #34b4db, #7a6f75);
+    background-size: 600% 600%;
+    animation: gradient 6s ease infinite;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.myGradient5 {
+    color: white;
+    background: linear-gradient(-45deg, #c23308, #19176b, #254292, #65bda8);
+    background-size: 600% 600%;
+    animation: gradient 6s ease infinite;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}

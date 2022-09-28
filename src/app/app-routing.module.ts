@@ -16,16 +16,17 @@ const routes: Routes = [
     path: '',
     loadChildren: () => import('./layout/layout.module').then((m) => m.LayoutModule),
   },
-  {
-    path: 'dashboard', loadChildren: () => import('./+dashboard/dashboard.module').then(m => m.DashboardModule),
-    canActivate: [DashboardGuard]
-  }
+  // {
+  //   path: 'dashboard', loadChildren: () => import('./+dashboard/dashboard.module').then(m => m.DashboardModule),
+  //   canActivate: [DashboardGuard]
+  // }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {
-    initialNavigation: 'enabledNonBlocking'
-  })],
+  imports: [RouterModule.forRoot(routes)],
+  // imports: [RouterModule.forRoot(routes, {
+  //   initialNavigation: 'enabledNonBlocking'
+  // })],
   exports: [RouterModule],
 })
 export class AppRoutingModule { }

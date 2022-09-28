@@ -1,8 +1,8 @@
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { VideoService } from 'src/app/service/video/video.service';
 import { filter } from 'rxjs';
+import { VideoService } from 'src/service/video/video.service';
 
 @Component({
   selector: 'app-register',
