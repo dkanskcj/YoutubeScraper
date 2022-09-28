@@ -1,13 +1,15 @@
 <div class="w-full h-full p-6">
   <!-- 탑바 -->
   <!-- 제목 -->
-  <div
-    class="flex gap-2 justify-center items-center cursor-pointer"
-    routerLink="/"
-  >
-    <img src="assets/icons/youtube.svg" alt="" />
-    <div class="text-black text-xl font-extrabold">
-      {{ maintitle | uppercase }}
+  <div class="flex justify-center items-center object-center">
+    <div
+      class="w-max flex gap-2 justify-center items-center cursor-pointer"
+      routerLink="/test"
+    >
+      <img src="assets/icons/youtube.svg" alt="" />
+      <div class="text-black text-xl font-extrabold">
+        {{ maintitle | uppercase }}
+      </div>
     </div>
   </div>
   <!-- 제목 -->
@@ -52,11 +54,13 @@
         value="카테고리2"
       ></app-category>
     </div>
-    <div class="text-gray-900 justify-center items-center text-sm font-bold">
+    <div
+      class="text-gray-900 justify-center items-center text-sm font-bold hidden"
+    >
       >
     </div>
   </div>
   <!-- 카테고리 -->
   <div class="bg-[#E7E7E7] border border-0.5 mt-3"></div>
-  <router-outlet> </router-outlet>
+  <router-outlet></router-outlet>
 </div>

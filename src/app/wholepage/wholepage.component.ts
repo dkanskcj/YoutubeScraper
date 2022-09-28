@@ -12,8 +12,9 @@ import { VideoService } from '../service/video/video.service';
 export class WholepageComponent implements OnInit {
   private baseUrl = 'http://localhost/video';
   currentCategory = '전체';
-
   videos: any;
+
+  viewMode = null;
 
   constructor(
     private videoService: VideoService,
@@ -47,7 +48,7 @@ export class WholepageComponent implements OnInit {
     });
   }
 
-  navigateDetail(id:number){
+  navigateDetail(id: number) {
     this.router.navigateByUrl(`/detail/${id}`);
   }
 }

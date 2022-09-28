@@ -7,6 +7,11 @@ const routes: Routes = [
     path: '',
     component: WholepageComponent,
   },
+  {
+    path: 'detail',
+    loadChildren: () =>
+      import('../pages/detail/detail.module').then((m) => m.DetailModule),
+  },
   // {
   //   path: ':id',
   //   loadChildren: () =>
@@ -17,7 +22,6 @@ const routes: Routes = [
   //   loadChildren: () =>
   //     import('../pages/register/register.module').then(m => m.RegisterModule),
   // },
-
 ];
 
 @NgModule({
