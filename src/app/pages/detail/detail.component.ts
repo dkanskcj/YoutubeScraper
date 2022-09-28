@@ -93,7 +93,7 @@ export class DetailComponent implements OnInit {
   submit() {
     const body = this.createForm.getRawValue();
     if (!body) {
-      console.log('존재하지가 않아~~');
+      console.log('입력 값이 없습니다.');
     }
     console.log(body);
     this.commentService.createComment(body).subscribe({

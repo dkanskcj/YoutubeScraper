@@ -9,6 +9,9 @@ import { AppComponent } from './app.component';
 import { ComponentsModule } from './components/components.module';
 import { CommentpageModule } from './pages/commentpage/commentpage.module';
 import { WholepageModule } from './wholepage/wholepage.module';
+import { NgxsModule } from '@ngxs/store';
+import { AuthState } from './state/auth.state';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -21,7 +24,8 @@ import { WholepageModule } from './wholepage/wholepage.module';
     CommentpageModule,
     FormsModule,
     ReactiveFormsModule,
-    WholepageModule
+    WholepageModule,
+    NgxsModule.forRoot([AuthState])
   ],
   providers: [],
   bootstrap: [AppComponent],
