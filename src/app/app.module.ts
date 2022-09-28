@@ -6,11 +6,10 @@ import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
+import { AuthModule } from './auth/auth.module';
 import { ComponentsModule } from './components/components.module';
 import { CommentpageModule } from './pages/commentpage/commentpage.module';
 import { WholepageModule } from './wholepage/wholepage.module';
-import { NgxsModule } from '@ngxs/store';
-import { AuthState } from './state/auth.state';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,7 +24,8 @@ import { AuthState } from './state/auth.state';
     FormsModule,
     ReactiveFormsModule,
     WholepageModule,
-    NgxsModule.forRoot([AuthState])
+    AuthModule
+    // NgxsModule.forRoot([AuthState])
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,11 +1,10 @@
-import { VideoService } from '../../service/video/video.service';
 import { HttpClient } from '@angular/common/http';
-import { CommentService } from '../../service/comment/comment.service';
 import { Component, OnInit } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
-import { pipe, filter } from 'rxjs';
-import { ThisReceiver } from '@angular/compiler';
 import { FormControl, FormGroup } from '@angular/forms';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs';
+import { CommentService } from '../../service/comment/comment.service';
+import { VideoService } from '../../service/video/video.service';
 
 type commentList = {
   name: string;
