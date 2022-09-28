@@ -10,14 +10,65 @@
     <!-- 페이지 제목 & 등록 버튼 -->
     
     <!-- 페이지 내용 -->
-    <div class="pt-7 flex justify-between">
-        
-        <div>
-            <div class="font-semibold text-gray-800 text-lg">URL
-                <!-- <app-input></app-input> -->
+    <div class="pt-7 space-y-5">
+        <form [formGroup]="createForm">
+        <div class="flex gap-5">
+            <div class="flex items-center font-semibold text-gray-800 text-lg">URL</div>
+            <div class="w-full">
+                <div class="w-full flex justify-center items-center gap-2">
+                    <div
+                      class="w-full flex justify-between border bg-white border-gray-200 rounded-md outline-none focus-within:ring-gray-400 transition-colors focus-within:ring-1"
+                    >
+                      <input formControlName="url" type="text" class="w-full outline-none px-3 py-2.5 rounded-md cursor-pointer" />
+                      <div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                    <!-- <app-input formControlName="url"></app-input> -->
+            </div>
+                <!-- <app-button class="min-w-max" name="등록" type="outline"></app-button> -->
+        </div>
+            
+        <div class="flex justify-between gap-5">
+            <div class="flex mr-[0.4px] items-center min-w-max font-semibold text-gray-800 text-lg">제목</div>
+            <div class="w-full">
+                <div class="w-full flex justify-center items-center gap-2">
+                    <div
+                      class="w-full flex justify-between border bg-white border-gray-200 rounded-md outline-none focus-within:ring-gray-400 transition-colors focus-within:ring-1"
+                    >
+                      <input formControlName="title" type="text" class="w-full outline-none px-3 py-2.5 rounded-md cursor-pointer" />
+                      <div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                <!-- <app-input formControlName="title"></app-input> -->
             </div>
         </div>
-        
+            </form>
+
+            <div class="flex gap-5">
+                <div class="flex items-center font-semibold text-gray-800 text-lg">카테고리</div>
+                <div>
+                    <div class="relative flex" >
+                        <div class="rounded-md border  border-gray-200 p-2 items-center flex gap-3 hover:cursor-pointer" (click)="showCategory = true">
+                            <div>{{Category}}</div>
+                            <img src="assets/icons/arrow-up.svg" alt="">
+                        </div>
+                        <!-- 페이지 크기 선택 리스트 -->
+                        <div class="absolute p-2 bg-white rounded-md shadow-md flex flex-col justify-center items-center -top-[350%]" *ngIf="showCategory">
+                            <div class="px-3 cursor-pointer rounded-md hover:bg-primary hover:text-white py-2.5" (click)="changeCategory('HTML')">HTML</div>
+                            <div class="px-3 cursor-pointer rounded-md hover:bg-primary hover:text-white py-2.5" (click)="changeCategory('tailwindcss')">tailwindcss</div>
+                            <div class="px-3 cursor-pointer rounded-md hover:bg-primary hover:text-white py-2.5" (click)="changeCategory('JavaScript')">JavaScript</div>
+                            <div class="px-3 cursor-pointer rounded-md hover:bg-primary hover:text-white py-2.5" (click)="changeCategory('React')">React</div>
+                            <div class="px-3 cursor-pointer rounded-md hover:bg-primary hover:text-white py-2.5" (click)="changeCategory('Angular')">Angular</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <!-- </form> -->
+
     </div>
     <!-- 페이지 내용 -->
     

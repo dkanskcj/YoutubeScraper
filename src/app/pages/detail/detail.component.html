@@ -11,51 +11,14 @@
         <div class="flex gap-5">
           <img src="assets/icons/profile.png" />
           <div class="w-1/2">
-            <div class="w-full flex justify-center items-center gap-2">
-              <div
-                class="w-full flex justify-between border bg-white border-gray-200 rounded-md outline-none focus-within:ring-gray-400 transition-colors focus-within:ring-1"
-              >
-                <input
-                  formControlName="name"
-                  placeholder="아이디"
-                  type="text"
-                  g
-                  class="w-full outline-none px-3 py-2.5 rounded-md cursor-pointer"
-                />
-                <div></div>
-              </div>
-            </div>
+            <app-input placeholder="아이디"></app-input>
           </div>
           <div class="w-1/2">
-            <div class="w-full flex justify-center items-center gap-2">
-              <div
-                class="w-full flex justify-between border bg-white border-gray-200 rounded-md outline-none focus-within:ring-gray-400 transition-colors focus-within:ring-1"
-              >
-                <input
-                  formControlName="password"
-                  placeholder="비밀번호"
-                  type="password"
-                  class="w-full outline-none px-3 py-2.5 rounded-md cursor-pointer"
-                />
-                <div></div>
-              </div>
-            </div>
+            <app-input placeholder="비밀번호"></app-input>
           </div>
         </div>
         <div class="pt-3">
-          <div class="w-full flex justify-center items-center gap-2">
-            <div
-              class="w-full flex justify-between border bg-white border-gray-200 rounded-md outline-none focus-within:ring-gray-400 transition-colors focus-within:ring-1"
-            >
-              <input
-                formControlName="content"
-                placeholder="댓글"
-                type="text"
-                class="w-full outline-none px-3 py-2.5 rounded-md cursor-pointer"
-              />
-              <div></div>
-            </div>
-          </div>
+          <app-input placeholder="댓글"></app-input>
         </div>
         <div class="pt-4 flex justify-end">
           <app-button name="등록" (click)="submit()"></app-button>
@@ -84,15 +47,6 @@
             class="cursor-pointer"
           ></app-comment>
         </ng-container>
-        <!-- <app-comment
-          id="예니"
-          comment="좋구만융!.!"></app-comment>
-          <app-comment
-          id="혀누"
-          comment="ㅋㅋㅋㅋㅋㅋㅋ재밌네연"></app-comment>
-          <app-comment
-          id="설빈"
-          comment="괜춘ㅋㅋ"></app-comment> -->
       </div>
     </div>
     <!-- 댓글 보기 -->
