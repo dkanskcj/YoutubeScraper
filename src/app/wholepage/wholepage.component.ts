@@ -39,12 +39,12 @@ export class WholepageComponent implements OnInit {
   getVideos() {
     this.videoService.getVideos().subscribe({
       next: ((res: CreateVideoDTO[]) => {
-        console.log(res)
+        // console.log(res)
         this.videos = res['items']
         for(let video of this.videos){
           video.url = video.url.substring(17)
           video.url = this.youtube.concat(video.url);
-          console.log(video.url)
+          // console.log(video.url)
         }
       }),
       error: (err) => {

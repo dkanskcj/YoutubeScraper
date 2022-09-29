@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { NavigationEnd, Router } from '@angular/router';
+import { NavigationEnd, Router, ActivatedRoute } from '@angular/router';
 import { filter } from 'rxjs';
 import { CommentService } from 'src/service/comment/comment.service';
 import { VideoService } from 'src/service/video/video.service';
@@ -27,37 +27,31 @@ export class DetailComponent implements OnInit {
     password: new FormControl(null),
     content: new FormControl(null),
   });
-
+  videoId: number = 0;
   comments: commentList[] = [];
   commentsTest: any;
   constructor(
     private commentService: CommentService,
     private videoService: VideoService,
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this.router.events
-      .pipe(filter((ev) => ev instanceof NavigationEnd))
-      .subscribe({
-        next: (res) => {
-          console.log(res);
-          this.getComments();
-        },
-        error: (e) => {
-          console.log(e);
-        },
-      });
-    this.getComments();
+    this.videoId = this.route.snapshot.params['id']
+    if(this.videoId){
+      this.getVideo(this.videoId)
+      this.getCommentsWithVideoId(this.videoId)
+    }
   }
 
-  getComments() {
-    this.http.get(`${this.baseUrl}`).subscribe({
+  getComment(id: number) {
+    this.http.get(`${this.baseUrl}/${id}`).subscribe({
       next: (res) => {
-        this.commentsTest = res;
         console.log(res);
-        this.getVideos();
+        this.commentsTest = res;
+        this.getVideo(this.videoId);
       },
       error: (err) => {
         console.log(err);
@@ -67,9 +61,10 @@ export class DetailComponent implements OnInit {
 
   // videoId를 받는다.
   getCommentsWithVideoId(id: number) {
-    console.log(id);
+    console.log('getCommentsWithVideoID -> ',id);
     this.http.get(`${this.baseUrl}/search/${id}`).subscribe({
       next: (res) => {
+        this.commentsTest = res;
         console.log('videoId에 해당하는 댓글들은 이것입니다~~', res);
       },
       error: (e) => {
@@ -78,31 +73,33 @@ export class DetailComponent implements OnInit {
     });
   }
 
-  getVideos() {
-    this.http.get('http://localhost/video').subscribe({
-      next: (res) => {
-        console.log(res);
+
+  getVideo(id: number){
+    this.videoService.getVideo(id).subscribe({
+      next:(res) => {
+        console.log(res)
       },
       error: (err) => {
-        console.log(err);
-      },
+        console.log(err)
+      }
     });
   }
+
 
   submit() {
     const body = this.createForm.getRawValue();
     if (!body) {
       console.log('입력 값이 없습니다.');
     }
-    console.log(body);
-    this.commentService.createComment(body).subscribe({
+    console.log(body, 'this.videoId -> ', this.videoId);
+    this.commentService.createComment(body, this.videoId).subscribe({
       next: (res) => {
         console.log(res, '아이디와 비밀번호, 댓글 생성 완료');
-        this.router.navigateByUrl('/detail');
-        this.getComments();
+        // this.router.navigateByUrl('/');
         this.refresh();
       },
       error: (e) => {
+        console.log(body, this.videoId)
         console.log(e);
       },
     });
