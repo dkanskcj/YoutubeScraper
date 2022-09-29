@@ -15,6 +15,7 @@ export class WholepageComponent implements OnInit {
   currentCategory = '전체';
   seeAll: string = '모두보기';
   videos: any;
+  detail: string = 'detail/'
   youtube: string = 'https://www.youtube.com/embed/'
   constructor(
     private videoService: VideoService,
@@ -32,7 +33,7 @@ export class WholepageComponent implements OnInit {
         error: (e) => {
           console.log(e);
         },
-      });
+      });3
     this.getVideos();
   }
 

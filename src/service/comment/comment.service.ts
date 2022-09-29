@@ -21,6 +21,6 @@ export class CommentService {
   }
 
   getCommentsWithVideoId(id: number) {
-    return this.http.get(`${this.videoUrl}/search/id=${id}`);
+    return this.http.get(`${this.videoUrl}/searchid=${id}`);
   }
 }

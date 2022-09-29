@@ -1,6 +1,6 @@
-import { DetailComponent } from './detail.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { DetailComponent } from './detail.component';
 
 const routes: Routes = [
   {
@@ -9,8 +9,8 @@ const routes: Routes = [
   },
   {
     path: ':id',
-    component: DetailComponent,
-  },
+    loadChildren: () => import('./detail.module').then(m=>m.DetailModule)
+  }
 ];
 
 @NgModule({
