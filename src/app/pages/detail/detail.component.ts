@@ -62,7 +62,7 @@ export class DetailComponent implements OnInit {
   // videoId를 받는다.
   getCommentsWithVideoId(id: number) {
     console.log('getCommentsWithVideoID -> ',id);
-    this.http.get(`${this.baseUrl}/search/${id}`).subscribe({
+    this.http.get(`${this.baseUrl}/search${id}`).subscribe({
       next: (res) => {
         this.commentsTest = res;
         console.log('videoId에 해당하는 댓글들은 이것입니다~~', res);
