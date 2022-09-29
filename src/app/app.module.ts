@@ -23,7 +23,6 @@ import { WholepageModule } from './wholepage/wholepage.module';
     CommentpageModule,
     FormsModule,
     ReactiveFormsModule,
-    WholepageModule,
     LayoutModule,
     NgxsModule.forRoot()
   ],
