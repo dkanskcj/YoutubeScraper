@@ -1,11 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { NavigationEnd, Router, ActivatedRoute } from '@angular/router';
-import { filter } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommentService } from 'src/service/comment/comment.service';
 import { VideoService } from 'src/service/video/video.service';
-
+import { CreateVideoDTO } from 'src/service/video/dto/create-video.dto'
 type commentList = {
   name: string;
   content: string;
@@ -27,7 +26,9 @@ export class DetailComponent implements OnInit {
     password: new FormControl(null),
     content: new FormControl(null),
   });
+  video: CreateVideoDTO;
   videoId: number = 0;
+  youtubeLink: string = 'https://www.youtube.com/embed/'
   comments: commentList[] = [];
   commentsTest: any;
   constructor(
@@ -76,7 +77,10 @@ export class DetailComponent implements OnInit {
 
   getVideo(id: number){
     this.videoService.getVideo(id).subscribe({
-      next:(res) => {
+      next:(res: CreateVideoDTO) => {
+        this.video = res;
+        this.video.url = this.video.url.substring(17);
+        this.video.url = this.youtubeLink.concat(this.video.url)
         console.log(res)
       },
       error: (err) => {
