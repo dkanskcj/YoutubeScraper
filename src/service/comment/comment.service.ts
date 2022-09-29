@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class CommentService {
   private baseUrl: string = 'http://localhost:80/comment';
+  private videoUrl: string = 'http://localhost/video'
   constructor(private http: HttpClient) {}
 
   getComments() {
@@ -15,11 +16,11 @@ export class CommentService {
     return this.http.get(`${this.baseUrl}/${id}`);
   }
 
-  createComment(body: any, id: number = 1) {
+  createComment(body: any, id: number) {
     return this.http.post(`${this.baseUrl}/${id}`, body);
   }
 
   getCommentsWithVideoId(id: number) {
-    return this.http.get(`${this.baseUrl}/search?id=${id}`);
+    return this.http.get(`${this.videoUrl}/searchid=${id}`);
   }
 }

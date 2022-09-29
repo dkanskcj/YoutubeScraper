@@ -17,12 +17,18 @@ const routes: Routes = [
       {
         path: 'detail',
         loadChildren: () =>
-          import('../pages/detail/detail.module').then(m => m.DetailModule),
+          import('../pages/detail/detail.module').then((m) => m.DetailModule),
       },
       {
-        path: 'register',
+        path: 'detail/:id',
+        loadChildren: () => import('../pages/detail/detail.module').then(m=>m.DetailModule)
+      },
+      {
+        path: 'test/register',
         loadChildren: () =>
-          import('../pages/register/register.module').then(m => m.RegisterModule),
+          import('../pages/register/register.module').then(
+            (m) => m.RegisterModule
+          ),
       },
     ],
   },

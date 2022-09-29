@@ -15,6 +15,7 @@ export class WholepageComponent implements OnInit {
   currentCategory = '전체';
   seeAll: string = '모두보기';
   videos: any;
+  detail: string = 'detail/'
   youtube: string = 'https://www.youtube.com/embed/'
   constructor(
     private videoService: VideoService,
@@ -32,19 +33,19 @@ export class WholepageComponent implements OnInit {
         error: (e) => {
           console.log(e);
         },
-      });
+      });3
     this.getVideos();
   }
 
   getVideos() {
     this.videoService.getVideos().subscribe({
       next: ((res: CreateVideoDTO[]) => {
-        console.log(res)
+        // console.log(res)
         this.videos = res['items']
         for(let video of this.videos){
           video.url = video.url.substring(17)
           video.url = this.youtube.concat(video.url);
-          console.log(video.url)
+          // console.log(video.url)
         }
       }),
       error: (err) => {

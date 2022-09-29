@@ -12,7 +12,6 @@ import { VideoService } from 'src/service/video/video.service';
 export class LayoutComponent implements OnInit {
   maintitle = 'Youtube Scraper';
   currentCategory = '전체';
-  videos: CreateVideoDTO[] = [];
 
   constructor(
     private videoService: VideoService,
@@ -21,30 +20,5 @@ export class LayoutComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.router.events.pipe(filter((ev)=> ev instanceof NavigationEnd)).subscribe({
-      next: (res) => {
-        this.getVideos()
-      },
-      error: (err) => {
-        console.log(err)
-      }
-    });
-    this.getVideos();
   }
-
-
-
-  getVideos(){
-    this.videoService.getVideos().subscribe({
-      next: (res) => {
-        this.videos = res;
-        console.log(this.videos)
-      },
-      error: (err) => {
-        console.log(err)
-      }
-    });
-  }
-
-
 }
