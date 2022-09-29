@@ -27,6 +27,8 @@ export class DetailComponent implements OnInit {
     password: new FormControl(null),
     content: new FormControl(null),
   });
+  video: any;
+  youtube: string = 'https://www.youtube.com/embed/'
   videoId: number = 0;
   comments: commentList[] = [];
   commentsTest: any;
@@ -39,10 +41,10 @@ export class DetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.videoId = this.route.snapshot.params['id']
-    if(this.videoId){
-      this.getVideo(this.videoId)
-      this.getCommentsWithVideoId(this.videoId)
+    this.videoId = this.route.snapshot.params['id'];
+    if (this.videoId) {
+      this.getVideo(this.videoId);
+      this.getCommentsWithVideoId(this.videoId);
     }
   }
 
@@ -61,8 +63,8 @@ export class DetailComponent implements OnInit {
 
   // videoId를 받는다.
   getCommentsWithVideoId(id: number) {
-    console.log('getCommentsWithVideoID -> ',id);
-    this.http.get(`${this.baseUrl}/search/${id}`).subscribe({
+    console.log('getCommentsWithVideoID -> ', id);
+    this.http.get(`${this.baseUrl}/search${id}`).subscribe({
       next: (res) => {
         this.commentsTest = res;
         console.log('videoId에 해당하는 댓글들은 이것입니다~~', res);
@@ -73,18 +75,19 @@ export class DetailComponent implements OnInit {
     });
   }
 
-
-  getVideo(id: number){
+  getVideo(id: number) {
     this.videoService.getVideo(id).subscribe({
-      next:(res) => {
-        console.log(res)
+      next: (res) => {
+        this.video = res;
+        console.log(res);
+        this.video.url = this.video.url.substring(17);
+        this.video.url = this.youtube.concat(this.video.url);
       },
       error: (err) => {
-        console.log(err)
-      }
+        console.log(err);
+      },
     });
   }
-
 
   submit() {
     const body = this.createForm.getRawValue();
@@ -99,7 +102,7 @@ export class DetailComponent implements OnInit {
         this.refresh();
       },
       error: (e) => {
-        console.log(body, this.videoId)
+        console.log(body, this.videoId);
         console.log(e);
       },
     });
