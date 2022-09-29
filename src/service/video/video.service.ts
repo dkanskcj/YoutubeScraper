@@ -16,6 +16,9 @@ export class VideoService {
   getVideo(id: number) {
     return this.http.get(`${this.baseUrl}/${id}`);
   }
+  getVideosByCategory(query: string){
+    return this.http.get(`${this.baseUrl}/search?query=${query}`);
+  }
 
   getVideos() {
     return this.http.get<CreateVideoDTO[]>(`${this.baseUrl}?pageNo=1&pageSize=10`);

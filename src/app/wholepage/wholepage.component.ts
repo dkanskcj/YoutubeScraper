@@ -17,44 +17,82 @@ export class WholepageComponent implements OnInit {
   videos: any;
   detail: string = 'detail/'
   youtube: string = 'https://www.youtube.com/embed/'
+  htmlVideo: any;
+  javascriptVideo: any;
+  reactVideo: any;
+  tailwindcssVideo: any;
+  angularVideo: any;
+  isLoading: boolean = false;
   constructor(
     private videoService: VideoService,
     private router: Router,
     private http: HttpClient
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.router.events
       .pipe(filter((ev) => ev instanceof NavigationEnd))
       .subscribe({
         next: (res) => {
-          this.getVideos();
+          // this.getVideos();
         },
         error: (e) => {
           console.log(e);
         },
-      });3
+      });
+
     this.getVideos();
+
+    // this.getVideosByCategory('HTML');
+    // this.getVideosByCategory('React');
+    // this.getVideosByCategory('JavaScript');
+    // this.getVideosByCategory('tailwindcss');
+    // this.getVideosByCategory('Angular');
   }
 
   getVideos() {
-    this.videoService.getVideos().subscribe({
-      next: ((res: CreateVideoDTO[]) => {
-        // console.log(res)
-        this.videos = res['items']
-        for(let video of this.videos){
-          video.url = video.url.substring(17)
-          video.url = this.youtube.concat(video.url);
-          // console.log(video.url)
+    this.isLoading = true;
+    this.getVideosByCategory('HTML');
+    this.getVideosByCategory('React');
+    this.getVideosByCategory('JavaScript');
+    this.getVideosByCategory('tailwindcss');
+    this.getVideosByCategory('Angular');
+    this.isLoading = false;
+    console.log(this.isLoading)
+  }
+  getVideosByCategory(query: string) {
+    this.videoService.getVideosByCategory(query).subscribe({
+      next: (res) => {
+
+        if (query === 'Angular') {
+          this.angularVideo = res
+          console.log(res)
         }
-      }),
-      error: (err) => {
-        console.log(err)
+        if (query === 'HTML') {
+          this.htmlVideo = res
+          console.log(res)
+        }
+        if (query === 'tailwindcss') {
+          this.tailwindcssVideo = res
+          console.log(res)
+        }
+        if (query === 'JavaScript') {
+          this.javascriptVideo = res
+          console.log(res)
+        }
+        if (query === 'React') {
+          this.reactVideo = res
+          console.log(res)
+        }
+      },
+      error: (e) => {
+        console.log(e)
       }
     });
+    console.log(this.isLoading)
   }
 
-  navigateDetail(id:number){
+  navigateDetail(id: number) {
     this.router.navigateByUrl(`/detail/${id}`);
   }
 }

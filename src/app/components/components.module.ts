@@ -6,13 +6,16 @@ import { CategoryComponent } from './category/category.component';
 import { VideosComponent } from './videos/videos.component';
 import { CommentComponent } from './comment/comment.component';
 import { ButtonComponent } from './button/button.component';
+import { RouterModule } from '@angular/router';
+import { SafePipe } from './safePipe/safePipe.component';
 
-const components = [ InputsComponent, ButtonsComponent, CategoryComponent, VideosComponent, CommentComponent, ButtonComponent ]
+const components = [ InputsComponent, ButtonsComponent, CategoryComponent, VideosComponent, CommentComponent, ButtonComponent, SafePipe]
 
 @NgModule({
   declarations: components,
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule,
   ],
   exports: components
 })
