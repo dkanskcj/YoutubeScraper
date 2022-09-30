@@ -5,13 +5,13 @@
 
 
   <div class="w-full h-full">
-    <img *ngIf="isLoading === false" src="assets/icons/spinner.svg" class="myAbsolute w-full h-full">
+    <img *ngIf="isLoading === true" src="assets/icons/spinner.svg" class="myAbsolute w-full h-full">
     <div class="mt-7 space-y-7">
-      <app-videos  seeAll="모두보기" [videos]="angularVideo" title="Angular"></app-videos>
-      <app-videos  seeAll="모두보기" [videos]="htmlVideo" title="HTML"></app-videos>
-      <app-videos  seeAll="모두보기" [videos]="tailwindcssVideo" title="tailwindcss"></app-videos>
-      <app-videos  seeAll="모두보기" [videos]="javascriptVideo" title="JavaScript"></app-videos>
-      <app-videos  seeAll="모두보기" [videos]="reactVideo" title="React"></app-videos>
+      <app-videos  [videos]="angularVideo" title="Angular" (click)="test()"></app-videos>
+      <app-videos  [videos]="htmlVideo" title="HTML"></app-videos>
+      <app-videos  [videos]="tailwindcssVideo" title="tailwindcss"></app-videos>
+      <app-videos  [videos]="javascriptVideo" title="JavaScript"></app-videos>
+      <app-videos  [videos]="reactVideo" title="React"></app-videos>
     </div>
   </div>
 

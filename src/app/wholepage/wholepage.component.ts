@@ -22,11 +22,10 @@ export class WholepageComponent implements OnInit {
   reactVideo: any;
   tailwindcssVideo: any;
   angularVideo: any;
-  isLoading: boolean = false;
+  isLoading: boolean = true;
   constructor(
     private videoService: VideoService,
     private router: Router,
-    private http: HttpClient
   ) { }
 
   ngOnInit() {
@@ -34,62 +33,51 @@ export class WholepageComponent implements OnInit {
       .pipe(filter((ev) => ev instanceof NavigationEnd))
       .subscribe({
         next: (res) => {
-          // this.getVideos();
         },
         error: (e) => {
           console.log(e);
         },
       });
-
     this.getVideos();
-
-    // this.getVideosByCategory('HTML');
-    // this.getVideosByCategory('React');
-    // this.getVideosByCategory('JavaScript');
-    // this.getVideosByCategory('tailwindcss');
-    // this.getVideosByCategory('Angular');
   }
 
   getVideos() {
-    this.isLoading = true;
-    this.getVideosByCategory('HTML');
-    this.getVideosByCategory('React');
-    this.getVideosByCategory('JavaScript');
-    this.getVideosByCategory('tailwindcss');
-    this.getVideosByCategory('Angular');
-    this.isLoading = false;
-    console.log(this.isLoading)
+    this.getVideosThumbNail('HTML');
+    this.getVideosThumbNail('React');
+    this.getVideosThumbNail('JavaScript');
+    this.getVideosThumbNail('tailwindcss');
+    this.getVideosThumbNail('Angular');
   }
-  getVideosByCategory(query: string) {
-    this.videoService.getVideosByCategory(query).subscribe({
+
+  getVideosThumbNail(query: string) {
+    this.videoService.getVideosThumbNail(query).subscribe({
       next: (res) => {
 
         if (query === 'Angular') {
           this.angularVideo = res
-          console.log(res)
         }
         if (query === 'HTML') {
           this.htmlVideo = res
-          console.log(res)
         }
         if (query === 'tailwindcss') {
           this.tailwindcssVideo = res
-          console.log(res)
         }
         if (query === 'JavaScript') {
           this.javascriptVideo = res
-          console.log(res)
         }
         if (query === 'React') {
           this.reactVideo = res
-          console.log(res)
         }
+        this.isLoading = false;
+
       },
       error: (e) => {
         console.log(e)
       }
     });
-    console.log(this.isLoading)
+  }
+  test(){
+    this.currentCategory = 'Angular'
   }
 
   navigateDetail(id: number) {

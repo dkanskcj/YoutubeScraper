@@ -31,20 +31,23 @@ export class DetailComponent implements OnInit {
   youtubeLink: string = 'https://www.youtube.com/embed/'
   comments: commentList[] = [];
   commentsTest: any;
+  isLoading: boolean = true;
   constructor(
     private commentService: CommentService,
     private videoService: VideoService,
     private http: HttpClient,
     private router: Router,
     private route: ActivatedRoute
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.videoId = this.route.snapshot.params['id']
-    if(this.videoId){
+    if (this.videoId) {
       this.getVideo(this.videoId)
       this.getCommentsWithVideoId(this.videoId)
+      this.isLoading = false;
     }
+    this.isLoading = false;
   }
 
   getComment(id: number) {
@@ -62,7 +65,7 @@ export class DetailComponent implements OnInit {
 
   // videoId를 받는다.
   getCommentsWithVideoId(id: number) {
-    console.log('getCommentsWithVideoID -> ',id);
+    console.log('getCommentsWithVideoID -> ', id);
     this.http.get(`${this.baseUrl}/search${id}`).subscribe({
       next: (res) => {
         this.commentsTest = res;
@@ -75,9 +78,9 @@ export class DetailComponent implements OnInit {
   }
 
 
-  getVideo(id: number){
+  getVideo(id: number) {
     this.videoService.getVideo(id).subscribe({
-      next:(res: CreateVideoDTO) => {
+      next: (res: CreateVideoDTO) => {
         this.video = res;
         this.video.url = this.video.url.substring(17);
         this.video.url = this.youtubeLink.concat(this.video.url)

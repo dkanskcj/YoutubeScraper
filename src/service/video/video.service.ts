@@ -19,7 +19,9 @@ export class VideoService {
   getVideosByCategory(query: string){
     return this.http.get(`${this.baseUrl}/search?query=${query}`);
   }
-
+  getVideosThumbNail(query: string){
+    return this.http.get(`${this.baseUrl}/thumbNailImg?query=${query}`);
+  }
   getVideos() {
     return this.http.get<CreateVideoDTO[]>(`${this.baseUrl}?pageNo=1&pageSize=10`);
   }

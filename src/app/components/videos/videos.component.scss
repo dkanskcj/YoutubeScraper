@@ -1,0 +1,20 @@
+.imgSize {
+    width: 560px;
+    height: 315px;
+}
+
+.scrollBar {
+    padding: 5px;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    .scrollBar::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+.scrollBar:hover {
+    padding: 5px;
+    overflow-x: scroll;
+}

@@ -11,8 +11,10 @@ import { ComponentsModule } from './components/components.module';
 import { CommentpageModule } from './pages/commentpage/commentpage.module';
 import { LayoutModule } from './testlayout/layout.module';
 import { WholepageModule } from './wholepage/wholepage.module';
+import { ViewCategoryVideosComponent } from './pages/view-category-videos/view-category-videos.component';
+import { ViewCategoryVideosModule } from './pages/view-category-videos/view-category-videos.module';
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, ViewCategoryVideosComponent],
   imports: [
     BrowserModule,
     FormsModule,
@@ -24,6 +26,8 @@ import { WholepageModule } from './wholepage/wholepage.module';
     FormsModule,
     ReactiveFormsModule,
     LayoutModule,
+    ViewCategoryVideosModule,
+    WholepageModule,
     NgxsModule.forRoot()
   ],
   providers: [],

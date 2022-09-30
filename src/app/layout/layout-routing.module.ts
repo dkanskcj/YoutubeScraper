@@ -24,6 +24,10 @@ const routes: Routes = [
         loadChildren: () => import('../pages/detail/detail.module').then(m=>m.DetailModule)
       },
       {
+        path: 'videos/:category',
+        loadChildren: () => import('../pages/view-category-videos/view-category-videos.module').then(m=>m.ViewCategoryVideosModule)
+      },
+      {
         path: 'register',
         loadChildren: () =>
           import('../pages/register/register.module').then(

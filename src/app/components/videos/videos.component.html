@@ -1,22 +1,45 @@
-<div>
+<!-- <div>
   <div class="flex justify-between pt-7">
-    <div class="font-bold text-gray-800 text-2xl">{{ title }} {{ videos.length }}개</div>
+    <div class="font-bold text-gray-800 text-2xl">{{ title }} {{ videos?.length }}개</div>
     <div class="font-semibold text-blue-500 cursor-pointer" *ngIf="seeAll">
       {{ seeAll }}
     </div>
   </div>
-  <div class="flex gap-6 items-start overflow-x-scroll">
-    <div *ngFor="let video of videos">
-      <iframe width="560" height="315" [src]="video?.url | safe" title="YouTube video player" frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen class="pointer-events-none"></iframe>
-      <!-- <img class="cursor-pointer" [src]="video?.icon" /> -->
-      <div class="text-gray-900 font-semibold text-sm cursor-pointer" [routerLink]="detail+video?.id">
+  <div class="scrollBar flex gap-6 items-start">
+    <div *ngFor="let video of videos" [routerLink]="detail+video?.id">
+      <div class="imgSize cursor-pointer">
+        <img class="w-full h-full" [src]="video?.url" />
+      </div>
+      <div class="text-gray-900 font-semibold text-sm cursor-pointer">
         {{ video?.title }}
       </div>
       <div class="w-fit text-gray-500 font-medium text-xs cursor-pointer" routerLink="category">
         {{ video?.category }}
       </div>
+    </div>
+  </div>
+</div> -->
+
+<div>
+  <div class="flex justify-between pt-7">
+    <div class="font-bold text-gray-800 text-2xl">{{ title }} {{ videos?.length }}개</div>
+    <div class="font-semibold text-blue-500 cursor-pointer " [routerLink]="'videos/'+title">
+      <div *ngIf="seeAll">
+        모두보기
+      </div>
+    </div>
+  </div>
+  <div [ngClass]="haveSeeAll()">
+      <div *ngFor="let video of videos" [routerLink]="detail+video?.id">
+        <div class="imgSize cursor-pointer">
+          <img class="w-full h-full" [src]="video?.url" />
+        </div>
+        <div class="text-gray-900 font-semibold text-sm cursor-pointer">
+          {{ video?.title }}
+        </div>
+        <div class="w-fit text-gray-500 font-medium text-xs cursor-pointer" routerLink="category">
+          {{ video?.category }}
+        </div>
     </div>
   </div>
 </div>
