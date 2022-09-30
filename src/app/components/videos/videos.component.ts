@@ -11,11 +11,8 @@ import { VideoService } from 'src/service/video/video.service';
 })
 export class VideosComponent implements OnInit {
   @Input() title: string;
-  // @Input() icon: string;
-  // @Input() videoTitle: string;
   @Input() category: string;
   @Input() seeAll: boolean = true;
-  @Input() link: string;
   @Input() videos: CreateVideoDTO[];
   htmlVideo: any;
   javascriptVideo: any;
@@ -25,38 +22,7 @@ export class VideosComponent implements OnInit {
   detail: string = '/detail/'
   isLoading: boolean = false;
   @Input() currentUrl: string;
-  // videoss: Videos[] = [
-  //   {
-  //     icon: 'assets/icons/img1.svg',
-  //     videoTitle: '9월 18일 야외 필라테스',
-  //     category: '필라테스',
-  //   },
-  //   {
-  //     icon: 'assets/icons/img1.svg',
-  //     videoTitle: '9월 18일 야외 필라테스',
-  //     category: '필라테스',
-  //   },
-  //   {
-  //     icon: 'assets/icons/img1.svg',
-  //     videoTitle: '9월 18일 야외 필라테스',
-  //     category: '필라테스',
-  //   },
-  //   {
-  //     icon: 'assets/icons/img1.svg',
-  //     videoTitle: '9월 18일 야외 필라테스',
-  //     category: '필라테스',
-  //   },
-  //   {
-  //     icon: 'assets/icons/img1.svg',
-  //     videoTitle: '9월 18일 야외 필라테스',
-  //     category: '필라테스',
-  //   },
-  //   {
-  //     icon: 'assets/icons/img1.svg',
-  //     videoTitle: '9월 18일 야외 필라테스',
-  //     category: '필라테스',
-  //   },
-  // ];
+  
   constructor(
     private videoService: VideoService,
     private router: Router,
