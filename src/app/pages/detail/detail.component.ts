@@ -1,9 +1,11 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommentService } from 'src/service/comment/comment.service';
+import { CreateVideoDTO } from 'src/service/video/dto/create-video.dto';
 import { VideoService } from 'src/service/video/video.service';
+import { DeleteCommentComponent } from './delete-comment/delete-comment.component';
 type commentList = {
   name: string;
   content: string;
@@ -30,27 +32,28 @@ export class DetailComponent implements OnInit {
   youtubeLink: string = 'https://www.youtube.com/embed/'
   comments: commentList[] = [];
   commentsTest: any;
-  
+  isLoading: boolean = true;
   constructor(
     private commentService: CommentService,
     private videoService: VideoService,
     private http: HttpClient,
-    private router: Router,
-    private route: ActivatedRoute
-  ) {}
+    private route: ActivatedRoute,
+  ) { }
 
   ngOnInit(): void {
-    this.videoId = this.route.snapshot.params['id'];
+    this.videoId = this.route.snapshot.params['id']
     if (this.videoId) {
-      this.getVideo(this.videoId);
-      this.getCommentsWithVideoId(this.videoId);
+      this.getVideo(this.videoId)
+      this.getCommentsWithVideoId(this.videoId)
+      this.isLoading = false;
     }
+    this.isLoading = false;
   }
 
   getComment(id: number) {
     this.http.get(`${this.baseUrl}/${id}`).subscribe({
       next: (res) => {
-        console.log(res);
+        // console.log(res);
         this.commentsTest = res;
         this.getVideo(this.videoId);
       },
@@ -62,11 +65,11 @@ export class DetailComponent implements OnInit {
 
   // videoId를 받는다.
   getCommentsWithVideoId(id: number) {
-    console.log('getCommentsWithVideoID -> ',id);
+    // console.log('getCommentsWithVideoID -> ', id);
     this.http.get(`${this.baseUrl}/search${id}`).subscribe({
       next: (res) => {
         this.commentsTest = res;
-        console.log('videoId에 해당하는 댓글들은 이것입니다~~', res);
+        // console.log('videoId에 해당하는 댓글들은 이것입니다~~', res);
       },
       error: (e) => {
         console.log(e);
@@ -74,13 +77,15 @@ export class DetailComponent implements OnInit {
     });
   }
 
+
   getVideo(id: number) {
     this.videoService.getVideo(id).subscribe({
-      next: (res) => {
+      next: (res: CreateVideoDTO) => {
         this.video = res;
         console.log(res);
         this.video.url = this.video.url.substring(17);
-        this.video.url = this.youtubeLink.concat(this.video.url);
+        this.video.url = this.youtubeLink.concat(this.video.url)
+        // console.log(res)
       },
       error: (err) => {
         console.log(err);
@@ -101,7 +106,6 @@ export class DetailComponent implements OnInit {
         this.refresh();
       },
       error: (e) => {
-        console.log(body, this.videoId);
         console.log(e);
       },
     });
@@ -109,5 +113,12 @@ export class DetailComponent implements OnInit {
 
   refresh(): void {
     window.location.reload();
+  }
+
+
+  @ViewChild('modal', {static: false}) modal: DeleteCommentComponent
+
+  setOpen() {
+    this.modal.open();
   }
 }

@@ -1,37 +1,29 @@
 <!-- 내용 -->
-<div class="pt-10 flex justify-center">
+<img *ngIf="isLoading === true" src="assets/icons/spinner.svg" class="myAbsolute w-full h-full">
+<div class="w-screen h-screen pt-10 flex justify-center">
+  <app-delete-comment #modal></app-delete-comment>
   <div>
-    <div class="w-[54rem] h-[30rem] bg-gray-200">
-      <iframe
-      class="w-full h-full"
-        [src]="video?.url | safe"
-        title="YouTube video player"
-        frameborder="0"
+    <div class="w-[54rem] h-[30rem] bg-gray-200 relative">
+      <iframe class="w-full h-full" [src]="video?.url | safe" title="YouTube video player" frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen
-        [routerLink]="video.id"
-      ></iframe>
+        allowfullscreen>
+      </iframe>
     </div>
-    <div class="pt-5 text-bold text-2xl">영상제목</div>
-    <div class="pt-2 pb-5 text-semibold text-xl text-gray-500">카테고리</div>
+    <div class="pt-5 text-bold text-2xl">{{ video?.title }}</div>
+    <div class="pt-2 pb-5 text-semibold text-xl text-gray-500">{{ video?.category }}</div>
 
     <!-- 댓글 입력-->
+
     <div class="pt-5 border-t-2 border-gray-200">
-      <form [formGroup]="createForm">
+        <form [formGroup]="createForm">
         <div class="flex gap-5">
           <img src="assets/icons/profile.png" />
           <div class="w-1/2">
             <div class="w-full flex justify-center items-center gap-2">
               <div
-                class="w-full flex justify-between border bg-white border-gray-200 rounded-md outline-none focus-within:ring-gray-400 transition-colors focus-within:ring-1"
-              >
-                <input
-                  formControlName="name"
-                  placeholder="아이디"
-                  type="text"
-                  g
-                  class="w-full outline-none px-3 py-2.5 rounded-md cursor-pointer"
-                />
+                class="w-full flex justify-between border bg-white border-gray-200 rounded-md outline-none focus-within:ring-gray-400 transition-colors focus-within:ring-1">
+                <input formControlName="name" placeholder="아이디" type="text" g
+                  class="w-full outline-none px-3 py-2.5 rounded-md cursor-pointer" />
                 <div></div>
               </div>
             </div>
@@ -39,14 +31,9 @@
           <div class="w-1/2">
             <div class="w-full flex justify-center items-center gap-2">
               <div
-                class="w-full flex justify-between border bg-white border-gray-200 rounded-md outline-none focus-within:ring-gray-400 transition-colors focus-within:ring-1"
-              >
-                <input
-                  formControlName="password"
-                  placeholder="비밀번호"
-                  type="password"
-                  class="w-full outline-none px-3 py-2.5 rounded-md cursor-pointer"
-                />
+                class="w-full flex justify-between border bg-white border-gray-200 rounded-md outline-none focus-within:ring-gray-400 transition-colors focus-within:ring-1">
+                <input formControlName="password" placeholder="비밀번호" type="password"
+                  class="w-full outline-none px-3 py-2.5 rounded-md cursor-pointer" />
                 <div></div>
               </div>
             </div>
@@ -55,14 +42,9 @@
         <div class="pt-3">
           <div class="w-full flex justify-center items-center gap-2">
             <div
-              class="w-full flex justify-between border bg-white border-gray-200 rounded-md outline-none focus-within:ring-gray-400 transition-colors focus-within:ring-1"
-            >
-              <input
-                formControlName="content"
-                placeholder="댓글"
-                type="text"
-                class="w-full outline-none px-3 py-2.5 rounded-md cursor-pointer"
-              />
+              class="w-full flex justify-between border bg-white border-gray-200 rounded-md outline-none focus-within:ring-gray-400 transition-colors focus-within:ring-1">
+              <input formControlName="content" placeholder="댓글" type="text"
+                class="w-full outline-none px-3 py-2.5 rounded-md cursor-pointer" />
               <div></div>
             </div>
           </div>
@@ -76,9 +58,7 @@
 
     <!-- 댓글 보기 -->
     <div class="pt-5">
-      <div
-        class="flex gap-1 text-lg font-semibold text-gray-900 cursor-pointer"
-      >
+      <div class="flex gap-1 text-lg font-semibold text-gray-900 cursor-pointer">
         댓글
         <div class="text-lg font-semibold text-blue-500">
           {{ commentsTest?.length }}
@@ -86,13 +66,9 @@
       </div>
       <div>
         <ng-container *ngFor="let comment of commentsTest">
-          <app-comment
-            [id]="comment?.name"
-            [comment]="comment?.content"
+          <app-comment [id]="comment?.name" [comment]="comment?.content"
             [createdAt]="comment?.createdAt | date: 'YYYY-MM-dd hh:mm'"
-            (click)="getCommentsWithVideoId(comment?.videoId)"
-            class="cursor-pointer"
-          ></app-comment>
+            class="cursor-pointer"></app-comment>
         </ng-container>
         <!-- <app-comment
           id="예니"
@@ -105,7 +81,5 @@
           comment="괜춘ㅋㅋ"></app-comment> -->
       </div>
     </div>
-    <!-- 댓글 보기 -->
   </div>
 </div>
-<!-- 내용 -->

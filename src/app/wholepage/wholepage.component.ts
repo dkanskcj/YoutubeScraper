@@ -17,44 +17,64 @@ export class WholepageComponent implements OnInit {
   videos: any;
   detail: string = 'detail/'
   youtube: string = 'https://www.youtube.com/embed/'
+  htmlVideo: any;
+  javascriptVideo: any;
+  reactVideo: any;
+  tailwindcssVideo: any;
+  angularVideo: any;
+  isLoading: boolean = true;
   constructor(
     private videoService: VideoService,
     private router: Router,
-    private http: HttpClient
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.router.events
       .pipe(filter((ev) => ev instanceof NavigationEnd))
       .subscribe({
         next: (res) => {
-          this.getVideos();
         },
         error: (e) => {
           console.log(e);
         },
-      });3
+      });
     this.getVideos();
   }
 
   getVideos() {
-    this.videoService.getVideos().subscribe({
-      next: ((res: CreateVideoDTO[]) => {
-        // console.log(res)
-        this.videos = res['items']
-        for(let video of this.videos){
-          video.url = video.url.substring(17)
-          video.url = this.youtube.concat(video.url);
-          // console.log(video.url)
+    this.getVideosThumbNail('HTML');
+    this.getVideosThumbNail('React');
+    this.getVideosThumbNail('JavaScript');
+    this.getVideosThumbNail('tailwindcss');
+    this.getVideosThumbNail('Angular');
+  }
+
+  getVideosThumbNail(query: string) {
+    this.videoService.getVideosThumbNail(query).subscribe({
+      next: (res) => {
+
+        if (query === 'Angular') {
+          this.angularVideo = res
         }
-      }),
-      error: (err) => {
-        console.log(err)
+        if (query === 'HTML') {
+          this.htmlVideo = res
+        }
+        if (query === 'tailwindcss') {
+          this.tailwindcssVideo = res
+        }
+        if (query === 'JavaScript') {
+          this.javascriptVideo = res
+        }
+        if (query === 'React') {
+          this.reactVideo = res
+        }
+        this.isLoading = false;
+
+      },
+      error: (e) => {
+        console.log(e)
       }
     });
   }
 
-  navigateDetail(id:number){
-    this.router.navigateByUrl(`/detail/${id}`);
-  }
 }
