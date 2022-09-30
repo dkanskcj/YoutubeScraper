@@ -4,7 +4,6 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommentService } from 'src/service/comment/comment.service';
 import { VideoService } from 'src/service/video/video.service';
-import { CreateVideoDTO } from 'src/service/video/dto/create-video.dto'
 type commentList = {
   name: string;
   content: string;
@@ -26,11 +25,12 @@ export class DetailComponent implements OnInit {
     password: new FormControl(null),
     content: new FormControl(null),
   });
-  video: CreateVideoDTO;
+  video: any;
   videoId: number = 0;
   youtubeLink: string = 'https://www.youtube.com/embed/'
   comments: commentList[] = [];
   commentsTest: any;
+  
   constructor(
     private commentService: CommentService,
     private videoService: VideoService,
@@ -40,10 +40,10 @@ export class DetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.videoId = this.route.snapshot.params['id']
-    if(this.videoId){
-      this.getVideo(this.videoId)
-      this.getCommentsWithVideoId(this.videoId)
+    this.videoId = this.route.snapshot.params['id'];
+    if (this.videoId) {
+      this.getVideo(this.videoId);
+      this.getCommentsWithVideoId(this.videoId);
     }
   }
 
@@ -74,21 +74,19 @@ export class DetailComponent implements OnInit {
     });
   }
 
-
-  getVideo(id: number){
+  getVideo(id: number) {
     this.videoService.getVideo(id).subscribe({
-      next:(res: CreateVideoDTO) => {
+      next: (res) => {
         this.video = res;
+        console.log(res);
         this.video.url = this.video.url.substring(17);
-        this.video.url = this.youtubeLink.concat(this.video.url)
-        console.log(res)
+        this.video.url = this.youtubeLink.concat(this.video.url);
       },
       error: (err) => {
-        console.log(err)
-      }
+        console.log(err);
+      },
     });
   }
-
 
   submit() {
     const body = this.createForm.getRawValue();
@@ -103,7 +101,7 @@ export class DetailComponent implements OnInit {
         this.refresh();
       },
       error: (e) => {
-        console.log(body, this.videoId)
+        console.log(body, this.videoId);
         console.log(e);
       },
     });

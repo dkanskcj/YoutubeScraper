@@ -8,9 +8,8 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { ComponentsModule } from './components/components.module';
-import { CommentpageModule } from './pages/commentpage/commentpage.module';
-import { LayoutModule } from './testlayout/layout.module';
-import { WholepageModule } from './wholepage/wholepage.module';
+import { AuthState } from './state/auth.state';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -20,11 +19,9 @@ import { WholepageModule } from './wholepage/wholepage.module';
     AppRoutingModule,
     HttpClientModule,
     ComponentsModule,
-    CommentpageModule,
     FormsModule,
     ReactiveFormsModule,
-    LayoutModule,
-    NgxsModule.forRoot()
+    NgxsModule.forRoot([AuthState])
   ],
   providers: [],
   bootstrap: [AppComponent],

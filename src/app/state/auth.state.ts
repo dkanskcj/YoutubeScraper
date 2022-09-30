@@ -1,9 +1,10 @@
 import { Injectable } from "@angular/core";
-import { Action, Selector, State, StateContext } from "@ngxs/store";
-import { catchError, tap, throwError } from "rxjs";
+import { State, Selector, Action, StateContext } from "@ngxs/store";
+import { catchError, throwError, tap } from "rxjs";
 import { AuthService } from "../core/service/auth.service";
 import { LogIn, LogOut } from "./auth.actions";
 import { AuthStateModel, testUser } from "./auth.model";
+
 
 
 @State<AuthStateModel>({
@@ -13,7 +14,6 @@ import { AuthStateModel, testUser } from "./auth.model";
         user: null
     }
 })
-
 @Injectable()
 export class AuthState {
     @Selector()
