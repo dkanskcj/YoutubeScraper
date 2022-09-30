@@ -55,7 +55,7 @@ export class RegisterComponent implements OnInit {
       next: (res) => {
         console.log(res)
         this.router.navigateByUrl('/')
-        
+        window.location.reload();
       },
       error: (e) => {
         console.log(e)
