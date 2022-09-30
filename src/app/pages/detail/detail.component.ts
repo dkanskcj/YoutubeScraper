@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, Output, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommentService } from 'src/service/comment/comment.service';
@@ -18,6 +18,7 @@ type commentList = {
   styleUrls: ['./detail.component.scss'],
 })
 export class DetailComponent implements OnInit {
+  @Output() detailCategory: string;
   currentCategory = '전체';
 
   private baseUrl: string = 'http://localhost:80/comment';
@@ -85,6 +86,7 @@ export class DetailComponent implements OnInit {
         console.log(res);
         this.video.url = this.video.url.substring(17);
         this.video.url = this.youtubeLink.concat(this.video.url)
+        this.sendCategory(this.video.category);
         // console.log(res)
       },
       error: (err) => {
@@ -113,6 +115,11 @@ export class DetailComponent implements OnInit {
 
   refresh(): void {
     window.location.reload();
+  }
+
+  sendCategory($event){
+    this.detailCategory = $event;
+    console.log(this.detailCategory)
   }
 
 
