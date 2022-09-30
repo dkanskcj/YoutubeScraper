@@ -2,7 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
-import { VideoService } from '../service/video/video.service';
+import { CreateVideoDTO } from 'src/service/video/dto/create-video.dto';
+import { VideoService } from 'src/service/video/video.service';
 
 @Component({
   selector: 'app-wholepage',
@@ -12,9 +13,10 @@ import { VideoService } from '../service/video/video.service';
 export class WholepageComponent implements OnInit {
   private baseUrl = 'http://localhost/video';
   currentCategory = '전체';
-
+  seeAll: string = '모두보기';
   videos: any;
-
+  detail: string = 'detail/'
+  youtube: string = 'https://www.youtube.com/embed/'
   constructor(
     private videoService: VideoService,
     private router: Router,
@@ -31,19 +33,28 @@ export class WholepageComponent implements OnInit {
         error: (e) => {
           console.log(e);
         },
-      });
+      });3
     this.getVideos();
   }
 
   getVideos() {
     this.videoService.getVideos().subscribe({
-      next: (res) => {
-        console.log(res);
-        this.videos = res;
-      },
-      error: (e) => {
-        console.log(e);
-      },
+      next: ((res: CreateVideoDTO[]) => {
+        // console.log(res)
+        this.videos = res['items']
+        for(let video of this.videos){
+          video.url = video.url.substring(17)
+          video.url = this.youtube.concat(video.url);
+          // console.log(video.url)
+        }
+      }),
+      error: (err) => {
+        console.log(err)
+      }
     });
+  }
+
+  navigateDetail(id:number){
+    this.router.navigateByUrl(`/detail/${id}`);
   }
 }

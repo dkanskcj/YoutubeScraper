@@ -1,12 +1,9 @@
-import { VideoService } from '../../service/video/video.service';
 import { HttpClient } from '@angular/common/http';
-import { CommentService } from '../../service/comment/comment.service';
 import { Component, OnInit } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
-import { pipe, filter } from 'rxjs';
-import { ThisReceiver } from '@angular/compiler';
 import { FormControl, FormGroup } from '@angular/forms';
-
+import { ActivatedRoute, Router } from '@angular/router';
+import { CommentService } from 'src/service/comment/comment.service';
+import { VideoService } from 'src/service/video/video.service';
 type commentList = {
   name: string;
   content: string;
@@ -28,37 +25,34 @@ export class DetailComponent implements OnInit {
     password: new FormControl(null),
     content: new FormControl(null),
   });
-
+  video: any;
+  videoId: number = 0;
+  youtubeLink: string = 'https://www.youtube.com/embed/'
   comments: commentList[] = [];
   commentsTest: any;
+  
   constructor(
     private commentService: CommentService,
-    private VideoService: VideoService,
+    private videoService: VideoService,
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this.router.events
-      .pipe(filter((ev) => ev instanceof NavigationEnd))
-      .subscribe({
-        next: (res) => {
-          console.log(res);
-          this.getComments();
-        },
-        error: (e) => {
-          console.log(e);
-        },
-      });
-    this.getComments();
+    this.videoId = this.route.snapshot.params['id'];
+    if (this.videoId) {
+      this.getVideo(this.videoId);
+      this.getCommentsWithVideoId(this.videoId);
+    }
   }
 
-  getComments() {
-    this.http.get(`${this.baseUrl}`).subscribe({
+  getComment(id: number) {
+    this.http.get(`${this.baseUrl}/${id}`).subscribe({
       next: (res) => {
-        this.commentsTest = res;
         console.log(res);
-        this.getVideos();
+        this.commentsTest = res;
+        this.getVideo(this.videoId);
       },
       error: (err) => {
         console.log(err);
@@ -68,9 +62,10 @@ export class DetailComponent implements OnInit {
 
   // videoId를 받는다.
   getCommentsWithVideoId(id: number) {
-    console.log(id);
-    this.http.get(`${this.baseUrl}/search/${id}`).subscribe({
+    console.log('getCommentsWithVideoID -> ',id);
+    this.http.get(`${this.baseUrl}/search${id}`).subscribe({
       next: (res) => {
+        this.commentsTest = res;
         console.log('videoId에 해당하는 댓글들은 이것입니다~~', res);
       },
       error: (e) => {
@@ -79,10 +74,13 @@ export class DetailComponent implements OnInit {
     });
   }
 
-  getVideos() {
-    this.http.get('http://localhost/video').subscribe({
+  getVideo(id: number) {
+    this.videoService.getVideo(id).subscribe({
       next: (res) => {
+        this.video = res;
         console.log(res);
+        this.video.url = this.video.url.substring(17);
+        this.video.url = this.youtubeLink.concat(this.video.url);
       },
       error: (err) => {
         console.log(err);
@@ -93,17 +91,17 @@ export class DetailComponent implements OnInit {
   submit() {
     const body = this.createForm.getRawValue();
     if (!body) {
-      console.log('존재하지가 않아~~');
+      console.log('입력 값이 없습니다.');
     }
-    console.log(body);
-    this.commentService.createComment(body).subscribe({
+    console.log(body, 'this.videoId -> ', this.videoId);
+    this.commentService.createComment(body, this.videoId).subscribe({
       next: (res) => {
         console.log(res, '아이디와 비밀번호, 댓글 생성 완료');
-        this.router.navigateByUrl('/detail');
-        this.getComments();
+        // this.router.navigateByUrl('/');
         this.refresh();
       },
       error: (e) => {
+        console.log(body, this.videoId);
         console.log(e);
       },
     });

@@ -15,10 +15,19 @@ const routes: Routes = [
           ),
       },
       {
-        path: 'category',
+        path: 'detail',
         loadChildren: () =>
-          import('../categorypage/categorypage.module').then(
-            (m) => m.CategorypageModule
+          import('../pages/detail/detail.module').then((m) => m.DetailModule),
+      },
+      {
+        path: 'detail/:id',
+        loadChildren: () => import('../pages/detail/detail.module').then(m=>m.DetailModule)
+      },
+      {
+        path: 'register',
+        loadChildren: () =>
+          import('../pages/register/register.module').then(
+            (m) => m.RegisterModule
           ),
       },
     ],
