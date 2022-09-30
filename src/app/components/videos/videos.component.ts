@@ -109,7 +109,7 @@ export class VideosComponent implements OnInit {
 
   haveSeeAll() {
     if (!this.seeAll) {
-      return 'p-1 flex flex-wrap gap-6 items-start'
+      return 'pt-[5px] flex flex-wrap gap-6 items-start'
     }
     return 'scrollBar flex gap-6 items-start'
   }
