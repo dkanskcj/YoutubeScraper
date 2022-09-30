@@ -89,7 +89,6 @@ export class CommentpageComponent implements OnInit {
   getUsers() {
     this.http.get<User[]>(`${this.baseUrl}`).subscribe({
       next: (res) => {
-        console.log(res)
         this.inputs = res;
       },
       error: (error) => {
@@ -102,7 +101,6 @@ export class CommentpageComponent implements OnInit {
   getUser(){
     this.userSerivce.getUser(this.getUserId).subscribe({
       next: (res) => {
-        console.log(res)
       },
       error: (e) => {
         console.log(e)
@@ -112,7 +110,6 @@ export class CommentpageComponent implements OnInit {
   submit() {
     const body = this.createComment.getRawValue();
     if(!body){
-      console.log('t')
     }
     else{
       // this.commentService.createComment(body, )
@@ -125,7 +122,7 @@ export class CommentpageComponent implements OnInit {
   getComment() {
     this.http.get<Comment[]>(`${this.baseUrlComment}`).subscribe({
       next: (res) => {
-        console.log('comment => ', res)
+        // console.log('comment => ', res)
       },
       error: (error) => {
         console.log(error)
