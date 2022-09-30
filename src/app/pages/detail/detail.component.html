@@ -1,6 +1,7 @@
 <!-- 내용 -->
 <img *ngIf="isLoading === true" src="assets/icons/spinner.svg" class="myAbsolute w-full h-full">
-<div class="w-full h-full pt-10 flex justify-center">
+<div class="w-screen h-screen pt-10 flex justify-center">
+  <app-delete-comment #modal></app-delete-comment>
   <div>
     <div class="w-[54rem] h-[30rem] bg-gray-200 relative">
       <iframe class="w-full h-full" [src]="video?.url | safe" title="YouTube video player" frameborder="0"
@@ -8,12 +9,13 @@
         allowfullscreen>
       </iframe>
     </div>
-    <div class="pt-5 text-bold text-2xl">영상제목</div>
-    <div class="pt-2 pb-5 text-semibold text-xl text-gray-500">카테고리</div>
+    <div class="pt-5 text-bold text-2xl">{{ video?.title }}</div>
+    <div class="pt-2 pb-5 text-semibold text-xl text-gray-500">{{ video?.category }}</div>
 
     <!-- 댓글 입력-->
+
     <div class="pt-5 border-t-2 border-gray-200">
-      <form [formGroup]="createForm">
+        <form [formGroup]="createForm">
         <div class="flex gap-5">
           <img src="assets/icons/profile.png" />
           <div class="w-1/2">
@@ -66,7 +68,7 @@
         <ng-container *ngFor="let comment of commentsTest">
           <app-comment [id]="comment?.name" [comment]="comment?.content"
             [createdAt]="comment?.createdAt | date: 'YYYY-MM-dd hh:mm'"
-            (click)="getCommentsWithVideoId(comment?.videoId)" class="cursor-pointer"></app-comment>
+            class="cursor-pointer"></app-comment>
         </ng-container>
         <!-- <app-comment
           id="예니"
@@ -79,7 +81,5 @@
           comment="괜춘ㅋㅋ"></app-comment> -->
       </div>
     </div>
-    <!-- 댓글 보기 -->
   </div>
 </div>
-<!-- 내용 -->

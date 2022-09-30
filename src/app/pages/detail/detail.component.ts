@@ -1,10 +1,11 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommentService } from 'src/service/comment/comment.service';
+import { CreateVideoDTO } from 'src/service/video/dto/create-video.dto';
 import { VideoService } from 'src/service/video/video.service';
-import { CreateVideoDTO } from 'src/service/video/dto/create-video.dto'
+import { DeleteCommentComponent } from './delete-comment/delete-comment.component';
 type commentList = {
   name: string;
   content: string;
@@ -36,8 +37,7 @@ export class DetailComponent implements OnInit {
     private commentService: CommentService,
     private videoService: VideoService,
     private http: HttpClient,
-    private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
   ) { }
 
   ngOnInit(): void {
@@ -113,5 +113,12 @@ export class DetailComponent implements OnInit {
 
   refresh(): void {
     window.location.reload();
+  }
+
+
+  @ViewChild('modal', {static: false}) modal: DeleteCommentComponent
+
+  setOpen() {
+    this.modal.open();
   }
 }
