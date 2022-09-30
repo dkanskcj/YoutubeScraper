@@ -76,11 +76,5 @@ export class WholepageComponent implements OnInit {
       }
     });
   }
-  test(){
-    this.currentCategory = 'Angular'
-  }
 
-  navigateDetail(id: number) {
-    this.router.navigateByUrl(`/detail/${id}`);
-  }
 }

@@ -22,8 +22,12 @@ export class LayoutComponent implements OnInit {
   ngOnInit(): void {
     this.router.events.pipe(filter(ev => ev instanceof NavigationEnd)).subscribe({
       next: (res) => {
-        // this.currentCategory = this.route.snapshot.params['category']
-        console.log('layout this.currentCategory => ',this.currentCategory)
+        if(this.currentCategory){
+          this.currentCategory = res['url'].substring(8);
+        }
+        if(!this.currentCategory){
+          this.currentCategory = '전체'
+        }
       },
       error: (err) => {
         console.log(err)

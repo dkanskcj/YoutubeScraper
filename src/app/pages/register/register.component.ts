@@ -33,7 +33,7 @@ export class RegisterComponent implements OnInit {
       .pipe(filter((ev) => ev instanceof NavigationEnd))
       .subscribe({
         next: (res) => {
-          console.log(res);
+          // console.log(res);
         },
         error: (e) => {
           console.log(e);

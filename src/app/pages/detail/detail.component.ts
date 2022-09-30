@@ -53,7 +53,7 @@ export class DetailComponent implements OnInit {
   getComment(id: number) {
     this.http.get(`${this.baseUrl}/${id}`).subscribe({
       next: (res) => {
-        console.log(res);
+        // console.log(res);
         this.commentsTest = res;
         this.getVideo(this.videoId);
       },
@@ -65,11 +65,11 @@ export class DetailComponent implements OnInit {
 
   // videoId를 받는다.
   getCommentsWithVideoId(id: number) {
-    console.log('getCommentsWithVideoID -> ', id);
+    // console.log('getCommentsWithVideoID -> ', id);
     this.http.get(`${this.baseUrl}/search${id}`).subscribe({
       next: (res) => {
         this.commentsTest = res;
-        console.log('videoId에 해당하는 댓글들은 이것입니다~~', res);
+        // console.log('videoId에 해당하는 댓글들은 이것입니다~~', res);
       },
       error: (e) => {
         console.log(e);
@@ -84,7 +84,7 @@ export class DetailComponent implements OnInit {
         this.video = res;
         this.video.url = this.video.url.substring(17);
         this.video.url = this.youtubeLink.concat(this.video.url)
-        console.log(res)
+        // console.log(res)
       },
       error: (err) => {
         console.log(err)
@@ -106,7 +106,6 @@ export class DetailComponent implements OnInit {
         this.refresh();
       },
       error: (e) => {
-        console.log(body, this.videoId)
         console.log(e);
       },
     });

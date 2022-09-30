@@ -13,7 +13,6 @@
   <!-- 카테고리 -->
   <div class="flex justify-between items-center">
     <div class="flex gap-3 mt-3 items-center">
-      {{ currentCategory }}
       <app-category [isSelected]="currentCategory === '전체'" (click)="currentCategory = '전체'" name="전체" value="/" ></app-category>
       <app-category [isSelected]="currentCategory === 'Angular'" (click)="currentCategory = 'Angular'" name="Angular" value="Angular">
       </app-category>
