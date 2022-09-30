@@ -72,6 +72,10 @@ export class VideosComponent implements OnInit {
     })
   }
 
+  navigateDetail(video:CreateVideoDTO){
+    this.router.navigateByUrl(`/detail/${video.id}?title=${video.category}`);
+  }
+
   getVideosByCategory(query: string) {
     this.videoService.getVideosByCategory(query).subscribe({
       next: (res) => {
