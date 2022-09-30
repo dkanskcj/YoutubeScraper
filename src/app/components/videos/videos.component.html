@@ -8,7 +8,7 @@
     </div>
   </div>
   <div [ngClass]="haveSeeAll()">
-      <div *ngFor="let video of videos" [routerLink]="detail+video?.id">
+      <div *ngFor="let video of videos" (click)="navigateDetail(video)">
         <div class="imgSize cursor-pointer">
           <img class="w-full h-full" [src]="video?.url" />
         </div>
