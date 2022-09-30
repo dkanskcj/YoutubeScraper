@@ -1,11 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { NavigationEnd, Router, ActivatedRoute } from '@angular/router';
-import { filter } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommentService } from 'src/service/comment/comment.service';
 import { VideoService } from 'src/service/video/video.service';
-
 type commentList = {
   name: string;
   content: string;
@@ -28,10 +26,11 @@ export class DetailComponent implements OnInit {
     content: new FormControl(null),
   });
   video: any;
-  youtube: string = 'https://www.youtube.com/embed/'
   videoId: number = 0;
+  youtubeLink: string = 'https://www.youtube.com/embed/'
   comments: commentList[] = [];
   commentsTest: any;
+  
   constructor(
     private commentService: CommentService,
     private videoService: VideoService,
@@ -63,7 +62,7 @@ export class DetailComponent implements OnInit {
 
   // videoId를 받는다.
   getCommentsWithVideoId(id: number) {
-    console.log('getCommentsWithVideoID -> ', id);
+    console.log('getCommentsWithVideoID -> ',id);
     this.http.get(`${this.baseUrl}/search${id}`).subscribe({
       next: (res) => {
         this.commentsTest = res;
@@ -81,7 +80,7 @@ export class DetailComponent implements OnInit {
         this.video = res;
         console.log(res);
         this.video.url = this.video.url.substring(17);
-        this.video.url = this.youtube.concat(this.video.url);
+        this.video.url = this.youtubeLink.concat(this.video.url);
       },
       error: (err) => {
         console.log(err);
