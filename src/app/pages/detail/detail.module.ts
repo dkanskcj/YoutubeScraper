@@ -1,19 +1,20 @@
-import { ComponentsModule } from './../../components/components.module';
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { ComponentsModule } from './../../components/components.module';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DetailRoutingModule } from './detail-routing.module';
 import { DetailComponent } from './detail.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SafePipe } from './safePipe/safePipe.component';
+import { SafePipeModule } from 'src/app/wholepage/safePipe/safePipe.module';
 @NgModule({
-  declarations: [DetailComponent, SafePipe],
+  declarations: [DetailComponent],
   imports: [
     CommonModule,
     DetailRoutingModule,
     ComponentsModule,
     ReactiveFormsModule,
     FormsModule,
+    SafePipeModule
   ],
 })
 export class DetailModule {}
