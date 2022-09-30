@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Select, Store, Actions, ofActionDispatched } from '@ngxs/store';
-import { Observable } from 'rxjs';
-import { LogIn, LogOut } from './state/auth.actions';
-import { AuthState } from './state/auth.state';
+import { Store } from '@ngxs/store';
 
 @Component({
   selector: 'app-root',
@@ -14,12 +11,11 @@ export class AppComponent {
   title(title: any) {
     throw new Error('Method not implemented.');
   }
-  @Select(AuthState.isAuthenticated) authenticated$: Observable<boolean>;
-  @Select(AuthState.getUser) user$: Observable<boolean>;
+  // @Select(AuthState.isAuthenticated) authenticated$: Observable<boolean>;
+  // @Select(AuthState.getUser) user$: Observable<boolean>;
   
   constructor(
-    private store: Store,
-    private actions$: Actions,
+    // private actions$: Actions,
     private router: Router
   ) {}
 
@@ -40,11 +36,11 @@ export class AppComponent {
     // });
   }
 
-  logIn() {
-    this.store.dispatch(new LogIn({ email: 'mail@mail.com', password: '123456' }));
-  }
+  // logIn() {
+  //   this.store.dispatch(new LogIn({ email: 'mail@mail.com', password: '123456' }));
+  // }
 
-  logOut() {
-    this.store.dispatch(new LogOut());
-  }
+  // logOut() {
+  //   this.store.dispatch(new LogOut());
+  // }
 }

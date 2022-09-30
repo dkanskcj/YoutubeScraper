@@ -27,7 +27,7 @@ export class DetailComponent implements OnInit {
     password: new FormControl(null),
     content: new FormControl(null),
   });
-  video: CreateVideoDTO;
+  video: any;
   videoId: number = 0;
   youtubeLink: string = 'https://www.youtube.com/embed/'
   comments: commentList[] = [];
@@ -82,16 +82,16 @@ export class DetailComponent implements OnInit {
     this.videoService.getVideo(id).subscribe({
       next: (res: CreateVideoDTO) => {
         this.video = res;
+        console.log(res);
         this.video.url = this.video.url.substring(17);
         this.video.url = this.youtubeLink.concat(this.video.url)
         // console.log(res)
       },
       error: (err) => {
-        console.log(err)
-      }
+        console.log(err);
+      },
     });
   }
-
 
   submit() {
     const body = this.createForm.getRawValue();
