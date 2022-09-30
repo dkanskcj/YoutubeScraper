@@ -42,19 +42,19 @@
         카테고리
       </div>
 
-      <div>
         <div class="relative flex">
           <div
             class="rounded-md border border-gray-200 p-2 items-center flex gap-3 hover:cursor-pointer"
             (click)="showCategory = true"
           >
-            <div>{{ Category }}</div>
+            <div class="w-[5.15rem]">{{ Category }}</div>
             <img src="assets/icons/arrow-down.svg" alt="" />
           </div>
+
           <!-- 카테고리 선택 -->
           <div
-            class="absolute px-3 py-2.5 bg-white rounded-md shadow-md flex flex-col justify-center items-center top-[1%]"
-            *ngIf="showCategory"
+            class="absolute px-3 py-2.5 bg-white rounded-md drop-shadow-sm shadow-md flex flex-col justify-center items-center top-[99%]"
+            *ngIf="!showCategory"
           >
             <div
               class="px-3 w-full cursor-pointer rounded-md hover:bg-gray-100 hover:border-gray-300 py-2.5"
@@ -88,8 +88,8 @@
             </div>
           </div>
           <!-- 카테고리 선택 -->
+
         </div>
-      </div>
     </div>
     <!-- 카테고리 -->
   </div>
