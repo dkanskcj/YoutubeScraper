@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { WholepageComponent } from './wholepage.component';
+import { MainComponent } from './main.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: WholepageComponent,
+    component: MainComponent,
   },
   // {
   //   path: ':id',

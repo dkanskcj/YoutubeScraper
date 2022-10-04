@@ -6,11 +6,11 @@ import { CreateVideoDTO } from 'src/service/video/dto/create-video.dto';
 import { VideoService } from 'src/service/video/video.service';
 
 @Component({
-  selector: 'app-wholepage',
-  templateUrl: './wholepage.component.html',
-  styleUrls: ['./wholepage.component.scss'],
+  selector: 'app-main',
+  templateUrl: './main.component.html',
+  styleUrls: ['./main.component.scss'],
 })
-export class WholepageComponent implements OnInit {  //카테고리 any 안 좋음.
+export class MainComponent implements OnInit {  //카테고리 any 안 좋음.
   currentCategory = '전체';
   seeAll: string = '모두보기';
   videos: any; //에다가 카테고리 쪼개지 말고(static 고정 상수값) 다 넣기(동적으로)

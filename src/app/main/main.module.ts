@@ -3,11 +3,11 @@ import { NgModule } from '@angular/core';
 
 import { ComponentsModule } from '../components/components.module';
 import { PipeModule } from '../pipe/pipe.module';
-import { WholepageRoutingModule } from './wholepage-routing.module';
-import { WholepageComponent } from './wholepage.component';
+import { WholepageRoutingModule } from './main-routing.module';
+import { MainComponent } from './main.component';
 
 @NgModule({
-  declarations: [WholepageComponent],
+  declarations: [MainComponent],
   imports: [CommonModule, ComponentsModule, WholepageRoutingModule, PipeModule],
 })
 export class WholepageModule {}
