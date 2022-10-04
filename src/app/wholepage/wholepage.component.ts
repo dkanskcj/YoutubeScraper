@@ -10,11 +10,10 @@ import { VideoService } from 'src/service/video/video.service';
   templateUrl: './wholepage.component.html',
   styleUrls: ['./wholepage.component.scss'],
 })
-export class WholepageComponent implements OnInit {
-  private baseUrl = 'http://localhost/video';
+export class WholepageComponent implements OnInit {  //카테고리 any 안 좋음.
   currentCategory = '전체';
   seeAll: string = '모두보기';
-  videos: any;
+  videos: any; //에다가 카테고리 쪼개지 말고(static 고정 상수값) 다 넣기(동적으로)
   detail: string = 'detail/'
   youtube: string = 'https://www.youtube.com/embed/'
   htmlVideo: any;
@@ -41,7 +40,7 @@ export class WholepageComponent implements OnInit {
     this.getVideos();
   }
 
-  getVideos() {
+  getVideos() { //통신 5번...
     this.getVideosThumbNail('HTML');
     this.getVideosThumbNail('React');
     this.getVideosThumbNail('JavaScript');
@@ -49,7 +48,7 @@ export class WholepageComponent implements OnInit {
     this.getVideosThumbNail('Angular');
   }
 
-  getVideosThumbNail(query: string) {
+  getVideosThumbNail(query: string) {  //쿼리 쪼개지 말기
     this.videoService.getVideosThumbNail(query).subscribe({
       next: (res) => {
 

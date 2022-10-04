@@ -4,23 +4,24 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class CommentService {
-  private baseUrl: string = 'http://localhost:80/comment';
-  private videoUrl: string = 'http://localhost/video'
+  private baseUrl: string = 'http://localhost:80/';
+  // private videoUrl: string = 'http://localhost/video'
+
   constructor(private http: HttpClient) {}
 
-  getComments() {
-    return this.http.get<any[]>(`${this.baseUrl}`);
-  }
+  // getComments() {
+  //   return this.http.get<any[]>(`${this.baseUrl}/comment`);
+  // }
 
-  getComment(id: number) {
-    return this.http.get(`${this.baseUrl}/${id}`);
-  }
+  // getCommentByVideo(id: number) {
+  //   return this.http.get(`${this.baseUrl}/video/${id}/comments`);  //이거로 다 고치기
+  // }
 
   createComment(body: any, id: number) {
-    return this.http.post(`${this.baseUrl}/${id}`, body);
+    return this.http.post(`${this.baseUrl}/video/${id}`, body);
   }
 
   getCommentsWithVideoId(id: number) {
-    return this.http.get(`${this.videoUrl}/searchid=${id}`);
+    return this.http.get(`${this.baseUrl}/video/searchId=${id}`);
   }
 }

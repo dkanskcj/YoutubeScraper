@@ -1,6 +1,6 @@
 <!-- 내용 -->
-<img *ngIf="isLoading === true" src="assets/icons/spinner.svg" class="myAbsolute w-full h-full">
 <div class="w-screen h-screen pt-10 flex justify-center">
+  <img *ngIf="isLoading === true" src="assets/icons/spinner.svg" class="myAbsolute w-full h-full">
   <app-delete-comment #modal></app-delete-comment>
   <div>
     <div class="w-[54rem] h-[30rem] bg-gray-200 relative">
@@ -13,7 +13,6 @@
     <div class="pt-2 pb-5 text-semibold text-xl text-gray-500">{{ video?.category }}</div>
 
     <!-- 댓글 입력-->
-
     <div class="pt-5 border-t-2 border-gray-200">
         <form [formGroup]="createForm">
         <div class="flex gap-5">
@@ -61,11 +60,11 @@
       <div class="flex gap-1 text-lg font-semibold text-gray-900 cursor-pointer">
         댓글
         <div class="text-lg font-semibold text-blue-500">
-          {{ commentsTest?.length }}
+          {{ comments?.length }}
         </div>
       </div>
       <div>
-        <ng-container *ngFor="let comment of commentsTest">
+        <ng-container *ngFor="let comment of comments">
           <app-comment [id]="comment?.name" [comment]="comment?.content"
             [createdAt]="comment?.createdAt | date: 'YYYY-MM-dd hh:mm'"
             class="cursor-pointer"></app-comment>

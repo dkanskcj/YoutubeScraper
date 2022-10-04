@@ -1,3 +1,4 @@
+import { PipeModule } from './../../pipe/pipe.module';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ComponentsModule } from './../../components/components.module';
@@ -5,7 +6,6 @@ import { ComponentsModule } from './../../components/components.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DetailRoutingModule } from './detail-routing.module';
 import { DetailComponent } from './detail.component';
-import { SafePipeModule } from 'src/app/safePipe/safePipe.module';
 import { DeleteCommentComponent } from './delete-comment/delete-comment.component';
 @NgModule({
   declarations: [DetailComponent, DeleteCommentComponent],
@@ -15,7 +15,7 @@ import { DeleteCommentComponent } from './delete-comment/delete-comment.componen
     ComponentsModule,
     ReactiveFormsModule,
     FormsModule,
-    SafePipeModule
+    PipeModule
   ],
 })
 export class DetailModule {}

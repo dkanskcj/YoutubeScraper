@@ -6,18 +6,21 @@ import { CommentService } from 'src/service/comment/comment.service';
 import { CreateVideoDTO } from 'src/service/video/dto/create-video.dto';
 import { VideoService } from 'src/service/video/video.service';
 import { DeleteCommentComponent } from './delete-comment/delete-comment.component';
+
 type commentList = {
   name: string;
   content: string;
   password: string;
+  createdAt: Date
 };
-
 @Component({
   selector: 'app-detail',
   templateUrl: './detail.component.html',
   styleUrls: ['./detail.component.scss'],
 })
+
 export class DetailComponent implements OnInit {
+
   @Output() detailCategory: string;
   currentCategory = '전체';
 
@@ -28,12 +31,14 @@ export class DetailComponent implements OnInit {
     password: new FormControl(null),
     content: new FormControl(null),
   });
+
   video: any;
   videoId: number = 0;
   youtubeLink: string = 'https://www.youtube.com/embed/'
   comments: commentList[] = [];
   commentsTest: any;
   isLoading: boolean = true;
+
   constructor(
     private commentService: CommentService,
     private videoService: VideoService,
@@ -51,11 +56,11 @@ export class DetailComponent implements OnInit {
     this.isLoading = false;
   }
 
-  getComment(id: number) {
+  getComment(id: number) {   //service로 옮기기. 왜 만들고 안 쓰냐~
     this.http.get(`${this.baseUrl}/${id}`).subscribe({
-      next: (res) => {
+      next: (res: commentList[]) => {
         // console.log(res);
-        this.commentsTest = res;
+        this.comments = res;
         this.getVideo(this.videoId);
       },
       error: (err) => {
@@ -68,8 +73,8 @@ export class DetailComponent implements OnInit {
   getCommentsWithVideoId(id: number) {
     // console.log('getCommentsWithVideoID -> ', id);
     this.http.get(`${this.baseUrl}/search${id}`).subscribe({
-      next: (res) => {
-        this.commentsTest = res;
+      next: (res: commentList[]) => {
+        this.comments = res;
         // console.log('videoId에 해당하는 댓글들은 이것입니다~~', res);
       },
       error: (e) => {
@@ -77,7 +82,6 @@ export class DetailComponent implements OnInit {
       },
     });
   }
-
 
   getVideo(id: number) {
     this.videoService.getVideo(id).subscribe({
@@ -97,10 +101,10 @@ export class DetailComponent implements OnInit {
 
   submit() {
     const body = this.createForm.getRawValue();
-    if (!body) {
-      console.log('입력 값이 없습니다.');
+    if (!body.content) {   //if 하고 ! 예외 처리할 때는 return 써서 끝내줘야 된다. !body.content === !''
+      return console.log('입력 값이 없습니다.');
     }
-    console.log(body, 'this.videoId -> ', this.videoId);
+    // console.log(body, 'this.videoId -> ', this.videoId);
     this.commentService.createComment(body, this.videoId).subscribe({
       next: (res) => {
         console.log(res, '아이디와 비밀번호, 댓글 생성 완료');
@@ -128,4 +132,5 @@ export class DetailComponent implements OnInit {
   setOpen() {
     this.modal.open();
   }
+
 }
