@@ -1,6 +1,7 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
+import { CommentService } from 'src/service/comment/comment.service';
 
 @Component({
   selector: 'app-delete-comment',
@@ -8,15 +9,34 @@ import { filter } from 'rxjs';
   styleUrls: ['./delete-comment.component.scss']
 })
 export class DeleteCommentComponent implements OnInit {
-  @Input() test: any;
+  @ViewChild('myModal', { static: false }) modal: ElementRef;
+  @Input() commentId: number;
   constructor(
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute,
+    private commetService: CommentService
   ) { }
 
   ngOnInit(): void {
-    console.log(this.test);
+    // this.commentId = this.route.snapshot.params['id']
+    // if(this.commentId){
+    //   this.getComment(this.commentId)
+    // }
+    console.log(this.commentId)
   }
-  @ViewChild('myModal', { static: false }) modal: ElementRef;
+
+
+  getComment(id: number){
+    this.commetService.getComment(id).subscribe({
+      next: (res) => {
+        console.log(res)
+      },
+      error: (err) => {
+        console.log(err)
+      }
+    });
+  }
+
 
   open() {
     this.modal.nativeElement.style.display = 'block';

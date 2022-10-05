@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
 import { ICreateVideoDTO } from 'src/service/video/dto/create-video.dto';
+import { IGetVideosDTO } from 'src/service/video/dto/get-videos.dto';
 import { VideoService } from 'src/service/video/video.service';
 
 @Component({
@@ -16,7 +17,7 @@ export class VideosComponent implements OnInit {
   @Input() category: string;
   @Input() seeAll: boolean = true;
   @Input() link: string;
-  @Input() videos: ICreateVideoDTO[];
+  @Input() videos: IGetVideosDTO[] = [];
   htmlVideo: any;
   javascriptVideo: any;
   reactVideo: any;

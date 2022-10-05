@@ -1,7 +1,7 @@
 <!-- 내용 -->
 <div class="w-full h-full pt-10 flex justify-center">
   <img *ngIf="isLoading === true" src="assets/icons/spinner.svg" class="myAbsolute w-full h-full">
-  <app-delete-comment #modal></app-delete-comment>
+  <!-- <app-delete-comment #modal></app-delete-comment> -->
   <div>
     <div class="w-[54rem] h-[30rem] bg-gray-200 relative">
       <iframe class="w-full h-full" [src]="video?.url | safe" title="YouTube video player" frameborder="0"
@@ -14,7 +14,7 @@
 
     <!-- 댓글 입력-->
     <div class="pt-5 border-t-2 border-gray-200">
-        <form [formGroup]="createForm">
+      <form [formGroup]="createForm">
         <div class="flex gap-5">
           <img src="assets/icons/profile.png" />
           <div class="w-1/2">
@@ -49,7 +49,7 @@
           </div>
         </div>
         <div class="pt-4 flex justify-end">
-          <app-button name="등록" (click)="submit()"></app-button>
+          <app-button [name]="buttonName" (click)="submit()"></app-button>
         </div>
       </form>
     </div>
@@ -64,20 +64,11 @@
         </div>
       </div>
       <div>
-        <ng-container *ngFor="let comment of comments">
+        <ng-container *ngFor="let comment of comments; index as i">
           <app-comment [id]="comment?.name" [comment]="comment?.content"
-            [createdAt]="comment?.createdAt | date: 'YYYY-MM-dd hh:mm'"
-            class="cursor-pointer"></app-comment>
+          [createdAt]="comment?.createdAt | date: 'YYYY-MM-dd hh:mm'" class="cursor-pointer" (click)="getComment(i)">
+          </app-comment>
         </ng-container>
-        <!-- <app-comment
-          id="예니"
-          comment="좋구만융!.!"></app-comment>
-          <app-comment
-          id="혀누"
-          comment="ㅋㅋㅋㅋㅋㅋㅋ재밌네연"></app-comment>
-          <app-comment
-          id="설빈"
-          comment="괜춘ㅋㅋ"></app-comment> -->
       </div>
     </div>
   </div>

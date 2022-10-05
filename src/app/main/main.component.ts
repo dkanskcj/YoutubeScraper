@@ -1,8 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
-import { ICreateVideoDTO } from 'src/service/video/dto/create-video.dto';
+import { IGetVideosDTO } from 'src/service/video/dto/get-videos.dto';
 import { VideoService } from 'src/service/video/video.service';
 
 @Component({
@@ -13,14 +12,10 @@ import { VideoService } from 'src/service/video/video.service';
 export class MainComponent implements OnInit {  //카테고리 any 안 좋음.
   currentCategory = '전체';
   seeAll: string = '모두보기';
-  videos: any; //에다가 카테고리 쪼개지 말고(static 고정 상수값) 다 넣기(동적으로)
+  videos: IGetVideosDTO[] = []; //에다가 카테고리 쪼개지 말고(static 고정 상수값) 다 넣기(동적으로)
   detail: string = 'detail/'
-  youtube: string = 'https://www.youtube.com/embed/'
-  htmlVideo: any;
-  javascriptVideo: any;
-  reactVideo: any;
-  tailwindcssVideo: any;
-  angularVideo: any;
+  thumbNail: string = 'https://img.youtube.com/vi/';
+  defaultImg: string = '/mqdefault.jpg';
   isLoading: boolean = true;
   constructor(
     private videoService: VideoService,
@@ -37,35 +32,17 @@ export class MainComponent implements OnInit {  //카테고리 any 안 좋음.
           console.log(e);
         },
       });
-    this.getVideos();
+    this.getVideosThumbNail();
   }
-
-  getVideos() { //통신 5번...
-    this.getVideosThumbNail('HTML');
-    this.getVideosThumbNail('React');
-    this.getVideosThumbNail('JavaScript');
-    this.getVideosThumbNail('tailwindcss');
-    this.getVideosThumbNail('Angular');
-  }
-
-  getVideosThumbNail(query: string) {  //쿼리 쪼개지 말기
-    this.videoService.getVideosThumbNail(query).subscribe({
-      next: (res) => {
-
-        if (query === 'Angular') {
-          this.angularVideo = res
-        }
-        if (query === 'HTML') {
-          this.htmlVideo = res
-        }
-        if (query === 'tailwindcss') {
-          this.tailwindcssVideo = res
-        }
-        if (query === 'JavaScript') {
-          this.javascriptVideo = res
-        }
-        if (query === 'React') {
-          this.reactVideo = res
+  
+  getVideosThumbNail() {  
+    this.videoService.getVideos().subscribe({
+      next: (res: IGetVideosDTO[]) => {
+        this.videos = res
+        console.log(this.videos)
+        for (let video of this.videos) {
+          video.url = video.url.substring(30)
+          video.url = this.thumbNail.concat(video.url + this.defaultImg)
         }
         this.isLoading = false;
 
@@ -74,6 +51,11 @@ export class MainComponent implements OnInit {  //카테고리 any 안 좋음.
         console.log(e)
       }
     });
+  }
+
+  filterCategoryVideos(category: string) {
+    return this.videos.filter(item => item.category === category)
+    // console.log(this.videos)
   }
 
 }
