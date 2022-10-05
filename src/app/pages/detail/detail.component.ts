@@ -3,7 +3,7 @@ import { Component, OnInit, Output, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommentService } from 'src/service/comment/comment.service';
-import { CreateVideoDTO } from 'src/service/video/dto/create-video.dto';
+import { ICreateVideoDTO } from 'src/service/video/dto/create-video.dto';
 import { VideoService } from 'src/service/video/video.service';
 import { DeleteCommentComponent } from './delete-comment/delete-comment.component';
 
@@ -85,7 +85,7 @@ export class DetailComponent implements OnInit {
 
   getVideo(id: number) {
     this.videoService.getVideo(id).subscribe({
-      next: (res: CreateVideoDTO) => {
+      next: (res: ICreateVideoDTO) => {
         this.video = res;
         console.log(res);
         this.video.url = this.video.url.substring(17);

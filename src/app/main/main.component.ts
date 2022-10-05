@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
-import { CreateVideoDTO } from 'src/service/video/dto/create-video.dto';
+import { ICreateVideoDTO } from 'src/service/video/dto/create-video.dto';
 import { VideoService } from 'src/service/video/video.service';
 
 @Component({

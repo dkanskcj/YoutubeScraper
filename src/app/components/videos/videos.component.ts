@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
-import { CreateVideoDTO } from 'src/service/video/dto/create-video.dto';
+import { ICreateVideoDTO } from 'src/service/video/dto/create-video.dto';
 import { VideoService } from 'src/service/video/video.service';
 
 @Component({
@@ -16,7 +16,7 @@ export class VideosComponent implements OnInit {
   @Input() category: string;
   @Input() seeAll: boolean = true;
   @Input() link: string;
-  @Input() videos: CreateVideoDTO[];
+  @Input() videos: ICreateVideoDTO[];
   htmlVideo: any;
   javascriptVideo: any;
   reactVideo: any;
@@ -72,7 +72,7 @@ export class VideosComponent implements OnInit {
     })
   }
 
-  navigateDetail(video:CreateVideoDTO){
+  navigateDetail(video:ICreateVideoDTO){
     this.router.navigateByUrl(`/detail/${video.id}?title=${video.category}`);
   }
 
