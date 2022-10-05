@@ -10,8 +10,8 @@ const routes: Routes = [
       {
         path: '',
         loadChildren: () =>
-          import('../main/main.module').then(
-            (m) => m.WholepageModule
+          import('../pages/main/main.module').then(
+            (m) => m.MainModule
           ),
       },
       {
