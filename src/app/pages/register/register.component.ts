@@ -12,7 +12,7 @@ import { VideoService } from 'src/service/video/video.service';
 export class RegisterComponent implements OnInit {
 
   Category: string = 'HTML';
-  
+  setInputValue: string = '';
   showCategory: boolean = false;
 
   createForm = new FormGroup({
@@ -54,8 +54,12 @@ export class RegisterComponent implements OnInit {
     this.videoService.createVideo(body).subscribe({
       next: (res) => {
         console.log(res)
-        this.router.navigateByUrl('/')
-        window.location.reload();
+        this.createForm.setValue({
+          title: '',
+          url: '',
+          category: 'HTML'
+        })
+        // this.router.navigateByUrl('/')
       },
       error: (e) => {
         console.log(e)
