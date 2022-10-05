@@ -1,3 +1,4 @@
+import { IGetVideosDTO } from './../../../service/video/dto/get-videos.dto';
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
@@ -16,7 +17,7 @@ export class VideosComponent implements OnInit {
   @Input() category: string;
   @Input() seeAll: boolean = true;
   @Input() link: string;
-  @Input() videos: ICreateVideoDTO[];
+  @Input() videos: IGetVideosDTO[] = [];
   htmlVideo: any;
   javascriptVideo: any;
   reactVideo: any;
