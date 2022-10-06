@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { ICreateVideoDTO } from './dto/create-video.dto';
 import { environment } from 'src/environments/environment';
 import { IGetVideosDTO } from './dto/get-videos.dto';
+import { IUpdateVideoDTO } from './dto/update-video.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -22,10 +23,6 @@ export class VideoService {
   getVideosThumbNail(query: string){
     return this.http.get(`${this.baseUrl}/video/thumbNailImg?query=${query}`);
   }
-
-  // getVideos() {
-  //   return this.http.get<ICreateVideoDTO[]>(`${this.baseUrl}?pageNo=1&pageSize=10`);
-  // }
   getVideos(){
     return this.http.get<IGetVideosDTO[]>(`${this.baseUrl}/video/all`);
   }
@@ -34,6 +31,12 @@ export class VideoService {
   }
   createVideo(body: ICreateVideoDTO) {
     return this.http.post(`${this.baseUrl}/video`, body);
+  }
+  updateVideo(body: any, id: number){
+    return this.http.patch(`${this.baseUrl}/video/${id}`, body);
+  }
+  deleteVideo(id: number){
+    return this.http.delete(`${this.baseUrl}/video/${id}`);
   }
 
 }
