@@ -67,7 +67,7 @@
         <ng-container *ngFor="let comment of comments; index as i">
           <app-comment [id]="comment?.name" [comment]="comment?.content" 
             [createdAt]="comment?.createdAt | date: 'YYYY-MM-dd hh:mm'" class="cursor-pointer group">
-            <div class="w-full hidden justify-end gap-3 group-hover:flex">
+            <div class="w-full hidden justify-end items-center gap-3 group-hover:flex">
               <div class="border box-border shadow-sm px-3 py-2 rounded-md border-gray-300 text-gray-400 hover:opacity-70" (click)="modifyComment(i)">수정</div>
               <div class="border box-border shadow-sm px-3 py-2 rounded-md border-red-300 text-red-400 hover:opacity-70" (click)="deleteComment(i)">삭제</div>
             </div>

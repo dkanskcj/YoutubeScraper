@@ -104,6 +104,7 @@ export class DetailComponent implements OnInit {
           })
           this.getCommentsWithVideoId(this.videoId);
           // this.router.navigateByUrl('/');
+          document.documentElement.scrollTop = 0;
           // this.refresh();
         },
         error: (e) => {
@@ -125,6 +126,7 @@ export class DetailComponent implements OnInit {
             name: '',
             password: ''
           })
+          document.documentElement.scrollTop = 0;
         },
         error: (err) => {
           console.log(err)
@@ -145,6 +147,7 @@ export class DetailComponent implements OnInit {
       content: this.comment.content,
       password: ''
     })
+    document.documentElement.scrollTop = 0;
     this.buttonName = '수정'
   }
 
@@ -164,12 +167,14 @@ export class DetailComponent implements OnInit {
       password: password
     }
     if (!password) {
+      document.documentElement.scrollTop = 0;
       return alert('비밀번호를 입력해 주시기 바랍니다.')
     }
     // console.log(body.password)
     this.commentService.deleteComment(body, this.comment.id).subscribe({
       next: (res) => {
         this.getCommentsWithVideoId(this.videoId)
+        document.documentElement.scrollTop = 0;
         // console.log(res)
       },
       error: (err) => {
