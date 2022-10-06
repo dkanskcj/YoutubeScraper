@@ -34,8 +34,8 @@ export class MainComponent implements OnInit {  //카테고리 any 안 좋음.
       });
     this.getVideosThumbNail();
   }
-  
-  getVideosThumbNail() {  
+
+  getVideosThumbNail() {
     this.videoService.getVideos().subscribe({
       next: (res: IGetVideosDTO[]) => {
         this.videos = res
@@ -43,6 +43,7 @@ export class MainComponent implements OnInit {  //카테고리 any 안 좋음.
         for (let video of this.videos) {
           video.url = video.url.substring(30)
           video.url = this.thumbNail.concat(video.url + this.defaultImg)
+          
         }
         this.isLoading = false;
 
@@ -57,5 +58,12 @@ export class MainComponent implements OnInit {  //카테고리 any 안 좋음.
     return this.videos.filter(item => item.category === category)
     // console.log(this.videos)
   }
+
+  // viewCountVideos(category: string) {
+  //   // for(let video of this.videos){
+  //   const categoryVideos = this.videos.filter(item => item.category === category)
+  //   // return 
+  //   // }
+  // }
 
 }

@@ -1,6 +1,4 @@
-import { animate } from '@angular/animations';
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommentService } from 'src/service/comment/comment.service';
@@ -20,14 +18,11 @@ export class DetailComponent implements OnInit {
   showCategory: boolean = false;
   currentCategory = '전체';
 
-  private baseUrl: string = 'http://localhost:80/comment';
-
   comment: GetCommentDTO;
   video: ICreateVideoDTO;
   videoId: number = 0;
   youtubeLink: string = 'https://www.youtube.com/embed/'
   comments: GetCommentDTO[] = [];
-  commentsTest: any;
   isLoading: boolean = true;
   buttonName: string = '등록'
   isButtonsHide: boolean = true;
@@ -62,17 +57,13 @@ export class DetailComponent implements OnInit {
     this.createForm.get('content').disable();
   }
 
-  isClicked(event, showCategory: string){
-    if(showCategory === 'in'){
+  isClicked(event, showCategory: string) {
+    if (showCategory === 'in') {
       this.showCategory = true
       event.stopPropagation();
     }
-    if(showCategory === 'out' && this.updating === true){
+    if (showCategory === 'out') {
       event.stopPropagation();
-    }
-    if(showCategory === 'out' && this.updating === false){
-      this.showCategory = false
-      this.updating = false
     }
   }
 
@@ -147,6 +138,7 @@ export class DetailComponent implements OnInit {
           document.documentElement.scrollIntoView({ behavior: 'smooth' });
         },
         error: (err) => {
+          window.alert('비밀번호가 올바르지 않습니다.')
           console.log(err)
         }
       });
@@ -195,12 +187,13 @@ export class DetailComponent implements OnInit {
         window.alert('삭제가 완료되었습니다.');
       },
       error: (err) => {
+        window.alert('비밀번호가 올바르지 않습니다.')
         console.log(err)
       }
     });
   }
 
-  updateVideo(){
+  updateVideo() {
     this.updating = true;
     // this.updateVideoFrom.setValue({
     //   category: this.video.category,
@@ -208,20 +201,21 @@ export class DetailComponent implements OnInit {
     // })
   }
 
-  deleteVideo(){
+  deleteVideo() {
     const checkDelete = window.confirm('정말로 삭제하시겠습니까? 영상에 달린 댓글들도 모두 삭제됩니다.')
-    if(checkDelete){
-      this.videoService.deleteVideo(this.videoId).subscribe({
-        next: (res) => {
-          this.router.navigateByUrl('/');
-          console.log(res)
-        },
-        error: (err) => {
-          console.log(err)
-        }
-      });
+    if (!checkDelete) {
+      return window.alert('사용자가 요청을 거부하였습니다.')
     }
-    }
+    this.videoService.deleteVideo(this.videoId).subscribe({
+      next: (res) => {
+        this.router.navigateByUrl('/');
+        console.log(res)
+      },
+      error: (err) => {
+        console.log(err)
+      }
+    });
+  }
 
 
 }

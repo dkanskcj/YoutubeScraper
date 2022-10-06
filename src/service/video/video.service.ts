@@ -15,7 +15,9 @@ export class VideoService {
   getVideo(id: number) {
     return this.http.get(`${this.baseUrl}/video/${id}`);
   }
-
+  getVideosByCategoryWithPagination(query: string){
+    return this.http.get(`${this.baseUrl}/video?pageNo=1&pageSize=5&category=${query}`)
+  }
   getVideosByCategory(query: string){
     return this.http.get(`${this.baseUrl}/video/search?query=${query}`);
   }
