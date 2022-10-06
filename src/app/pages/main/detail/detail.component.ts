@@ -1,3 +1,4 @@
+import { animate } from '@angular/animations';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, Output, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
@@ -104,7 +105,7 @@ export class DetailComponent implements OnInit {
           })
           this.getCommentsWithVideoId(this.videoId);
           // this.router.navigateByUrl('/');
-          document.documentElement.scrollTop = 0;
+          document.documentElement.scrollIntoView({ behavior: 'smooth' });
           // this.refresh();
         },
         error: (e) => {
@@ -126,7 +127,7 @@ export class DetailComponent implements OnInit {
             name: '',
             password: ''
           })
-          document.documentElement.scrollTop = 0;
+          document.documentElement.scrollIntoView({ behavior: 'smooth' });
         },
         error: (err) => {
           console.log(err)
@@ -147,7 +148,7 @@ export class DetailComponent implements OnInit {
       content: this.comment.content,
       password: ''
     })
-    document.documentElement.scrollTop = 0;
+    document.documentElement.scrollIntoView({ behavior: 'smooth' });
     this.buttonName = '수정'
   }
 
@@ -167,14 +168,14 @@ export class DetailComponent implements OnInit {
       password: password
     }
     if (!password) {
-      document.documentElement.scrollTop = 0;
+      document.documentElement.scrollIntoView({ behavior: 'smooth' });
       return alert('비밀번호를 입력해 주시기 바랍니다.')
     }
     // console.log(body.password)
     this.commentService.deleteComment(body, this.comment.id).subscribe({
       next: (res) => {
         this.getCommentsWithVideoId(this.videoId)
-        document.documentElement.scrollTop = 0;
+        document.documentElement.scrollIntoView({ behavior: 'smooth' });
         // console.log(res)
       },
       error: (err) => {
