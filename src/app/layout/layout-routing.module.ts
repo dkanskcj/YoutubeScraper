@@ -17,11 +17,11 @@ const routes: Routes = [
       {
         path: 'detail',
         loadChildren: () =>
-          import('../pages/detail/detail.module').then((m) => m.DetailModule),
+          import('../pages/main/detail/detail.module').then((m) => m.DetailModule),
       },
       {
         path: 'detail/:id',
-        loadChildren: () => import('../pages/detail/detail.module').then(m=>m.DetailModule)
+        loadChildren: () => import('../pages/main/detail/detail.module').then(m=>m.DetailModule)
       },
       {
         path: 'videos/:category',
@@ -30,7 +30,7 @@ const routes: Routes = [
       {
         path: 'register',
         loadChildren: () =>
-          import('../pages/register/register.module').then(
+          import('../pages/main/register/register.module').then(
             (m) => m.RegisterModule
           ),
       },
