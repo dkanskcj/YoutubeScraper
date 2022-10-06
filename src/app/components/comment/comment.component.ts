@@ -11,10 +11,12 @@ export class CommentComponent implements OnInit {
   @Input() id: any;
   @Input() createdAt: string;
   @Input() comment: any;
-
+  @Input() isButtonsHide: boolean = true;
+  
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  
 }

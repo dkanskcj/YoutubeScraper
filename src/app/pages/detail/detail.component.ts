@@ -1,12 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, Output, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { CommentService } from 'src/service/comment/comment.service';
 import { GetCommentDTO } from 'src/service/comment/dto/get-comment.dto';
 import { ICreateVideoDTO } from 'src/service/video/dto/create-video.dto';
 import { VideoService } from 'src/service/video/video.service';
-import { DeleteCommentComponent } from './delete-comment/delete-comment.component';
 
 @Component({
   selector: 'app-detail',
@@ -15,8 +14,8 @@ import { DeleteCommentComponent } from './delete-comment/delete-comment.componen
 })
 
 export class DetailComponent implements OnInit {
-
   @Output() detailCategory: string;
+
   currentCategory = '전체';
 
   private baseUrl: string = 'http://localhost:80/comment';
@@ -34,6 +33,8 @@ export class DetailComponent implements OnInit {
   commentsTest: any;
   isLoading: boolean = true;
   buttonName: string = '등록'
+  isButtonsHide: boolean = true;
+  currentIndex: number;
   constructor(
     private commentService: CommentService,
     private videoService: VideoService,
@@ -51,7 +52,9 @@ export class DetailComponent implements OnInit {
     this.isLoading = false;
   }
 
-  
+  toggle(): void {
+    this.createForm.get('content').disable();
+  }
 
   // videoId를 받는다.
   getCommentsWithVideoId(id: number) {
@@ -85,21 +88,49 @@ export class DetailComponent implements OnInit {
 
   submit() {
     const body = this.createForm.getRawValue();
-    if (!body.content) {   //if 하고 ! 예외 처리할 때는 return 써서 끝내줘야 된다. !body.content === !''
-      return console.log('입력 값이 없습니다.');
+    if (this.buttonName === '등록') {
+      if (!body.content) {   //if 하고 ! 예외 처리할 때는 return 써서 끝내줘야 된다. !body.content === !''
+        return console.log('입력 값이 없습니다.');
+      }
+      // console.log(body, 'this.videoId -> ', this.videoId);
+      this.commentService.createComment(body, this.videoId).subscribe({
+        next: (res: GetCommentDTO) => {
+          console.log(res, '아이디와 비밀번호, 댓글 생성 완료');
+          this.comments.push(res)
+          this.createForm.setValue({
+            content: '',
+            name: '',
+            password: ''
+          })
+          this.getCommentsWithVideoId(this.videoId);
+          // this.router.navigateByUrl('/');
+          // this.refresh();
+        },
+        error: (e) => {
+          console.log(e);
+        },
+      });
     }
-    // console.log(body, 'this.videoId -> ', this.videoId);
-    this.commentService.createComment(body, this.videoId).subscribe({
-      next: (res: GetCommentDTO) => {
-        console.log(res, '아이디와 비밀번호, 댓글 생성 완료');
-        this.comments.push(res)
-        // this.router.navigateByUrl('/');
-        // this.refresh();
-      },
-      error: (e) => {
-        console.log(e);
-      },
-    });
+    if (this.buttonName === '수정') {
+      // const body = this.createForm.getRawValue();
+      if (!body.password) {
+        return console.log('비밀번호를 입력해 주시기 바랍니다.')
+      }
+      this.commentService.updateComment(body, this.comment.id).subscribe({
+        next: (res: GetCommentDTO) => {
+          this.getCommentsWithVideoId(this.videoId)
+          this.buttonName = '등록'
+          this.createForm.setValue({
+            content: '',
+            name: '',
+            password: ''
+          })
+        },
+        error: (err) => {
+          console.log(err)
+        }
+      });
+    }
   }
 
   sendCategory($event) {
@@ -107,10 +138,7 @@ export class DetailComponent implements OnInit {
     console.log(this.detailCategory)
   }
 
-
-  @ViewChild('modal', { static: false }) modal: DeleteCommentComponent
-
-  getComment(index: number) {
+  modifyComment(index: number) {
     this.comment = this.comments[index];
     this.createForm.setValue({
       name: this.comment.name,
@@ -120,41 +148,36 @@ export class DetailComponent implements OnInit {
     this.buttonName = '수정'
   }
 
-
-  modifyComment(id: number){
-    if(this.buttonName === '수정'){
-      const body = this.createForm.getRawValue();
-      if(!body.content){
-        return console.log('올바르게 입력되지 않았습니다.')
-      }
-      if(!body.password){
-        return console.log('비밀번호를 입력햊 주시기 바랍니다.')
-      }
-      id = this.comment.id;
-      this.commentService.updateComment(body ,id).subscribe({
-        next: (res) => {
-          console.log(res)
-          this.buttonName = '등록'
-        },
-        error: (err) => {
-          console.log(err)
-        }
-      });
+  deleteComment(index: number) {
+    // this.createForm.controls.content.disable();
+    this.buttonName = '등록'
+    this.createForm.setValue({
+      content: '',
+      name: '',
+      password: ''
+    })
+    this.comment = this.comments[index];
+    const password = window.prompt('이 댓글을 삭제하시려면 비밀번호를 입력해 주세요.')
+    console.log(password);
+    const body = {
+      name: this.comment.name,
+      password: password
     }
+    if (!password) {
+      return alert('비밀번호를 입력해 주시기 바랍니다.')
+    }
+    // console.log(body.password)
+    this.commentService.deleteComment(body, this.comment.id).subscribe({
+      next: (res) => {
+        this.getCommentsWithVideoId(this.videoId)
+        // console.log(res)
+      },
+      error: (err) => {
+        console.log(err)
+      }
+    });
+
   }
 
-
-
-
-
-  setOpen(index: number) {
-    // console.log(this.comments[index])
-    // this.comment = this.comments[index];
-    // this.createForm.setValue({
-    //   name: this.comment.name,
-    //   content: this.comment.content,
-    //   password: ''
-    // })
-  }
 
 }

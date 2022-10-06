@@ -10,7 +10,7 @@ const routes: Routes = [
       {
         path: '',
         loadChildren: () =>
-          import('../main/main.module').then(
+          import('../pages/main/main.module').then(
             (m) => m.WholepageModule
           ),
       },

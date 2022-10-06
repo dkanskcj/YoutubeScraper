@@ -42,8 +42,8 @@
           <div class="w-full flex justify-center items-center gap-2">
             <div
               class="w-full flex justify-between border bg-white border-gray-200 rounded-md outline-none focus-within:ring-gray-400 transition-colors focus-within:ring-1">
-              <input formControlName="content" placeholder="댓글" type="text"
-                class="w-full outline-none px-3 py-2.5 rounded-md cursor-pointer" />
+              <input id="disabledtest" formControlName="content" placeholder="댓글" type="text"
+                class="w-full outline-none px-3 py-2.5 rounded-md cursor-pointer"/>
               <div></div>
             </div>
           </div>
@@ -65,8 +65,13 @@
       </div>
       <div>
         <ng-container *ngFor="let comment of comments; index as i">
-          <app-comment [id]="comment?.name" [comment]="comment?.content"
-          [createdAt]="comment?.createdAt | date: 'YYYY-MM-dd hh:mm'" class="cursor-pointer" (click)="getComment(i)">
+          <app-comment [id]="comment?.name" [comment]="comment?.content" 
+            [createdAt]="comment?.createdAt | date: 'YYYY-MM-dd hh:mm'" class="cursor-pointer group">
+            <div class="w-full hidden justify-end gap-3 group-hover:flex">
+              <div class="border box-border shadow-sm px-3 py-2 rounded-md border-gray-300 text-gray-400 hover:opacity-70" (click)="modifyComment(i)">수정</div>
+              <div class="border box-border shadow-sm px-3 py-2 rounded-md border-red-300 text-red-400 hover:opacity-70" (click)="deleteComment(i)">삭제</div>
+            </div>
+            <!-- asdasdsafsafsa -->
           </app-comment>
         </ng-container>
       </div>
