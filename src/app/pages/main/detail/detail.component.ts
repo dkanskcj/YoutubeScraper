@@ -176,6 +176,7 @@ export class DetailComponent implements OnInit {
       next: (res) => {
         this.getCommentsWithVideoId(this.videoId)
         document.documentElement.scrollIntoView({ behavior: 'smooth' });
+        window.alert('삭제가 완료되었습니다.');
         // console.log(res)
       },
       error: (err) => {
