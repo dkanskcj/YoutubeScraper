@@ -11,7 +11,7 @@ export class CommentService {
   baseUrl = `${environment.server}`;
 
   createComment(body: any, id: number) {
-    return this.http.post(`${this.baseUrl}/video/${id}/comment`, body);
+    return this.http.post(`${this.baseUrl}/comment/createWithVideoId${id}`, body);
   }
 
   

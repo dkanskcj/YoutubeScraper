@@ -102,8 +102,14 @@ export class DetailComponent implements OnInit {
       return console.log('입력 값이 없습니다.');
     }
     this.videoService.createComment(body, this.videoId).subscribe({
-      next: (res) => {
+      next: (res: commentList) => {
         console.log(res, '아이디와 비밀번호, 댓글 생성 완료');
+        this.comments.push(res)
+        this.createForm.setValue({
+          content: '',
+          name: '',
+          password: ''
+        })
       },
       error: (e) => {
         console.log(e);
