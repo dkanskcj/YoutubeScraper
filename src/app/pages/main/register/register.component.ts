@@ -36,7 +36,6 @@ export class RegisterComponent implements OnInit {
     if (this.videoId) {
       this.router.events.pipe(filter(e => e instanceof NavigationEnd)).subscribe({
         next: (res) => {
-          this.getVideo()
         },
         error: (err) => {
           console.log(err)
