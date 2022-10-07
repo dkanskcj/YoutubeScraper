@@ -71,7 +71,6 @@ export class RegisterComponent implements OnInit {
     else if (this.update === true) {
       const body = this.createForm.getRawValue();
       body.category = this.Category;
-      // console.log(body, 'test')
       console.log(this.createForm.value)
 
       this.videoService.updateVideo(body, this.videoId).subscribe({
