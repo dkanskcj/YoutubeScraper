@@ -1,0 +1,19 @@
+<div>
+  <div class="pt-5 flex justify-end pb-7">
+    <app-button name="영상 등록하기" routerLink="register"></app-button>
+  </div>
+
+
+  <div class="w-full h-full">
+    <img *ngIf="isLoading === true" src="assets/icons/spinner.svg" class="myAbsolute w-full h-full">
+    <div class="mt-7 space-y-7">
+      <app-videos [videos]="filterCategoryVideos('HTML')" title="HTML"></app-videos>
+      <app-videos [videos]="filterCategoryVideos('tailwindcss')" title="tailwindcss"></app-videos>
+      <app-videos [videos]="filterCategoryVideos('JavaScript')" title="JavaScript"></app-videos>
+      <app-videos [videos]="filterCategoryVideos('React')" title="React"></app-videos>
+      <app-videos [videos]="filterCategoryVideos('Angular')" title="Angular"></app-videos>
+    </div>
+  </div>
+
+
+</div>

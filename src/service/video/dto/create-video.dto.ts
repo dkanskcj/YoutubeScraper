@@ -1,4 +1,4 @@
-export class CreateVideoDTO {
+export interface ICreateVideoDTO {
     id?: string;
     url: string;
     title: string;

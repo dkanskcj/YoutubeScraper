@@ -1,26 +1,36 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
+import { IDeleteCommentDTO } from './dto/delete-comment.dto';
+import { GetCommentDTO } from './dto/get-comment.dto';
 @Injectable({
   providedIn: 'root',
 })
 export class CommentService {
-  private baseUrl: string = 'http://localhost:80/comment';
-  private videoUrl: string = 'http://localhost/video'
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  getComments() {
-    return this.http.get<any[]>(`${this.baseUrl}`);
-  }
-
+  baseUrl = `${environment.server}`;
   getComment(id: number) {
-    return this.http.get(`${this.baseUrl}/${id}`);
+    return this.http.get(`${this.baseUrl}/comment/search/${id}`);
   }
-
-  createComment(body: any, id: number) {
-    return this.http.post(`${this.baseUrl}/${id}`, body);
+  getComments(id: number) {
+    return this.http.get(`${this.baseUrl}/comment/search${id}`);
   }
 
   getCommentsWithVideoId(id: number) {
-    return this.http.get(`${this.videoUrl}/searchid=${id}`);
+    return this.http.get(`${this.baseUrl}/video/searchId=${id}`);
+  }
+
+  createComment(body: any, id: number): Observable<GetCommentDTO> {
+    return this.http.post<GetCommentDTO>(`${this.baseUrl}/comment/createWithVideoId=${id}`, body);
+  }
+
+  updateComment(body: any, id: number) {
+    return this.http.patch(`${this.baseUrl}/comment/${id}`, body);
+  }
+
+  deleteComment(body: any, id: number) {
+    return this.http.patch<IDeleteCommentDTO>(`${this.baseUrl}/comment/${id}/delete`, body);
   }
 }

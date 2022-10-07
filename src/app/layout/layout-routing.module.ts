@@ -10,18 +10,18 @@ const routes: Routes = [
       {
         path: '',
         loadChildren: () =>
-          import('../wholepage/wholepage.module').then(
+          import('../pages/main/main.module').then(
             (m) => m.WholepageModule
           ),
       },
       {
         path: 'detail',
         loadChildren: () =>
-          import('../pages/detail/detail.module').then((m) => m.DetailModule),
+          import('../pages/main/detail/detail.module').then((m) => m.DetailModule),
       },
       {
         path: 'detail/:id',
-        loadChildren: () => import('../pages/detail/detail.module').then(m=>m.DetailModule)
+        loadChildren: () => import('../pages/main/detail/detail.module').then(m=>m.DetailModule)
       },
       {
         path: 'videos/:category',
@@ -30,7 +30,7 @@ const routes: Routes = [
       {
         path: 'register',
         loadChildren: () =>
-          import('../pages/register/register.module').then(
+          import('../pages/main/register/register.module').then(
             (m) => m.RegisterModule
           ),
       },
