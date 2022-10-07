@@ -54,15 +54,14 @@ export class RegisterComponent implements OnInit {
   }
 
   submit() {
-    const body = this.createForm.getRawValue();
     if (this.update === false) {
+      const body = this.createForm.getRawValue();
       body.category = this.Category;
       console.log(body)
       this.videoService.createVideo(body).subscribe({
         next: (res) => {
           console.log(res)
           this.router.navigateByUrl('/')
-          window.location.reload();
         },
         error: (e) => {
           console.log(e)
@@ -70,9 +69,15 @@ export class RegisterComponent implements OnInit {
       });
     }
     else if (this.update === true) {
+      const body = this.createForm.getRawValue();
+      body.category = this.Category;
+      // console.log(body, 'test')
+      console.log(this.createForm.value)
+
       this.videoService.updateVideo(body, this.videoId).subscribe({
         next: (res) => {
           this.update = false;
+          this.video.category = this.Category
           this.router.navigateByUrl(`/detail/${this.videoId}?title=${this.video.category}`)
         },
         error: (err) => {
@@ -104,11 +109,13 @@ export class RegisterComponent implements OnInit {
         this.video = res;
         this.buttonName = '수정'
         this.update = true;
+        this.Category = res.category
         this.createForm.setValue({
-          category: res.category,
+          category: this.Category,
           title: res.title,
           url: res.url
         })
+        console.log(this.createForm.value)
         this.createForm.controls.url.disable();
       },
       error: (err) => {
