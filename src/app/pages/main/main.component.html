@@ -7,11 +7,13 @@
   <div class="w-full h-full">
     <img *ngIf="isLoading === true" src="assets/icons/spinner.svg" class="myAbsolute w-full h-full">
     <div class="mt-7 space-y-7">
-      <app-videos [videos]="filterCategoryVideos('HTML')" title="HTML"></app-videos>
-      <app-videos [videos]="filterCategoryVideos('tailwindcss')" title="tailwindcss"></app-videos>
-      <app-videos [videos]="filterCategoryVideos('JavaScript')" title="JavaScript"></app-videos>
-      <app-videos [videos]="filterCategoryVideos('React')" title="React"></app-videos>
-      <app-videos [videos]="filterCategoryVideos('Angular')" title="Angular"></app-videos>
+      <ng-container *ngIf="videos">
+      <app-videos [videos]="videos.html" title="HTML"></app-videos>
+      <app-videos [videos]="videos.tailwindcss" title="tailwindcss"></app-videos>
+      <app-videos [videos]="videos.javascript" title="JavaScript"></app-videos>
+      <app-videos [videos]="videos.react" title="React"></app-videos>
+      <app-videos [videos]="videos.angular" title="Angular"></app-videos>
+    </ng-container>
     </div>
   </div>
 

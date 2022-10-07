@@ -5,6 +5,14 @@ import { environment } from 'src/environments/environment';
 import { IGetVideosDTO } from './dto/get-videos.dto';
 import { IUpdateVideoDTO } from './dto/update-video.dto';
 
+export type VideosResult = {
+  angular:[];
+  html:[];
+  javascript:[];
+  react:[];
+  tailwindcss:[];
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -26,7 +34,7 @@ export class VideoService {
     return this.http.get(`${this.baseUrl}/video/thumbNailImg?query=${query}`);
   }
   getVideos(){
-    return this.http.get<IGetVideosDTO[]>(`${this.baseUrl}/video/all`);
+    return this.http.get<VideosResult>(`${this.baseUrl}/video/all`);
   }
   createComment(body: any, id: number) {
     return this.http.post(`${this.baseUrl}/video/${id}`, body);
