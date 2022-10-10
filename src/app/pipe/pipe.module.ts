@@ -1,14 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SafePipe } from './safePipe/safe.pipe';
+import { TimeAgoPipe } from './day-ago-pipe/day-ago-pipe'
 
-
+const pipes = [ SafePipe, TimeAgoPipe ];
 
 @NgModule({
-  declarations: [SafePipe],
+  declarations: pipes,
   imports: [
     CommonModule
   ],
-  exports:[SafePipe]
+  exports: pipes
 })
 export class PipeModule { }

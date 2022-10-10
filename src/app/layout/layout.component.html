@@ -14,15 +14,15 @@
   <!-- 카테고리 -->
   <div class="flex justify-between items-center">
     <div class="flex gap-3 mt-3 items-center">
-      <app-category [isSelected]="currentCategory === '전체'" (click)="currentCategory = '전체'" name="전체" value="/" ></app-category>
-      <app-category [isSelected]="currentCategory === 'HTML'" (click)="currentCategory = 'HTML'" name="HTML" value="HTML">
+      <app-category [isSelected]="currentCategory === '전체'" (click)="currentCategory = '전체'" name="전체" value="/"  class="rounded-full"></app-category>
+      <app-category [isSelected]="currentCategory === 'HTML'" (click)="currentCategory = 'HTML'" name="HTML" value="HTML" class="rounded-full">
       </app-category>
-      <app-category [isSelected]="currentCategory === 'tailwindcss'" (click)="currentCategory = 'tailwindcss'" name="tailwindcss" value="tailwindcss"></app-category>
-      <app-category [isSelected]="currentCategory === 'JavaScript'" (click)="currentCategory = 'JavaScript'" name="JavaScript" value="JavaScript">
+      <app-category [isSelected]="currentCategory === 'tailwindcss'" (click)="currentCategory = 'tailwindcss'" name="tailwindcss" value="tailwindcss" class="rounded-full"></app-category>
+      <app-category [isSelected]="currentCategory === 'JavaScript'" (click)="currentCategory = 'JavaScript'" name="JavaScript" value="JavaScript" class="rounded-full">
       </app-category>
-      <app-category [isSelected]="currentCategory === 'React'" (click)="currentCategory = 'React'" name="React" value="React">
+      <app-category [isSelected]="currentCategory === 'React'" (click)="currentCategory = 'React'" name="React" value="React" class="rounded-full">
       </app-category>
-      <app-category [isSelected]="currentCategory === 'Angular'" (click)="currentCategory = 'Angular'" name="Angular" value="Angular">
+      <app-category [isSelected]="currentCategory === 'Angular'" (click)="currentCategory = 'Angular'" name="Angular" value="Angular" class="rounded-full">
       </app-category>
     </div>
     <div class="text-gray-900 justify-center items-center text-sm font-bold">
