@@ -83,7 +83,7 @@ export class DetailComponent implements OnInit {
         this.comments = res;
       },
       error: (e) => {
-        console.log(e);
+        console.log("해당 영상에 아직 댓글이 없습니다.");
       },
     });
   }
