@@ -57,6 +57,10 @@ export class DetailComponent implements OnInit {
     this.createForm.get('content').disable();
   }
 
+  navigateByUrl(){
+    return this.router.navigateByUrl(`/register/video/${this.videoId}`);
+  }
+
   isClicked(event, showCategory: string) {
     if (showCategory === 'in') {
       this.showCategory = true
@@ -195,11 +199,7 @@ export class DetailComponent implements OnInit {
   }
 
   updateVideo() {
-    this.updating = true;
-    // this.updateVideoFrom.setValue({
-    //   category: this.video.category,
-    //   title: this.video.title
-    // })
+    this.navigateByUrl();
   }
 
   deleteVideo() {

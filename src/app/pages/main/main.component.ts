@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
-import { IGetVideosDTO } from 'src/service/video/dto/get-videos.dto';
-import { VideoService } from 'src/service/video/video.service';
+import { VideoService, VideosResult } from 'src/service/video/video.service';
 
 @Component({
   selector: 'app-main',
@@ -12,10 +11,8 @@ import { VideoService } from 'src/service/video/video.service';
 export class MainComponent implements OnInit {  //카테고리 any 안 좋음.
   currentCategory = '전체';
   seeAll: string = '모두보기';
-  videos: IGetVideosDTO[] = []; //에다가 카테고리 쪼개지 말고(static 고정 상수값) 다 넣기(동적으로)
+  videos: VideosResult; //에다가 카테고리 쪼개지 말고(static 고정 상수값) 다 넣기(동적으로)
   detail: string = 'detail/'
-  thumbNail: string = 'https://img.youtube.com/vi/';
-  defaultImg: string = '/mqdefault.jpg';
   isLoading: boolean = true;
   constructor(
     private videoService: VideoService,
@@ -37,16 +34,9 @@ export class MainComponent implements OnInit {  //카테고리 any 안 좋음.
 
   getVideosThumbNail() {
     this.videoService.getVideos().subscribe({
-      next: (res: IGetVideosDTO[]) => {
+      next: (res) => {
         this.videos = res
-        console.log(this.videos)
-        for (let video of this.videos) {
-          video.url = video.url.substring(30)
-          video.url = this.thumbNail.concat(video.url + this.defaultImg)
-          
-        }
         this.isLoading = false;
-
       },
       error: (e) => {
         console.log(e)
@@ -54,7 +44,4 @@ export class MainComponent implements OnInit {  //카테고리 any 안 좋음.
     });
   }
 
-  filterCategoryVideos(category: string) {
-    return this.videos.filter((item) => item.category === category);
-  }
 }

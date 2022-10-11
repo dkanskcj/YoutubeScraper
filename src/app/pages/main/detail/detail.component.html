@@ -88,7 +88,7 @@
       <div>
         <ng-container *ngFor="let comment of comments; index as i">
           <app-comment [id]="comment?.name" [comment]="comment?.content"
-            [createdAt]="comment?.createdAt | date: 'YYYY-MM-dd hh:mm'" class="group">
+            [createdAt]="comment?.createdAt | timeAgo" class="group">
             <div class="w-full hidden justify-end items-center gap-3 group-hover:flex">
               <div
                 class="border box-border shadow-sm px-3 py-2 rounded-md border-gray-300 text-gray-400 hover:opacity-70 cursor-pointer"

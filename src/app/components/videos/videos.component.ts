@@ -17,6 +17,8 @@ export class VideosComponent implements OnInit {
   @Input() videos: IGetVideosDTO[] = [];
   isLoading: boolean = false;
   @Input() currentUrl: string;
+  thumbNail: string = 'https://img.youtube.com/vi/';
+  defaultImg: string = '/mqdefault.jpg';
   constructor(
     private router: Router,
   ) { }
@@ -29,12 +31,23 @@ export class VideosComponent implements OnInit {
         console.log(err)
       }
     })
+    this.getThumbNailVideos();
   }
 
   navigateDetail(video:ICreateVideoDTO){
     this.router.navigateByUrl(`/detail/${video.id}?title=${video.category}`);
   }
 
+  getThumbNailVideos(){
+    if(!this.videos){
+      console.log('등록된 영상이 없습니다.')
+    }
+    for (let video of this.videos) {
+      video.url = video.url.substring(30)
+      video.url = this.thumbNail.concat(video.url + this.defaultImg)
+    }
+    console.log(this.videos)
+  }
 
   haveSeeAll() {
     if (!this.seeAll) {
