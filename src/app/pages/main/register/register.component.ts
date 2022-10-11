@@ -63,6 +63,7 @@ export class RegisterComponent implements OnInit {
           this.router.navigateByUrl('/')
         },
         error: (e) => {
+          window.alert('이미 중복된 영상이 있습니다.')
           console.log(e)
         }
       });

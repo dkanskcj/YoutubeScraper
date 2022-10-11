@@ -93,9 +93,15 @@ export class DetailComponent implements OnInit {
     this.videoService.getVideo(id).subscribe({
       next: (res: ICreateVideoDTO) => {
         this.video = res;
-        console.log(res);
-        this.video.url = this.video.url.substring(17);
-        this.video.url = this.youtubeLink.concat(this.video.url)
+        console.log(res); 
+        if(this.video.url.indexOf("https://www.youtube.com/watch?v=") === 0){
+          this.video.url = this.video.url.substring(32);
+          this.video.url = this.youtubeLink.concat(this.video.url)
+        }
+        else{
+          this.video.url = this.video.url.substring(17);
+          this.video.url = this.youtubeLink.concat(this.video.url)
+        }
         this.sendCategory(this.video.category);
       },
       error: (err) => {
@@ -156,6 +162,7 @@ export class DetailComponent implements OnInit {
   }
 
   modifyComment(index: number) {
+    console.log(index)
     this.comment = this.comments[index];
     this.createForm.setValue({
       name: this.comment.name,

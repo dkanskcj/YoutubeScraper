@@ -64,11 +64,11 @@ export class TimeAgoPipe implements PipeTransform, OnDestroy {
             return '방금 전';
         } else if (seconds <= 90) {
             return '1분 전';
-        } else if (minutes <= 45) {
+        } else if (minutes <= 60) {
             return minutes + '분 전';
         } else if (minutes <= 90) {
             return '1시간 전';
-        } else if (hours <= 22) {
+        } else if (hours <= 24) {
             return hours + '시간 전';
         } else if (hours <= 36) {
             return '1일 전';

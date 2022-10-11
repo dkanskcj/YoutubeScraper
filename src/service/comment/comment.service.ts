@@ -18,9 +18,6 @@ export class CommentService {
     return this.http.get(`${this.baseUrl}/comment/search${id}`);
   }
 
-  getCommentsWithVideoId(id: number) {
-    return this.http.get(`${this.baseUrl}/video/searchId=${id}`);
-  }
 
   createComment(body: any, id: number): Observable<GetCommentDTO> {
     return this.http.post<GetCommentDTO>(`${this.baseUrl}/comment/createWithVideoId=${id}`, body);
