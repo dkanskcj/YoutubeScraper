@@ -57,7 +57,7 @@ export class DetailComponent implements OnInit {
     this.createForm.get('content').disable();
   }
 
-  navigateByUrl(){
+  navigateByUrl() {
     return this.router.navigateByUrl(`/register/video/${this.videoId}`);
   }
 
@@ -81,7 +81,6 @@ export class DetailComponent implements OnInit {
     this.commentService.getComments(id).subscribe({
       next: (res: GetCommentDTO[]) => {
         this.comments = res;
-        console.log(res)
       },
       error: (e) => {
         console.log(e);
@@ -93,9 +92,14 @@ export class DetailComponent implements OnInit {
     this.videoService.getVideo(id).subscribe({
       next: (res: ICreateVideoDTO) => {
         this.video = res;
-        console.log(res);
-        this.video.url = this.video.url.substring(17);
-        this.video.url = this.youtubeLink.concat(this.video.url)
+        if (this.video.url.indexOf("https://www.youtube.com/watch?v=") === 0) {
+          this.video.url = this.video.url.substring(32);
+          this.video.url = this.youtubeLink.concat(this.video.url);
+        }
+        else{
+          this.video.url = this.video.url.substring(17);
+          this.video.url = this.youtubeLink.concat(this.video.url)
+        }
         this.sendCategory(this.video.category);
       },
       error: (err) => {
@@ -152,7 +156,6 @@ export class DetailComponent implements OnInit {
 
   sendCategory($event) {
     this.detailCategory = $event;
-    console.log(this.detailCategory)
   }
 
   modifyComment(index: number) {
