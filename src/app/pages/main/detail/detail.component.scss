@@ -1,10 +1,111 @@
-.myAbsolute {
-    position: absolute;
-    top: 10%;
-    // left: 30%;
-    // left: 20%;
-    // z-index: 999;
-    pointer-events: none;
+@media (min-width: 0px) and (max-width: 575px) {
+    .myAbsolute {
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, 0);
+        z-index: 999;
+        pointer-events: none;
+    }
+    .imgSize {
+        width: 36vh;
+        height: fit-content;
+    }
+    .videoEditAbsolute {
+        position: absolute;
+        top: 100%;
+        // left: %;
+        z-index: 999;
+        transform: translate(-50%, 0);
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+    .myAbsolute {
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, 0);
+        z-index: 999;
+        pointer-events: none;
+    }
+    .imgSize {
+        width: 36vh;
+        height: fit-content;
+    }
+    .videoEditAbsolute {
+        position: absolute;
+        top: 100%;
+        // left: %;
+        z-index: 999;
+        transform: translate(-50%, 0);
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .myAbsolute {
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, 0);
+        z-index: 999;
+        pointer-events: none;
+    }
+    .imgSize {
+        width: 36vh;
+        height: fit-content;
+    }
+    .videoEditAbsolute {
+        position: absolute;
+        top: 100%;
+        // left: %;
+        z-index: 999;
+        transform: translate(-50%, 0);
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1199px){
+    .myAbsolute {
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, 0);
+        z-index: 999;
+        pointer-events: none;
+    }
+    .imgSize {
+        width: 36vh;
+        height: fit-content;
+    }
+    .videoEditAbsolute {
+        position: absolute;
+        top: 100%;
+        // left: %;
+        z-index: 999;
+        transform: translate(-50%, 0);
+    }
+}
+
+@media (min-width: 1200px) {
+    .myAbsolute {
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, 0);
+        z-index: 999;
+        pointer-events: none;
+    }
+    .imgSize {
+        width: 36vh;
+        height: fit-content;
+    }
+    .videoEditAbsolute {
+        position: absolute;
+        top: 100%;
+        // left: %;
+        z-index: 999;
+        transform: translate(-50%, 0);
+    }
 }
 
 .document.documentElement.scrollTop{

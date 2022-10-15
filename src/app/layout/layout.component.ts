@@ -20,7 +20,8 @@ export class LayoutComponent implements OnInit {
   @Output() category = new EventEmitter<string>();
   detailCategory: string;
   Category: string = '';
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  isLoading: boolean = true;
+  constructor(private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.router.events
