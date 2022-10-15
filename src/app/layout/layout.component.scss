@@ -1,8 +1,17 @@
-.scrollBar{
-    overflow-y: auto;
+.scrollBar {
+    padding-top : 20px;
+    padding-bottom: 20px;
+    overflow-x: hidden;
     scrollbar-width: none;
     -ms-overflow-style: none;
-    .scrollBar::-webkit-scrollbar{
-        display: none;
+
+    .scrollBar::-webkit-scrollbar {
+        visibility: hidden;
     }
+}
+
+.scrollBar:hover {
+    padding-top : 20px;
+    padding-bottom : 20px;
+    overflow-x: scroll;
 }

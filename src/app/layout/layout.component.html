@@ -13,7 +13,7 @@
   <!-- 탑바 -->
   <!-- 카테고리 -->
   <div class="flex justify-between items-center">
-    <div class="flex gap-3 mt-3 items-center">
+    <div class="flex gap-3 mt-3 items-center scrollBar whitespace-nowrap">
       <app-category [isSelected]="currentCategory === '전체'" (click)="currentCategory = '전체'" name="전체" value="/"  class="rounded-full"></app-category>
       <app-category [isSelected]="currentCategory === 'HTML'" (click)="currentCategory = 'HTML'" name="HTML" value="HTML" class="rounded-full">
       </app-category>

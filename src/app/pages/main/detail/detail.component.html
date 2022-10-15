@@ -3,37 +3,38 @@
   <img *ngIf="isLoading === true" src="assets/icons/spinner.svg" class="myAbsolute w-full h-full">
   <!-- <app-delete-comment #modal></app-delete-comment> -->
   <div>
-    <div class="w-[54rem] h-[30rem] bg-gray-200 relative">
+    <!-- <div class="w-[54rem] h-[30rem] relative"> -->
+    <div class="w-[100%] h-[20%] bg-gray-200 relative">
       <iframe class="w-full h-full" [src]="video?.url | safe" title="YouTube video player" frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen>
       </iframe>
     </div>
-      <div class="pt-5 flex justify-between text-bold text-2xl">
-        <div>
-          {{ video?.title }}
-        </div>
-        <div class="relative cursor-pointer" (click)="isClicked($event, 'in')">
-          <div class="w-fit h-fit flex justify-center items-center rotate-90 rounded-full hover:bg-gray-200">
-            <div class="mb-2">
-              ...
-            </div>
+    <div class="pt-5 flex justify-between text-bold text-2xl">
+      <div>
+        {{ video?.title }}
+      </div>
+      <div class="relative cursor-pointer" (click)="isClicked($event, 'in')">
+        <div class="w-fit h-fit flex justify-center items-center rotate-90 rounded-full hover:bg-gray-200">
+          <div class="mb-2">
+            ...
           </div>
-          <div
-            class="absolute text-sm rounded-md items-center flex flex-col w-fit whitespace-nowrap left-[-50%] top-[80%] bg-white space-y-[0.5px]"
-            *ngIf="showCategory">
-            <div
-              class="w-full px-3 py-2 cursor-pointer rounded-md border border-gray-400 text-gray-500 hover:opacity-70"
-              (click)="updateVideo()">
-              동영상 수정
-            </div>
-            <div class="w-full px-3 py-2 cursor-pointer rounded-md border border-red-400 text-red-500 hover:opacity-70" (click)="deleteVideo()">
-              동영상 삭제
-            </div>
+        </div>
+        <div
+          class="absolute text-sm rounded-md items-center flex flex-col w-fit whitespace-nowrap left-[-50%] top-[80%] bg-white space-y-[0.5px]"
+          *ngIf="showCategory">
+          <div class="w-full px-3 py-2 cursor-pointer rounded-md border border-gray-400 text-gray-500 hover:opacity-70"
+            (click)="updateVideo()">
+            동영상 수정
+          </div>
+          <div class="w-full px-3 py-2 cursor-pointer rounded-md border border-red-400 text-red-500 hover:opacity-70"
+            (click)="deleteVideo()">
+            동영상 삭제
           </div>
         </div>
       </div>
-      <div class="pt-2 pb-5 text-semibold text-xl text-gray-500 mt-[-0.5rem]">{{ video?.category }}</div>
+    </div>
+    <div class="pt-2 pb-5 text-semibold text-xl text-gray-500 mt-[-0.5rem]">{{ video?.category }}</div>
     <!-- 댓글 입력-->
     <div class="pt-5 border-t-2 border-gray-200">
       <form [formGroup]="createForm">
@@ -87,8 +88,8 @@
       </div>
       <div>
         <ng-container *ngFor="let comment of comments; index as i">
-          <app-comment [id]="comment?.name" [comment]="comment?.content"
-            [createdAt]="comment?.createdAt | timeAgo" class="group">
+          <app-comment [id]="comment?.name" [comment]="comment?.content" [createdAt]="comment?.createdAt | timeAgo"
+            class="group">
             <div class="w-full hidden justify-end items-center gap-3 group-hover:flex">
               <div
                 class="border box-border shadow-sm px-3 py-2 rounded-md border-gray-300 text-gray-400 hover:opacity-70 cursor-pointer"

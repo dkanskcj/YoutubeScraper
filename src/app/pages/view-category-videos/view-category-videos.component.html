@@ -3,7 +3,7 @@
       <app-button name="영상 등록하기" routerLink="/register"></app-button>
     </div>
   
-    <div class="w-full h-full">
+    <div class="w-[36vh] h-[20vh]">
       <img *ngIf="isLoading === true" src="assets/icons/spinner.svg" class="myAbsolute w-full h-full">
       <div class="mt-7 space-y-7" >
         <app-videos [seeAll]="false" [videos]="videos" [category]="category" [title]="category"></app-videos>

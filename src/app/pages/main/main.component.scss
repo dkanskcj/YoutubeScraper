@@ -6,3 +6,20 @@
     // z-index: 999;
     pointer-events: none;
 }
+.scrollBar {
+    // padding-top : 30px;
+    padding-bottom: 13px;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    .scrollBar::-webkit-scrollbar {
+        visibility: hidden;
+    }
+}
+
+.scrollBar:hover {
+    // padding-top : 30px;
+    padding-bottom : 13px;
+    overflow-x: scroll;
+}
