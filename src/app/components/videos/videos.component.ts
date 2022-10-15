@@ -41,13 +41,13 @@ export class VideosComponent implements OnInit {
 
   getThumbNailVideos(){
     if(!this.videos){
-      console.log('등록된 영상이 없습니다.')
+      return ;
+      // return console.log('등록된 영상이 없습니다.')
     }
     for (let video of this.videos) {
       video.url = video.url.substring(30)
       video.url = this.thumbNail.concat(video.url + this.defaultImg)
     }
-    console.log(this.videos)
   }
 
   haveSeeAll() {
