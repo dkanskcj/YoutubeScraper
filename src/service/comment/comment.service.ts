@@ -11,7 +11,7 @@ export class CommentService {
   constructor(private http: HttpClient) { }
 
   // baseUrl = `${environment.server}`;
-  private baseUrl: string = 'https://localhsot/';
+  private baseUrl: string = 'https://youtubescraperdb.netlify.app';
   getComment(id: number) {
     return this.http.get(`${this.baseUrl}/comment/search/${id}`);
   }
