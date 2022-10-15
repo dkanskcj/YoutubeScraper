@@ -1,17 +1,26 @@
-.scrollBar {
-    padding-top : 20px;
-    padding-bottom: 20px;
-    overflow-x: hidden;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
+@media (min-width: 0px) and (max-width: 551px){
 
-    .scrollBar::-webkit-scrollbar {
-        visibility: hidden;
+    .scrollBar {
+        padding-top : 20px;
+        padding-bottom: 20px;
+        overflow-x: hidden;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    
+        .scrollBar::-webkit-scrollbar {
+            visibility: hidden;
+        }
+    }
+    
+    .scrollBar:hover {
+        padding-top : 20px;
+        padding-bottom : 20px;
+        overflow-x: scroll;
     }
 }
-
-.scrollBar:hover {
-    padding-top : 20px;
-    padding-bottom : 20px;
-    overflow-x: scroll;
+@media (min-width: 552px){
+    .scrollBar{
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
 }
