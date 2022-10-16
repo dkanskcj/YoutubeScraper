@@ -58,41 +58,51 @@
 //         overflow-x: scroll;
 //     }
 // }
-@media (min-width: 0px) and (max-width: 551px){
 
-    .scrollBar {
-        // padding-top : 20px;
-        // padding-bottom: 20px;
-        overflow-x: scroll;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-    
-        .scrollBar::-webkit-scrollbar {
-            visibility: none;
-        }
+.scrollBar{
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    .scrollBar::-webkit-scrollbar {
+        visibility: none;
     }
-    
-    // .scrollBar:hover {
-    // //     padding-top : 20px;
-    // //     padding-bottom : 20px;
-    //     overflow-x: scroll;
-    // }
 }
-@media (min-width: 552px){
-    .scrollBar{
-        // padding-top: 20px;
-        // padding-bottom: 20px;
-        overflow-x: scroll;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
+// @media (min-width: 0px) and (max-width: 551px){
+
+//     .scrollBar {
+//         // padding-top : 20px;
+//         // padding-bottom: 20px;
+//         overflow-x: scroll;
+//         scrollbar-width: none;
+//         -ms-overflow-style: none;
     
-        .scrollBar::-webkit-scrollbar {
-            visibility: none;
-        }
-    }
-    // .scrollBar:hover {
-    // //     padding-top : 20px;
-    // //     padding-bottom : 3px;
-    //     overflow-x: scroll;
-    // }
-}
+//         .scrollBar::-webkit-scrollbar {
+//             visibility: none;
+//         }
+//     }
+    
+//     // .scrollBar:hover {
+//     // //     padding-top : 20px;
+//     // //     padding-bottom : 20px;
+//     //     overflow-x: scroll;
+//     // }
+// }
+// @media (min-width: 552px){
+//     .scrollBar{
+//         // padding-top: 20px;
+//         // padding-bottom: 20px;
+//         overflow-x: scroll;
+//         scrollbar-width: none;
+//         -ms-overflow-style: none;
+    
+//         .scrollBar::-webkit-scrollbar {
+//             visibility: none;
+//         }
+//     }
+//     // .scrollBar:hover {
+//     // //     padding-top : 20px;
+//     // //     padding-bottom : 3px;
+//     //     overflow-x: scroll;
+//     // }
+// }
