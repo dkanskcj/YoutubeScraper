@@ -3,20 +3,51 @@
     height: 20vh;
 }
 
-.scrollBar {
-    // padding-top : 30px;
-    padding-bottom: 30px;
-    overflow-x: hidden;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
+// .scrollBar {
+//     // padding-top : 30px;
+//     padding-bottom: 30px;
+//     overflow-x: hidden;
+//     scrollbar-width: none;
+//     -ms-overflow-style: none;
 
-    .scrollBar::-webkit-scrollbar {
-        visibility: hidden;
+//     .scrollBar::-webkit-scrollbar {
+//         visibility: hidden;
+//     }
+// }
+
+// .scrollBar:hover {
+//     // padding-top : 30px;
+//     padding-bottom : 13px;
+//     overflow-x: scroll;
+// }
+@media (min-width: 0px) and (max-width: 551px){
+
+    .scrollBar {
+        // padding-top : 20px;
+        padding-bottom: 30px;
+        overflow-x: hidden;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    
+        .scrollBar::-webkit-scrollbar {
+            visibility: hidden;
+        }
+    }
+    
+    .scrollBar:hover {
+        // padding-top : 20px;
+        padding-bottom : 30px;
+        overflow-x: scroll;
     }
 }
-
-.scrollBar:hover {
-    // padding-top : 30px;
-    padding-bottom : 13px;
-    overflow-x: scroll;
+@media (min-width: 552px){
+    .scrollBar{
+        // padding-top: 30px;
+        padding-bottom: 30px;
+    }
+    .scrollBar:hover {
+        // padding-top : 30px;
+        padding-bottom : 13px;
+        overflow-x: scroll;
+    }
 }

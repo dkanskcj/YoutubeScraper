@@ -14,7 +14,6 @@
   <!-- 카테고리 -->
   <div class="flex justify-between items-center">
     <div class="flex gap-3 mt-3 scrollBar items-center whitespace-nowrap">
-      <!-- <div class="scrollBar flex whitespace-nowrap"> -->
         <app-category *ngIf="isLoading === true" [isSelected]="currentCategory === '전체'" (click)="currentCategory = '전체'" name="전체" value="/"  class="rounded-full"></app-category>
         <app-category *ngIf="isLoading === true" [isSelected]="currentCategory === 'HTML'" (click)="currentCategory = 'HTML'" name="HTML" value="HTML" class="rounded-full">
         </app-category>
@@ -25,7 +24,6 @@
         </app-category>
         <app-category *ngIf="isLoading === true" [isSelected]="currentCategory === 'Angular'" (click)="currentCategory = 'Angular'" name="Angular" value="Angular" class="rounded-full">
         </app-category>
-      <!-- </div> -->
     </div>
     <div class="text-gray-900 justify-center items-center text-sm font-bold px-1 mt-3">
       >

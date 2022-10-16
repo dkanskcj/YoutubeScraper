@@ -2,7 +2,7 @@
 
     .scrollBar {
         padding-top : 20px;
-        padding-bottom: 20px;
+        padding-bottom: 30px;
         overflow-x: hidden;
         scrollbar-width: none;
         -ms-overflow-style: none;
@@ -14,13 +14,18 @@
     
     .scrollBar:hover {
         padding-top : 20px;
-        padding-bottom : 20px;
+        padding-bottom : 13px;
         overflow-x: scroll;
     }
 }
 @media (min-width: 552px){
     .scrollBar{
-        padding-top: 20px;
+        padding-top: 30px;
         padding-bottom: 20px;
+    }
+    .scrollBar:hover {
+        padding-top : 30px;
+        padding-bottom : 20px;
+        overflow-x: scroll;
     }
 }
