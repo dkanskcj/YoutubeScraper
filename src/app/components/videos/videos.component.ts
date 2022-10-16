@@ -54,7 +54,7 @@ export class VideosComponent implements OnInit {
     if (!this.seeAll) {
       return 'flex flex-wrap gap-6 items-start'
     }
-    return 'scrollBar flex gap-6 items-start'
+    return 'overflow-x-auto flex gap-6 items-start'
   }
 
 }
