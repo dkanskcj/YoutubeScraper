@@ -3,9 +3,14 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
+<<<<<<< HEAD
   production: false,
   server: 'http://localhost'
   // server:'https://youtubescraperdatabase.herokuapp.com'
+=======
+  production: false,  
+  server:'http://localhost'
+>>>>>>> 56ed4e3e40aaa78157fa5f0a7f1445398c4f376e
 };
 
 /*

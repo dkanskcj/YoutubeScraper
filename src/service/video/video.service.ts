@@ -19,7 +19,8 @@ export type VideosResult = {
 export class VideoService {
   constructor(private http: HttpClient) {}
   
-  baseUrl = `${environment.server}`;
+  // baseUrl = `${environment.server}`;
+  private baseUrl: string = 'https://localhsot/';
   getVideo(id: number) {
     return this.http.get(`${this.baseUrl}/video/${id}`);
   }
