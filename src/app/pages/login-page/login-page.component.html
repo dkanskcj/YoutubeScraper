@@ -1,0 +1,39 @@
+<div class="pt-20 space-y-4">
+    <div class="flex justify-center items-center">
+        <form [formGroup]="createForm">
+            <div class="flex flex-col gap-2">
+                <div class="flex justify-between items-center gap-4">
+                    <div>
+                        아이디
+                    </div>
+                    <input formControlName="name" class="border box-border shadow rounded-md px-3 py-2" type="text">
+                </div>
+                <div class="flex justify-between items-center gap-4">
+                    <div>
+                        비밀번호
+                    </div>
+                    <input formControlName="password" class="border box-border shadow rounded-md px-3 py-2"
+                        type="password">
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="flex justify-center items-center">
+        <div class="col">
+            <ul class="list-inline mb-2 flex gap-2">
+                <li class="list-inline-item">
+                    <div class="border box-border shadow rounded-md border-yellow-400 text-yellow-500 px-3 py2-"
+                        (click)="login()" routerLink="/main">
+                        Login
+                    </div>
+                </li>
+                <li class="list-inline-item">
+                    <div class="border box-border shadow rounded-md border-blue-400 text-blue-500 px-3 py2-"
+                        (click)="logout()">
+                        Logout
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

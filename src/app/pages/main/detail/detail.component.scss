@@ -10,3 +10,21 @@
 .document.documentElement.scrollTop{
     behavior: "smooth";
 }
+
+.scrollBar {
+    padding-top: 5px;
+    padding-bottom:  5px;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    .scrollBar::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+.scrollBar:hover {
+    padding-top: 5px;
+    padding-bottom:  5px;
+    overflow-y: scroll;
+}

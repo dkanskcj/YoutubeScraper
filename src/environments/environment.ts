@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  server:'https://youtubescraperdatabase.herokuapp.com'
+  server: 'http://localhost'
+  // server:'https://youtubescraperdatabase.herokuapp.com'
 };
 
 /*

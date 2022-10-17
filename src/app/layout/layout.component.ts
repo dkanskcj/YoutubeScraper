@@ -17,7 +17,6 @@ import { VideoService } from 'src/service/video/video.service';
 export class LayoutComponent implements OnInit {
   maintitle = 'Youtube Scraper';
   currentCategory = '전체';
-  @Output() category = new EventEmitter<string>();
   detailCategory: string;
   Category: string = '';
   constructor(private route: ActivatedRoute, private router: Router) {}
@@ -26,7 +25,8 @@ export class LayoutComponent implements OnInit {
     this.router.events
       .pipe(filter((ev) => ev instanceof NavigationEnd))
       .subscribe({
-        next: (res: RouterEvent) => {
+        next: (res) => {
+          console.log(res)
           this.detailCategory = this.route.snapshot.queryParams['title'];
           if (this.currentCategory) {
             this.currentCategory = res['url'].substring(8);

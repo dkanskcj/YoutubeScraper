@@ -79,12 +79,14 @@ export class DetailComponent implements OnInit {
   }
   // videoId를 받는다.
   getCommentsWithVideoId(id: number) {
+    this.comments = [];
     this.commentService.getComments(id).subscribe({
       next: (res: GetCommentDTO[]) => {
         this.comments = res;
+        console.log(res)
       },
       error: (e) => {
-        console.log("해당 영상에 아직 댓글이 없습니다.");
+        console.log(e);
       },
     });
   }
@@ -102,6 +104,7 @@ export class DetailComponent implements OnInit {
           this.video.url = this.youtubeLink.concat(this.video.url)
         }
         this.sendCategory(this.video.category);
+        this.getVideosByCategory(this.video.category);
       },
       error: (err) => {
         console.log(err);
@@ -233,7 +236,6 @@ export class DetailComponent implements OnInit {
           // video.url = video.url.substring(8)
           // video.url = this.youtubeThumbNail.concat(video.url);
         }
-        console.log(this.categoryWithVideos)
       },
       error: (err) => {
         console.log(err)
@@ -242,6 +244,7 @@ export class DetailComponent implements OnInit {
   }
 
   navigateDetail(video:ICreateVideoDTO){
+    console.log(video.id)
     this.router.navigateByUrl(`/detail/${video.id}?title=${video?.category}`)
     this.getVideo(Number(video.id))
     this.getCommentsWithVideoId(Number(video.id))
