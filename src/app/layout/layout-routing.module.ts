@@ -21,11 +21,11 @@ const routes: Routes = [
       },
       {
         path: 'detail/:id',
-        loadChildren: () => import('../pages/main/detail/detail.module').then(m=>m.DetailModule)
+        loadChildren: () => import('../pages/main/detail/detail.module').then(m => m.DetailModule)
       },
       {
         path: 'videos/:category',
-        loadChildren: () => import('../pages/view-category-videos/view-category-videos.module').then(m=>m.ViewCategoryVideosModule)
+        loadChildren: () => import('../pages/view-category-videos/view-category-videos.module').then(m => m.ViewCategoryVideosModule)
       },
       {
         path: 'register',
@@ -33,6 +33,7 @@ const routes: Routes = [
           import('../pages/main/register/register.module').then(
             (m) => m.RegisterModule
           ),
+        // redirectTo: ''
       },
     ],
   },
@@ -42,4 +43,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class LayoutRoutingModule {}
+export class LayoutRoutingModule { }

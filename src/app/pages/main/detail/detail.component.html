@@ -103,4 +103,20 @@
       </div>
     </div>
   </div>
+  <div class="w-[25rem] h-[30rem] scrollBar">
+    <div class="w-full h-full">
+      <ng-container *ngFor="let video of categoryWithVideos">
+        <div class="flex space-y-2 gap-2 hover:bg-gray-100 cursor-pointer" (click)="navigateDetail(video)">
+          <img [src]="video?.url" class="w-[10rem]">
+          <div class="w-full">
+            <div>
+              {{ video?.title }}
+            </div>
+            <div>
+              {{ video?.category }}
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
 </div>

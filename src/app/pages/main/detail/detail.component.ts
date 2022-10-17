@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CommentService } from 'src/service/comment/comment.service';
 import { GetCommentDTO } from 'src/service/comment/dto/get-comment.dto';
 import { ICreateVideoDTO } from 'src/service/video/dto/create-video.dto';
+import { IGetVideosDTO } from 'src/service/video/dto/get-videos.dto';
 import { VideoService } from 'src/service/video/video.service';
 
 @Component({
@@ -17,7 +18,7 @@ export class DetailComponent implements OnInit {
   Category: string = 'HTML';
   showCategory: boolean = false;
   currentCategory = '전체';
-
+  categoryWithVideos: ICreateVideoDTO[] = [];
   comment: GetCommentDTO;
   video: ICreateVideoDTO;
   videoId: number = 0;
@@ -220,6 +221,32 @@ export class DetailComponent implements OnInit {
       }
     });
   }
+
+  getVideosByCategory(query: string) {
+    this.videoService.getVideosThumbNail(query).subscribe({
+      next: (res: ICreateVideoDTO[]) => {
+        this.categoryWithVideos = res
+        for(let video of this.categoryWithVideos){
+          if(!video){
+            console.log('t')
+          }
+          // video.url = video.url.substring(8)
+          // video.url = this.youtubeThumbNail.concat(video.url);
+        }
+        console.log(this.categoryWithVideos)
+      },
+      error: (err) => {
+        console.log(err)
+      }
+    });
+  }
+
+  navigateDetail(video:ICreateVideoDTO){
+    this.router.navigateByUrl(`/detail/${video.id}?title=${video?.category}`)
+    this.getVideo(Number(video.id))
+    this.getCommentsWithVideoId(Number(video.id))
+  }
+
 
 
 }
