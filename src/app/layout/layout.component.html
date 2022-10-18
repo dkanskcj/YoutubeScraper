@@ -1,8 +1,8 @@
 <div class="w-full h-full p-6">
   <!-- 탑바 -->
   <!-- 제목 -->
-  <div class="flex gap-2 justify-center items-center cursor-pointer" (click)="currentCategory='전체'" routerLink="/">
-    <img src="assets/icons/youtube.svg" alt="" />
+  <div class="flex gap-2 justify-center items-center cursor-pointer" (click)="currentCategory='전체'" routerLink="/main">
+    <img src="assets/icons/youtube.svg">
     <div class="text-black text-xl font-extrabold">
       {{ maintitle | uppercase }}
 
@@ -31,5 +31,7 @@
   </div>
   <!-- 카테고리 -->
   <div class="bg-[#E7E7E7] border border-0.5 mt-3"></div>
-  <router-outlet> </router-outlet>
+  <!-- <div *ngIf="isLoggedIn$"> -->
+    <router-outlet> </router-outlet>
+  <!-- </div> -->
 </div>

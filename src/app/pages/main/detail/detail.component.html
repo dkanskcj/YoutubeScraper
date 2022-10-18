@@ -42,38 +42,43 @@
       <form [formGroup]="createForm">
         <div class="flex gap-5">
           <img src="assets/icons/profile.png" />
-          <div class="w-1/2">
+          <div *ngIf="isLoggedIn$ === true" class="w-full flex justify-center items-center gap-2">
+            <div
+              class="w-full flex justify-between border bg-white border-gray-200 rounded-md outline-none focus-within:ring-gray-400 transition-colors focus-within:ring-1">
+              <input id="disabledtest" formControlName="content" placeholder="댓글" type="text"
+                class="w-full outline-none px-3 py-2.5 rounded-md cursor-pointer" />
+            </div>
+            <app-button [name]="buttonName" (click)="submit()" class="whitespace-nowrap"></app-button>
+          </div>
+          <div class="w-1/2" *ngIf="isLoggedIn$ === false">
             <div class="w-full flex justify-center items-center gap-2">
               <div
                 class="w-full flex justify-between border bg-white border-gray-200 rounded-md outline-none focus-within:ring-gray-400 transition-colors focus-within:ring-1">
                 <input formControlName="name" placeholder="아이디" type="text"
                   class="w-full outline-none px-3 py-2.5 rounded-md cursor-pointer" />
-                <div></div>
               </div>
             </div>
           </div>
-          <div class="w-1/2">
+          <div class="w-1/2" *ngIf="isLoggedIn$ === false">
             <div class="w-full flex justify-center items-center gap-2">
               <div
                 class="w-full flex justify-between border bg-white border-gray-200 rounded-md outline-none focus-within:ring-gray-400 transition-colors focus-within:ring-1">
                 <input formControlName="password" placeholder="비밀번호" type="password"
                   class="w-full outline-none px-3 py-2.5 rounded-md cursor-pointer" />
-                <div></div>
               </div>
             </div>
           </div>
         </div>
-        <div class="pt-3">
+        <div class="pt-3" *ngIf="isLoggedIn$ === false">
           <div class="w-full flex justify-center items-center gap-2">
             <div
               class="w-full flex justify-between border bg-white border-gray-200 rounded-md outline-none focus-within:ring-gray-400 transition-colors focus-within:ring-1">
               <input id="disabledtest" formControlName="content" placeholder="댓글" type="text"
                 class="w-full outline-none px-3 py-2.5 rounded-md cursor-pointer" />
-              <div></div>
             </div>
           </div>
         </div>
-        <div class="pt-4 flex justify-end">
+        <div class="pt-4 flex justify-end" *ngIf="isLoggedIn$ === false">
           <app-button [name]="buttonName" (click)="submit()"></app-button>
         </div>
       </form>
@@ -81,7 +86,7 @@
     <!-- 댓글 입력-->
 
     <!-- 댓글 보기 -->
-    <div class="pt-5">
+    <div class="w-full pt-5">
       <div class="flex gap-1 text-lg font-semibold text-gray-900">
         댓글
         <div class="text-lg font-semibold text-blue-500">
@@ -90,8 +95,8 @@
       </div>
       <div>
         <ng-container *ngFor="let comment of comments; index as i">
-          <app-comment [id]="comment?.name" [comment]="comment?.content" [createdAt]="comment?.createdAt | timeAgo"
-            class="group">
+          <app-comment [id]="comment?.user.name" [comment]="comment?.content" [createdAt]="comment?.createdAt | timeAgo"
+            class="group whitespace-nowrap">
             <div class="w-full hidden justify-end items-center gap-3 group-hover:flex">
               <div
                 class="border box-border shadow-sm px-3 py-2 rounded-md border-gray-300 text-gray-400 hover:opacity-70 cursor-pointer"

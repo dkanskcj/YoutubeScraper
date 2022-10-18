@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
 import { NgxsModule } from '@ngxs/store';
+import { AuthModule } from 'src/auth/auth.module';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
@@ -26,6 +27,7 @@ import { ViewCategoryVideosModule } from './pages/view-category-videos/view-cate
     ReactiveFormsModule,
     ViewCategoryVideosModule,
     MainpageModule,
+    AuthModule,
     NgxsModule.forRoot(),
     NgxsStoragePluginModule.forRoot({
       key: 'auth'

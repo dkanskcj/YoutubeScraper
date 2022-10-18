@@ -1,13 +1,7 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import {
-  ActivatedRoute,
-  NavigationEnd,
-  Router,
-  RouterEvent,
-} from '@angular/router';
-import { filter } from 'rxjs';
-import { ICreateVideoDTO } from 'src/service/video/dto/create-video.dto';
-import { VideoService } from 'src/service/video/video.service';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { filter, tap } from 'rxjs';
+import { AuthFacade } from 'src/auth/state/auth.facade';
 
 @Component({
   selector: 'app-layout',
@@ -15,11 +9,16 @@ import { VideoService } from 'src/service/video/video.service';
   styleUrls: ['./layout.component.scss'],
 })
 export class LayoutComponent implements OnInit {
+  isLoggedIn$ = this.authFacade.isLoggedIn$.pipe(tap(isLoggedIn => console.log('isLoggedIn', isLoggedIn)))
   maintitle = 'Youtube Scraper';
   currentCategory = '전체';
   detailCategory: string;
   Category: string = '';
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private authFacade: AuthFacade
+  ) { }
 
   ngOnInit(): void {
     this.router.events
