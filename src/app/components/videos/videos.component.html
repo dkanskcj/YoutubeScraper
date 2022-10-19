@@ -1,7 +1,7 @@
 <div class="pb-5">
   <div class="flex justify-between">
     <div class="font-bold text-gray-800 text-2xl">{{ title }}</div>
-    <div class="font-semibold text-blue-500 cursor-pointer " [routerLink]="'videos/'+title">
+    <div class="font-semibold text-blue-500 cursor-pointer " [routerLink]="'/videos/'+title">
       <div *ngIf="seeAll">
         모두보기
       </div>

@@ -288,7 +288,6 @@ export class DetailComponent implements OnInit {
   }
 
   navigateDetail(video:ICreateVideoDTO){
-    console.log(video.id)
     this.router.navigateByUrl(`/detail/${video.id}?title=${video?.category}`)
     this.getVideo(Number(video.id))
     this.getCommentsWithVideoId(Number(video.id))
@@ -297,7 +296,6 @@ export class DetailComponent implements OnInit {
   currentVideo(video: ICreateVideoDTO){
     // index = Number(this.video.id);
     if(this.video.id === video.id){
-      console.log(video.id)
       return 'flex space-y-2 gap-2 hover:bg-gray-200 cursor-pointer bg-gray-100'
     }
     else{

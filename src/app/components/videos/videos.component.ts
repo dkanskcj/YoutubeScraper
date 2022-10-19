@@ -39,6 +39,7 @@ export class VideosComponent implements OnInit {
     this.router.navigateByUrl(`/detail/${video.id}?title=${video.category}`);
   }
 
+
   getThumbNailVideos(){
     if(!this.videos){
       return ;

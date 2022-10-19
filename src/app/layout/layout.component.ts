@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { Select } from '@ngxs/store';
 import { filter, Observable, tap } from 'rxjs';
 import { AuthFacade } from 'src/auth/state/auth.facade';
@@ -25,10 +25,16 @@ export class LayoutComponent implements OnInit {
 
   ngOnInit(): void {
     this.router.events
-      .pipe(filter((ev) => ev instanceof NavigationEnd))
+      .pipe(filter((ev) => ev instanceof NavigationStart))
       .subscribe({
         next: (res) => {
-          console.log(res, 'ttt')
+          // this.detailCategory = this.route.snapshot.queryParams['title'];
+          if(res['url'].indexOf('/video') === 0){
+            this.detailCategory = res['url'].substring(8)
+          }
+          else if(res['url'].indexOf('/detail') === 0){
+            this.detailCategory = res['url'].substring(17);
+          }
           this.user$.subscribe({
             next: (res) => {
               this.isLoggedIn$ = res.isLoggedIn;
@@ -38,7 +44,6 @@ export class LayoutComponent implements OnInit {
               console.log(err)
             }
           })
-          this.detailCategory = this.route.snapshot.queryParams['title'];
           if (this.currentCategory) {
             this.currentCategory = res['url'].substring(8);
           }
@@ -59,7 +64,7 @@ export class LayoutComponent implements OnInit {
     this.user$.subscribe({
       next: (res) => {
         this.isLoggedIn$ = res.isLoggedIn;
-        console.log(res)
+        // console.log(res)
       },
       error: (err) => {
         console.log(err)
