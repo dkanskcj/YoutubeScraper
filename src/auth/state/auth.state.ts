@@ -6,6 +6,7 @@ import { AuthActions } from "./auth.action";
 
 export interface AuthModel {
     name: string;
+    password: string;
     isLoggedIn: boolean;
 }
 
@@ -15,6 +16,7 @@ export const AUTH_STATE_TOKEN = new StateToken<AuthModel>('auth');
     name: AUTH_STATE_TOKEN,
     defaults: {
         name: '',
+        password: '',
         isLoggedIn: false
     }
 })
@@ -31,6 +33,7 @@ export class AuthState {
     getInputs(state: StateContext<AuthModel>, formData: any) {
         state.patchState({
             name: formData.formData.name,
+            password: formData.formData.password,
             isLoggedIn: true
         })
     }
@@ -44,6 +47,7 @@ export class AuthState {
     logout(state: StateContext<AuthModel>) {
         state.setState({
             name: '',
+            password: '',
             isLoggedIn: false
         });
         console.log(state)

@@ -1,11 +1,11 @@
-.imgSize {
-    width: 560px;
-    height: 315px;
-}
+// .imgSize {
+//     width: 560px;
+//     height: 315px;
+// }
 
 .scrollBar {
     // padding-top : 30px;
-    padding-bottom: 30px;
+    // padding-bottom: 30px;
     overflow-x: hidden;
     scrollbar-width: none;
     -ms-overflow-style: none;
@@ -18,6 +18,6 @@
 .scrollBar:hover {
     // padding-top : 30px;
     // margin-bottom: -17px;
-    padding-bottom : 30px;
+    // padding-bottom : 30px;
     overflow-x: scroll;
 }

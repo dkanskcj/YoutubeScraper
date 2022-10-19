@@ -23,6 +23,7 @@ export class DetailComponent implements OnInit {
 
   @Output() detailCategory: string;
   userName$: string = '';
+  userPassword$: string = '';
   isLoggedIn$: boolean = false;
   Category: string = 'HTML';
   showCategory: boolean = false;
@@ -65,9 +66,11 @@ export class DetailComponent implements OnInit {
         this.isLoggedIn$ = res.isLoggedIn;
         if(this.isLoggedIn$ === false){
           this.userName$ = null
+          this.userPassword$ = null
         }
         else{
           this.userName$ = res.name;
+          this.userPassword$ = res.password;
         }
       })
       console.log(this.userName$, 'ttt');
@@ -148,7 +151,10 @@ export class DetailComponent implements OnInit {
       if (!body.content) {   //if 하고 ! 예외 처리할 때는 return 써서 끝내줘야 된다. !body.content === !''
         return console.log('입력 값이 없습니다.');
       }
-      body.name = this.userName$;
+      if(this.isLoggedIn$ === true){
+        body.name = this.userName$;
+        body.password = this.userPassword$;
+      }
       this.commentService.createComment(body, this.videoId).subscribe({
         next: (res: GetCommentDTO) => {
           this.comments.push(res)

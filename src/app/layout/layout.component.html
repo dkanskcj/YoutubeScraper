@@ -1,19 +1,23 @@
 <div class="w-full h-full p-6">
   <!-- 탑바 -->
   <!-- 제목 -->
-  <div class="flex gap-2 justify-center items-center cursor-pointer" (click)="currentCategory='전체'" routerLink="/main">
-    <img src="assets/icons/youtube.svg">
-    <div class="text-black text-xl font-extrabold">
-      {{ maintitle | uppercase }}
-
+  <div class="flex gap-2 justify-center items-center relative" (click)="currentCategory='전체'">
+    <div class="flex gap-2 cursor-pointer" routerLink="/main">
+      <img src="assets/icons/youtube.svg">
+      <div class="text-black text-xl font-extrabold">
+        {{ maintitle | uppercase }}
+      </div>
     </div>
+    <div *ngIf="isLoggedIn$ === true" class="myAbsoluteStatus rounded-full p-2 bg-green-500"></div>
+    <!-- <div *ngIf="isLoggedIn$ === false" class="myAbsoluteStatus rounded-full p-2 bg-gray-300"></div> -->
+    <img src="assets/icons/profile.png" class="w-[2.5rem] h-[2.5rem] rounded-full myAbsolute cursor-pointer" routerLink="/" cursor-pointer>
   </div>
   <!-- 제목 -->
   <div class="bg-[#E7E7E7] border border-1 mt-6"></div>
   <!-- 탑바 -->
   <!-- 카테고리 -->
   <div class="flex justify-between items-center">
-    <div class="flex gap-3 mt-3 items-center">
+    <div class="flex gap-3 mt-3 items-center scrollBar whitespace-nowrap">
       <app-category [isSelected]="currentCategory === '전체'" (click)="currentCategory = '전체'" name="전체" value="/"  class="rounded-full"></app-category>
       <app-category [isSelected]="currentCategory === 'HTML'" (click)="currentCategory = 'HTML'" name="HTML" value="HTML" class="rounded-full">
       </app-category>

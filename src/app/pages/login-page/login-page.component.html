@@ -21,19 +21,28 @@
     <div class="flex justify-center items-center">
         <div class="col">
             <ul class="list-inline mb-2 flex gap-2">
-                <li class="list-inline-item">
-                    <div class="border box-border shadow rounded-md border-yellow-400 text-yellow-500 px-3 py2-"
-                        (click)="login()" routerLink="/main">
-                        Login
+                <li class="list-inline-item" *ngIf="isLoggedIn$ === false">
+                    <div class="cursor-pointer border box-border shadow rounded-md border-yellow-400 text-yellow-500 px-3 py2-"
+                        (click)="login()">
+                        로그인
                     </div>
                 </li>
                 <li class="list-inline-item">
-                    <div class="border box-border shadow rounded-md border-blue-400 text-blue-500 px-3 py2-"
+                    <div class="cursor-pointer border box-border shadow rounded-md border-blue-400 text-blue-500 px-3 py2-"
                         (click)="logout()">
-                        Logout
+                        로그아웃
+                    </div>
+                </li>
+                <li class="list-inline-item" *ngIf="isLoggedIn$ === false">
+                    <div class="cursor-pointer border box-border shadow rounded-md border-yellow-400 text-yellow-500 px-3 py2-"
+                        (click)="registerUser()">
+                        회원가입
                     </div>
                 </li>
             </ul>
         </div>
+    </div>
+    <div class="flex justify-center items-center">
+        회원가입은 아이디와 비밀번호를 입력하고 회원가입 버튼을 누르시면 됩니다.
     </div>
 </div>

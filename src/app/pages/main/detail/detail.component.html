@@ -3,7 +3,7 @@
   <img *ngIf="isLoading === true" src="assets/icons/spinner.svg" class="myAbsolute w-full h-full">
   <!-- <app-delete-comment #modal></app-delete-comment> -->
   <div>
-    <div class="w-[54rem] h-[30rem] bg-gray-200 relative">
+    <div class="w-[100%] h-[40vh] bg-gray-200 relative">
       <iframe class="w-full h-full" [src]="video?.url | safe" title="YouTube video player" frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen>
@@ -111,7 +111,7 @@
       </div>
     </div>
   </div>
-  <div class="w-[25rem] h-[30rem] scrollBar">
+  <div class="w-[25rem] h-[40vh] scrollBar">
     <div class="w-full h-full">
       <ng-container *ngFor="let video of categoryWithVideos">
         <div class="flex space-y-2 gap-2 hover:bg-gray-100 cursor-pointer" (click)="navigateDetail(video)">
