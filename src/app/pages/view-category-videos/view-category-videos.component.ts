@@ -46,14 +46,14 @@ export class ViewCategoryVideosComponent implements OnInit {
       }
     });
   }
-  @HostListener("window:scroll", [])
-  refresh(): void {
-    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-      // this.emitted = true;
-      // this.scrollingFinished.emit();
-      location.reload()
-    }else{
-      // location.reload()
-    }
-  }
+  // @HostListener("window:scroll", [])
+  // refresh(): void {
+  //   if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+  //     // this.emitted = true;
+  //     // this.scrollingFinished.emit();
+  //     location.reload()
+  //   }else{
+  //     // location.reload()
+  //   }
+  // }
 }
