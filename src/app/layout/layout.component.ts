@@ -1,13 +1,9 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import {
-  ActivatedRoute,
-  NavigationEnd,
-  Router,
-  RouterEvent,
-} from '@angular/router';
-import { filter } from 'rxjs';
-import { ICreateVideoDTO } from 'src/service/video/dto/create-video.dto';
-import { VideoService } from 'src/service/video/video.service';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { Select } from '@ngxs/store';
+import { filter, Observable, tap } from 'rxjs';
+import { AuthFacade } from 'src/auth/state/auth.facade';
+import { AuthState, AuthModel } from 'src/auth/state/auth.state';
 
 @Component({
   selector: 'app-layout',
@@ -15,33 +11,60 @@ import { VideoService } from 'src/service/video/video.service';
   styleUrls: ['./layout.component.scss'],
 })
 export class LayoutComponent implements OnInit {
+  @Select(AuthState) user$: Observable<AuthModel>;
   maintitle = 'Youtube Scraper';
-  currentCategory = '전체';
-  @Output() category = new EventEmitter<string>();
+  currentCategory: string = '전체';
   detailCategory: string;
   Category: string = '';
-  isLoading: boolean = true;
-  constructor(private route: ActivatedRoute, private router: Router) { }
+  isLoggedIn$: boolean = false;
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private authFacade: AuthFacade
+  ) { }
 
   ngOnInit(): void {
     this.router.events
       .pipe(filter((ev) => ev instanceof NavigationEnd))
       .subscribe({
-        next: (res: RouterEvent) => {
+        next: (res) => {
+          console.log(res, 'ttt')
+          this.user$.subscribe({
+            next: (res) => {
+              this.isLoggedIn$ = res.isLoggedIn;
+              console.log(res)
+            },
+            error: (err) => {
+              console.log(err)
+            }
+          })
           this.detailCategory = this.route.snapshot.queryParams['title'];
+          console.log(this.detailCategory, 'asdfjhasdionvmdsa')
           if (this.currentCategory) {
             this.currentCategory = res['url'].substring(8);
           }
-          if (this.currentCategory && this.detailCategory) {
+          if (this.detailCategory) {
             this.currentCategory = this.detailCategory;
           }
-          if (!this.currentCategory) {
+          else if (!this.currentCategory) {
             this.currentCategory = '전체';
+          }
+          else {
+            this.currentCategory = '';
           }
         },
         error: (err) => {
           console.log(err);
         },
       });
+    this.user$.subscribe({
+      next: (res) => {
+        this.isLoggedIn$ = res.isLoggedIn;
+        console.log(res)
+      },
+      error: (err) => {
+        console.log(err)
+      }
+    })
   }
 }

@@ -44,8 +44,10 @@ export class RegisterComponent implements OnInit {
       this.buttonName = '등록'
       this.getVideo()
     }
-  }
+    if(location.reload){
 
+    }
+  }
 
   changeCategory(Category: string) {
     this.Category = Category;
@@ -87,7 +89,7 @@ export class RegisterComponent implements OnInit {
 
   isClicked(event, showCategory: string) {
     if (showCategory === 'in') {
-      this.showCategory = true
+    this.showCategory = true
       event.stopPropagation();
     }
     if (showCategory === 'out') {

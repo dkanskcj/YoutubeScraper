@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, Output } from '@angular/core';
+import { AfterViewInit, Component, HostListener, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter, pipe } from 'rxjs';
 import { IGetVideosDTO } from 'src/service/video/dto/get-videos.dto';
@@ -21,7 +21,7 @@ export class ViewCategoryVideosComponent implements OnInit {
 
   ngOnInit(): void {
     this.category = this.route.snapshot.params['category'];
-    // console.log('this.category => ', this.category)
+    console.log('this.category => ', this.category)
     this.router.events.pipe(filter(ev => ev instanceof NavigationEnd)).subscribe({
       next: (res) => {
         this.category = this.route.snapshot.params['category'];
@@ -53,8 +53,14 @@ export class ViewCategoryVideosComponent implements OnInit {
     });
     this.isLoading = true;
   }
-
-  refresh(): void {
-    location.reload()
-  }
+  // @HostListener("window:scroll", [])
+  // refresh(): void {
+  //   if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+  //     // this.emitted = true;
+  //     // this.scrollingFinished.emit();
+  //     location.reload()
+  //   }else{
+  //     // location.reload()
+  //   }
+  // }
 }
