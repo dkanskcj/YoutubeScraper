@@ -10,7 +10,7 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   // baseUrl = `${environment.server}`;
-  private baseUrl: string = 'https://localhost/';
+  private baseUrl: string = 'http://localhost';
 
   getUser(id: number){
     return this.http.get(`${this.baseUrl}/user/id`);

@@ -11,7 +11,7 @@ export class CommentService {
   constructor(private http: HttpClient) { }
 
   // baseUrl = `${environment.server}`;
-  private baseUrl: string = 'https://localhost/';
+  private baseUrl: string = 'http://localhost';
   getComment(id: number) {
     return this.http.get(`${this.baseUrl}/comment/search/${id}`);
   }
