@@ -1,14 +1,14 @@
 <div class="pt-20 space-y-4">
-    <div class="flex justify-center items-center">
+    <div class="flex justify-center items-center w-[100%]">
         <form [formGroup]="createForm">
-            <div class="flex flex-col gap-2">
-                <div class="flex justify-between items-center gap-4">
+            <div class="flex flex-col gap-2 w-fit px-2">
+                <div class="flex justify-between gap-4 items-center whitespace-nowrap">
                     <div>
                         아이디
                     </div>
                     <input formControlName="name" class="border box-border shadow rounded-md px-3 py-2" type="text">
                 </div>
-                <div class="flex justify-between items-center gap-4">
+                <div class="flex justify-between gap-4 items-center whitespace-nowrap">
                     <div>
                         비밀번호
                     </div>
@@ -22,19 +22,19 @@
         <div class="col">
             <ul class="list-inline mb-2 flex gap-2">
                 <li class="list-inline-item" *ngIf="isLoggedIn$ === false">
-                    <div class="cursor-pointer border box-border shadow rounded-md border-yellow-400 text-yellow-500 px-3 py2-"
+                    <div class="cursor-pointer border box-border shadow rounded-md border-yellow-400 text-yellow-500 px-3 py-2 whitespace-nowrap"
                         (click)="login()">
                         로그인
                     </div>
                 </li>
                 <li class="list-inline-item">
-                    <div class="cursor-pointer border box-border shadow rounded-md border-blue-400 text-blue-500 px-3 py2-"
+                    <div class="cursor-pointer border box-border shadow rounded-md border-blue-400 text-blue-500 px-3 py-2 whitespace-nowrap"
                         (click)="logout()">
                         로그아웃
                     </div>
                 </li>
                 <li class="list-inline-item" *ngIf="isLoggedIn$ === false">
-                    <div class="cursor-pointer border box-border shadow rounded-md border-yellow-400 text-yellow-500 px-3 py2-"
+                    <div class="cursor-pointer border box-border shadow rounded-md border-yellow-400 text-yellow-500 px-3 py-2 whitespace-nowrap"
                         (click)="registerUser()">
                         회원가입
                     </div>

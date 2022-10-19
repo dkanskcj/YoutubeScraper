@@ -65,7 +65,7 @@ export class LoginPageComponent implements OnInit {
         if(err.error.message === '유저 정보를 찾을 수 없습니다.'){
           return alert('등록되지 않은 사용자입니다.')
         }
-        else if(err.error.message === '아이디 또는 비밀번호가 올바르지 않습니다.'){
+        else if(err.error.message === '아이디 또는 비밀번호가 일치하지 않습니다.'){
           return alert('아이디 또는 비밀번호가 올바르지 않습니다.')
         }
       }
