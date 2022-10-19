@@ -20,7 +20,7 @@ export class VideoService {
   constructor(private http: HttpClient) {}
   
   // baseUrl = `${environment.server}`;
-  private baseUrl: string = 'http://localhost';
+  private baseUrl: string = 'https://youtubescraperdatabase.herokuapp.com';
   getVideo(id: number) {
     return this.http.get(`${this.baseUrl}/video/${id}`);
   }

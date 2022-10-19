@@ -11,7 +11,7 @@ export class CommentService {
   constructor(private http: HttpClient) { }
 
   // baseUrl = `${environment.server}`;
-  private baseUrl: string = 'http://localhost';
+  private baseUrl: string = 'https://youtubescraperdatabase.herokuapp.com';
   getComment(id: number) {
     return this.http.get(`${this.baseUrl}/comment/search/${id}`);
   }
