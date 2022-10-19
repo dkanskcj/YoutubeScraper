@@ -1,7 +1,8 @@
 import { AfterViewInit, Component, HostListener, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter, pipe } from 'rxjs';
-import { VideoService } from 'src/service/video/video.service';
+import { IGetVideosDTO } from 'src/service/video/dto/get-videos.dto';
+import { VideoService, VideosResult } from 'src/service/video/video.service';
 
 @Component({
   selector: 'app-view-category-videos',
@@ -9,7 +10,7 @@ import { VideoService } from 'src/service/video/video.service';
   styleUrls: ['./view-category-videos.component.scss']
 })
 export class ViewCategoryVideosComponent implements OnInit {
-  videos: any;
+  videos: IGetVideosDTO[];
   category: string;
   isLoading: boolean = true;
   constructor(
@@ -25,6 +26,9 @@ export class ViewCategoryVideosComponent implements OnInit {
       next: (res) => {
         this.category = this.route.snapshot.params['category'];
         this.getVideosByCategory(this.category)
+        if(this.category === this.route.snapshot.params['category']){
+          console.log(this.category)
+        }
       },
       error: (e) => {
         console.log(e)
@@ -37,14 +41,17 @@ export class ViewCategoryVideosComponent implements OnInit {
 
   getVideosByCategory(query: string) {
     this.videoService.getVideosThumbNail(query).subscribe({
-      next: (res) => {
+      next: (res: IGetVideosDTO[]) => {
         this.videos = res;
-        this.isLoading = false;
+        if(res){
+          this.isLoading = false
+        }
       },
       error: (e) => {
         console.log(e)
       }
     });
+    this.isLoading = true;
   }
   // @HostListener("window:scroll", [])
   // refresh(): void {

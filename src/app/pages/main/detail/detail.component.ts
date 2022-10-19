@@ -41,6 +41,7 @@ export class DetailComponent implements OnInit {
   title: string;
   category: string;
   updating: boolean = false;
+  count: number = 0;
   createForm = new FormGroup({
     name: new FormControl(null),
     password: new FormControl(null),
@@ -87,12 +88,19 @@ export class DetailComponent implements OnInit {
   }
 
   isClicked(event, showCategory: string) {
-    if (showCategory === 'in') {
-      this.showCategory = true
+    if(showCategory === 'in' && this.count === 1){
+      this.showCategory = false
+      this.count = 0;
       event.stopPropagation();
     }
-    if (showCategory === 'out') {
+    else if (showCategory === 'in') {
+      this.showCategory = true
+      this.count++;
+      event.stopPropagation();
+    }
+    else if (showCategory === 'out') {
       this.showCategory = false
+      this.count = 0;
       event.stopPropagation();
     }
   }

@@ -1,6 +1,6 @@
 <!-- 내용 -->
 <div class="w-full h-full pt-10 flex justify-center" (click)="isClicked($event, 'out')">
-  <img *ngIf="isLoading === true" src="assets/icons/spinner.svg" class="myAbsolute w-full h-full">
+  <img *ngIf="isLoading === true" src="assets/icons/spinner.svg" class="myAbsolute w-[12rem] h-[12rem] opacity-70">
   <!-- <app-delete-comment #modal></app-delete-comment> -->
   <div>
     <div class="w-[100%] h-[40vh] bg-gray-200 relative">
@@ -35,7 +35,6 @@
         </div>
       </div>
     </div>
-
     <div class="pt-2 pb-5 text-semibold text-xl text-gray-500 mt-[-0.5rem]">{{ video?.category }}</div>
     <!-- 댓글 입력-->
     <div class="pt-5 border-t-2 border-gray-200">
