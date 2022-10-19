@@ -1,6 +1,5 @@
 import { Injectable } from "@angular/core";
 import { Action, State, StateContext, StateToken } from "@ngxs/store";
-import { ILoginUserDTO } from "src/service/user/dto/login-user.dto";
 import { AuthActions } from "./auth.action";
 
 

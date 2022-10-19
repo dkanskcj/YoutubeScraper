@@ -39,7 +39,6 @@ export class LayoutComponent implements OnInit {
             }
           })
           this.detailCategory = this.route.snapshot.queryParams['title'];
-          console.log(this.detailCategory, 'asdfjhasdionvmdsa')
           if (this.currentCategory) {
             this.currentCategory = res['url'].substring(8);
           }
