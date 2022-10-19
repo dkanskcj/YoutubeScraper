@@ -1,7 +1,7 @@
 <div class="w-full h-full p-6">
   <!-- 탑바 -->
   <!-- 제목 -->
-  <div class="flex gap-2 justify-center items-center relative" (click)="currentCategory='전체'">
+  <div class="flex gap-2 justify-center items-center relative">
     <div class="flex gap-2 cursor-pointer" routerLink="/main">
       <img src="assets/icons/youtube.svg">
       <div class="text-black text-xl font-extrabold">
@@ -18,15 +18,15 @@
   <!-- 카테고리 -->
   <div class="flex justify-between items-center">
     <div class="flex gap-3 mt-3 items-center scrollBar whitespace-nowrap">
-      <app-category [isSelected]="currentCategory === '전체'" (click)="currentCategory = '전체'" name="전체" value="/"  class="rounded-full"></app-category>
-      <app-category [isSelected]="currentCategory === 'HTML'" (click)="currentCategory = 'HTML'" name="HTML" value="HTML" class="rounded-full">
+      <app-category [isSelected]="currentCategory === '전체'"  name="전체" value="/"  class="rounded-full"></app-category>
+      <app-category [isSelected]="currentCategory === 'HTML'"  name="HTML" value="HTML" class="rounded-full">
       </app-category>
-      <app-category [isSelected]="currentCategory === 'tailwindcss'" (click)="currentCategory = 'tailwindcss'" name="tailwindcss" value="tailwindcss" class="rounded-full"></app-category>
-      <app-category [isSelected]="currentCategory === 'JavaScript'" (click)="currentCategory = 'JavaScript'" name="JavaScript" value="JavaScript" class="rounded-full">
+      <app-category [isSelected]="currentCategory === 'tailwindcss'"  name="tailwindcss" value="tailwindcss" class="rounded-full"></app-category>
+      <app-category [isSelected]="currentCategory === 'JavaScript'"  name="JavaScript" value="JavaScript" class="rounded-full">
       </app-category>
-      <app-category [isSelected]="currentCategory === 'React'" (click)="currentCategory = 'React'" name="React" value="React" class="rounded-full">
+      <app-category [isSelected]="currentCategory === 'React'"  name="React" value="React" class="rounded-full">
       </app-category>
-      <app-category [isSelected]="currentCategory === 'Angular'" (click)="currentCategory = 'Angular'" name="Angular" value="Angular" class="rounded-full">
+      <app-category [isSelected]="currentCategory === 'Angular'"  name="Angular" value="Angular" class="rounded-full">
       </app-category>
     </div>
     <div class="text-gray-900 justify-center items-center text-sm font-bold px-1 mt-3">

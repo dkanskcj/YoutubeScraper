@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { Select } from '@ngxs/store';
 import { filter, Observable, tap } from 'rxjs';
@@ -13,7 +13,7 @@ import { AuthState, AuthModel } from 'src/auth/state/auth.state';
 export class LayoutComponent implements OnInit {
   @Select(AuthState) user$: Observable<AuthModel>;
   maintitle = 'Youtube Scraper';
-  currentCategory: string = '전체';
+  currentCategory: string = '';
   detailCategory: string;
   Category: string = '';
   isLoggedIn$: boolean = false;
@@ -21,46 +21,48 @@ export class LayoutComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authFacade: AuthFacade
-  ) { }
-
-  ngOnInit(): void {
-    this.router.events
-      .pipe(filter((ev) => ev instanceof NavigationStart))
-      .subscribe({
-        next: (res) => {
-          // this.detailCategory = this.route.snapshot.queryParams['title'];
-          if(res['url'].indexOf('/video') === 0){
-            this.detailCategory = res['url'].substring(8)
-          }
-          else if(res['url'].indexOf('/detail') === 0){
-            this.detailCategory = res['url'].substring(17);
-          }
-          this.user$.subscribe({
-            next: (res) => {
-              this.isLoggedIn$ = res.isLoggedIn;
-              console.log(res)
-            },
-            error: (err) => {
-              console.log(err)
-            }
-          })
-          if (this.currentCategory) {
-            this.currentCategory = res['url'].substring(8);
-          }
-          if (this.detailCategory) {
-            this.currentCategory = this.detailCategory;
-          }
-          else if (!this.currentCategory) {
+  ) {
+    this.router.events.subscribe({
+      next: (res) => {
+        if (res instanceof NavigationEnd) {
+          console.log(res['url'], 'asfhasnfkas')
+          if (res['url'].indexOf('/main') === 0 && res['url'].length === 5) {
             this.currentCategory = '전체';
           }
-          else {
+          else if (res['url'].indexOf('/') === 0 && res['url'].length == 1) {
             this.currentCategory = '';
           }
-        },
-        error: (err) => {
-          console.log(err);
-        },
-      });
+          else if (res['url'].indexOf('/video') === 0) {
+            this.currentCategory = res['url'].substring(8);
+          }
+          else if (res['url'].indexOf('/detail') === 0) {
+            this.currentCategory = res['url'].substring(17);
+          }
+        }
+      },
+      error: (err) => {
+        console.log(err)
+      }
+    });
+  }
+
+  ngOnInit(): void {
+    this.router.events.pipe(filter((ev) => ev instanceof NavigationEnd)).subscribe({
+      next: (res) => {
+        this.user$.subscribe({
+          next: (res) => {
+            this.isLoggedIn$ = res.isLoggedIn;
+            console.log(res)
+          },
+          error: (err) => {
+            console.log(err)
+          }
+        })
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
     this.user$.subscribe({
       next: (res) => {
         this.isLoggedIn$ = res.isLoggedIn;

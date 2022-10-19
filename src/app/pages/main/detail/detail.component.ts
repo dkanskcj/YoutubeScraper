@@ -115,7 +115,7 @@ export class DetailComponent implements OnInit {
     this.commentService.getComments(id).subscribe({
       next: (res: GetCommentDTO[]) => {
         this.comments = res;
-        console.log(res)
+        // console.log(res)
       },
       error: (e) => {
         console.log(e);
@@ -125,7 +125,7 @@ export class DetailComponent implements OnInit {
   getUser(id: number){
     this.userService.getUser(id).subscribe({
       next: (res) => {
-        console.log(res)
+        // console.log(res)
       },
       error: (err) => {
         console.log(err)
@@ -227,7 +227,7 @@ export class DetailComponent implements OnInit {
     })
     this.comment = this.comments[index];
     const password = window.prompt('이 댓글을 삭제하시려면 비밀번호를 입력해 주세요.')
-    console.log(password);
+    // console.log(password);
     const body = {
       name: this.comment.user.name,
       password: password
@@ -261,7 +261,7 @@ export class DetailComponent implements OnInit {
     this.videoService.deleteVideo(this.videoId).subscribe({
       next: (res) => {
         this.router.navigateByUrl('/');
-        console.log(res)
+        // console.log(res)
       },
       error: (err) => {
         console.log(err)

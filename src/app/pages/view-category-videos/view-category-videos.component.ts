@@ -21,14 +21,14 @@ export class ViewCategoryVideosComponent implements OnInit {
 
   ngOnInit(): void {
     this.category = this.route.snapshot.params['category'];
-    console.log('this.category => ', this.category)
+    // console.log('this.category => ', this.category)
     this.router.events.pipe(filter(ev => ev instanceof NavigationEnd)).subscribe({
       next: (res) => {
         this.category = this.route.snapshot.params['category'];
         this.getVideosByCategory(this.category)
-        if(this.category === this.route.snapshot.params['category']){
-          console.log(this.category)
-        }
+        // if(this.category === this.route.snapshot.params['category']){
+          // console.log(this.category)
+        // }
       },
       error: (e) => {
         console.log(e)
