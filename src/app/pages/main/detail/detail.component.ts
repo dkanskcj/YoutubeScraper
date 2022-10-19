@@ -294,6 +294,16 @@ export class DetailComponent implements OnInit {
     this.getCommentsWithVideoId(Number(video.id))
   }
 
+  currentVideo(video: ICreateVideoDTO){
+    // index = Number(this.video.id);
+    if(this.video.id === video.id){
+      console.log(video.id)
+      return 'flex space-y-2 gap-2 hover:bg-gray-200 cursor-pointer bg-gray-100'
+    }
+    else{
+      return 'flex space-y-2 gap-2 hover:bg-gray-200 cursor-pointer'
+    }
+  }
 
   
 

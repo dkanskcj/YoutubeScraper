@@ -2,13 +2,12 @@
 <div class="w-full h-full pt-10 flex justify-center" (click)="isClicked($event, 'out')">
   <img *ngIf="isLoading === true" src="assets/icons/spinner.svg" class="myAbsolute w-[12rem] h-[12rem] opacity-70">
   <!-- <app-delete-comment #modal></app-delete-comment> -->
-  <div>
-    <div class="w-[100%] h-[40vh] bg-gray-200 relative">
+  <div class="w-[70vh]">
+    <div class="w-full h-[40vh] bg-gray-200 relative">
       <iframe class="w-full h-full" [src]="video?.url | safe" title="YouTube video player" frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen>
       </iframe>
-
     </div>
 
     <div class="pt-5 flex justify-between text-bold text-2xl">
@@ -112,8 +111,8 @@
   </div>
   <div class="w-[25rem] h-[40vh] scrollBar">
     <div class="w-full h-full">
-      <ng-container *ngFor="let video of categoryWithVideos">
-        <div class="flex space-y-2 gap-2 hover:bg-gray-100 cursor-pointer" (click)="navigateDetail(video)">
+      <ng-container *ngFor="let video of categoryWithVideos; index as i">
+        <div [ngClass]="currentVideo(video)" (click)="navigateDetail(video)">
           <img [src]="video?.url" class="w-[10rem]">
           <div class="w-full">
             <div>
