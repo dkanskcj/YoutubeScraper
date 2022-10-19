@@ -10,8 +10,8 @@ import { GetCommentDTO } from './dto/get-comment.dto';
 export class CommentService {
   constructor(private http: HttpClient) { }
 
-  // baseUrl = `${environment.server}`;
-  private baseUrl: string = 'https://localhost/';
+  baseUrl = `${environment.server}`;
+//   private baseUrl: string = 'https://localhost/';
   getComment(id: number) {
     return this.http.get(`${this.baseUrl}/comment/search/${id}`);
   }
