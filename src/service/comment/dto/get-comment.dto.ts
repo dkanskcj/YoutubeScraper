@@ -1,8 +1,9 @@
+import { ILoginUserDTO } from "src/service/user/dto/login-user.dto";
+
 export interface GetCommentDTO {
     // push(res: GetCommentDTO): unknown;
     id?: number;
-    name: string;
     content: string;
-    password: string;
+    user: ILoginUserDTO
     createdAt?: Date
 }

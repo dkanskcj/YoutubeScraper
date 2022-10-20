@@ -1,9 +1,15 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Select } from '@ngxs/store';
+import { Observable, tap } from 'rxjs';
+import { AuthFacade } from 'src/auth/state/auth.facade';
+import { AuthState, AuthModel } from 'src/auth/state/auth.state';
 import { CommentService } from 'src/service/comment/comment.service';
 import { GetCommentDTO } from 'src/service/comment/dto/get-comment.dto';
+import { UserService } from 'src/service/user/user.service';
 import { ICreateVideoDTO } from 'src/service/video/dto/create-video.dto';
+import { IGetVideosDTO } from 'src/service/video/dto/get-videos.dto';
 import { VideoService } from 'src/service/video/video.service';
 
 @Component({
@@ -13,11 +19,16 @@ import { VideoService } from 'src/service/video/video.service';
 })
 
 export class DetailComponent implements OnInit {
+  @Select(AuthState) user$:Observable<AuthModel>;
+
   @Output() detailCategory: string;
+  userName$: string = '';
+  userPassword$: string = '';
+  isLoggedIn$: boolean = false;
   Category: string = 'HTML';
   showCategory: boolean = false;
   currentCategory = '전체';
-
+  categoryWithVideos: ICreateVideoDTO[] = [];
   comment: GetCommentDTO;
   video: ICreateVideoDTO;
   videoId: number = 0;
@@ -30,6 +41,7 @@ export class DetailComponent implements OnInit {
   title: string;
   category: string;
   updating: boolean = false;
+  count: number = 0;
   createForm = new FormGroup({
     name: new FormControl(null),
     password: new FormControl(null),
@@ -41,6 +53,8 @@ export class DetailComponent implements OnInit {
     private videoService: VideoService,
     private router: Router,
     private route: ActivatedRoute,
+    private userService: UserService,
+    private authFacade: AuthFacade
   ) { }
 
   ngOnInit(): void {
@@ -49,6 +63,18 @@ export class DetailComponent implements OnInit {
       this.getVideo(this.videoId)
       this.getCommentsWithVideoId(this.videoId)
       this.isLoading = false;
+      this.user$.subscribe(res=>{
+        this.isLoggedIn$ = res.isLoggedIn;
+        if(this.isLoggedIn$ === false){
+          this.userName$ = null
+          this.userPassword$ = null
+        }
+        else{
+          this.userName$ = res.name;
+          this.userPassword$ = res.password;
+        }
+      })
+      console.log(this.userName$, 'ttt');
     }
     this.isLoading = false;
   }
@@ -57,17 +83,24 @@ export class DetailComponent implements OnInit {
     this.createForm.get('content').disable();
   }
 
-  navigateByUrl(){
+  navigateByUrl() {
     return this.router.navigateByUrl(`/register/video/${this.videoId}`);
   }
 
   isClicked(event, showCategory: string) {
-    if (showCategory === 'in') {
-      this.showCategory = true
+    if(showCategory === 'in' && this.count === 1){
+      this.showCategory = false
+      this.count = 0;
       event.stopPropagation();
     }
-    if (showCategory === 'out') {
+    else if (showCategory === 'in') {
+      this.showCategory = true
+      this.count++;
+      event.stopPropagation();
+    }
+    else if (showCategory === 'out') {
       this.showCategory = false
+      this.count = 0;
       event.stopPropagation();
     }
   }
@@ -78,25 +111,41 @@ export class DetailComponent implements OnInit {
   }
   // videoId를 받는다.
   getCommentsWithVideoId(id: number) {
+    this.comments = [];
     this.commentService.getComments(id).subscribe({
       next: (res: GetCommentDTO[]) => {
         this.comments = res;
-        console.log(res)
+        // console.log(res)
       },
       error: (e) => {
         console.log(e);
       },
     });
   }
-
+  getUser(id: number){
+    this.userService.getUser(id).subscribe({
+      next: (res) => {
+        // console.log(res)
+      },
+      error: (err) => {
+        console.log(err)
+      }
+    });
+  }
   getVideo(id: number) {
     this.videoService.getVideo(id).subscribe({
       next: (res: ICreateVideoDTO) => {
         this.video = res;
-        console.log(res);
-        this.video.url = this.video.url.substring(17);
-        this.video.url = this.youtubeLink.concat(this.video.url)
+        if (this.video.url.indexOf("https://www.youtube.com/watch?v=") === 0) {
+          this.video.url = this.video.url.substring(32);
+          this.video.url = this.youtubeLink.concat(this.video.url);
+        }
+        else{
+          this.video.url = this.video.url.substring(17);
+          this.video.url = this.youtubeLink.concat(this.video.url)
+        }
         this.sendCategory(this.video.category);
+        this.getVideosByCategory(this.video.category);
       },
       error: (err) => {
         console.log(err);
@@ -110,9 +159,12 @@ export class DetailComponent implements OnInit {
       if (!body.content) {   //if 하고 ! 예외 처리할 때는 return 써서 끝내줘야 된다. !body.content === !''
         return console.log('입력 값이 없습니다.');
       }
+      if(this.isLoggedIn$ === true){
+        body.name = this.userName$;
+        body.password = this.userPassword$;
+      }
       this.commentService.createComment(body, this.videoId).subscribe({
         next: (res: GetCommentDTO) => {
-          console.log(res, '아이디와 비밀번호, 댓글 생성 완료');
           this.comments.push(res)
           this.createForm.setValue({
             content: '',
@@ -152,13 +204,12 @@ export class DetailComponent implements OnInit {
 
   sendCategory($event) {
     this.detailCategory = $event;
-    console.log(this.detailCategory)
   }
 
   modifyComment(index: number) {
     this.comment = this.comments[index];
     this.createForm.setValue({
-      name: this.comment.name,
+      name: this.comment.user.name,
       content: this.comment.content,
       password: ''
     })
@@ -176,9 +227,9 @@ export class DetailComponent implements OnInit {
     })
     this.comment = this.comments[index];
     const password = window.prompt('이 댓글을 삭제하시려면 비밀번호를 입력해 주세요.')
-    console.log(password);
+    // console.log(password);
     const body = {
-      name: this.comment.name,
+      name: this.comment.user.name,
       password: password
     }
     if (!password) {
@@ -210,13 +261,49 @@ export class DetailComponent implements OnInit {
     this.videoService.deleteVideo(this.videoId).subscribe({
       next: (res) => {
         this.router.navigateByUrl('/');
-        console.log(res)
+        // console.log(res)
       },
       error: (err) => {
         console.log(err)
       }
     });
   }
+
+  getVideosByCategory(query: string) {
+    this.videoService.getVideosThumbNail(query).subscribe({
+      next: (res: ICreateVideoDTO[]) => {
+        this.categoryWithVideos = res
+        for(let video of this.categoryWithVideos){
+          if(!video){
+            console.log('t')
+          }
+          // video.url = video.url.substring(8)
+          // video.url = this.youtubeThumbNail.concat(video.url);
+        }
+      },
+      error: (err) => {
+        console.log(err)
+      }
+    });
+  }
+
+  navigateDetail(video:ICreateVideoDTO){
+    this.router.navigateByUrl(`/detail/${video.id}?title=${video?.category}`)
+    this.getVideo(Number(video.id))
+    this.getCommentsWithVideoId(Number(video.id))
+  }
+
+  currentVideo(video: ICreateVideoDTO){
+    // index = Number(this.video.id);
+    if(this.video.id === video.id){
+      return 'flex space-y-2 gap-2 hover:bg-gray-200 cursor-pointer bg-gray-100'
+    }
+    else{
+      return 'flex space-y-2 gap-2 hover:bg-gray-200 cursor-pointer'
+    }
+  }
+
+  
 
 
 }

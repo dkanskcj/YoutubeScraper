@@ -5,6 +5,6 @@
 </div>
 <div *ngIf="name === '전체'"
   class="px-3 py-2 rounded-full cursor-pointer hover:bg-black hover:text-white flex justify-center items-center font-medium text-sm"
-  [ngClass]="isSelected ? 'bg-black text-white hover:bg-opacity-80' : 'bg-gray-100 text-gray-400 hover:bg-opacity-80'" routerLink="/" (click)="valueChanged()">
+  [ngClass]="isSelected ? 'bg-black text-white hover:bg-opacity-80' : 'bg-gray-100 text-gray-400 hover:bg-opacity-80'" routerLink="/main" (click)="valueChanged()">
   {{ name }}
 </div>

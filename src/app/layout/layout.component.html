@@ -1,35 +1,41 @@
 <div class="w-full h-full p-6">
   <!-- 탑바 -->
   <!-- 제목 -->
-  <div class="flex gap-2 justify-center items-center cursor-pointer" (click)="currentCategory='전체'" routerLink="/">
-    <img src="assets/icons/youtube.svg" alt="" />
-    <div class="text-black text-xl font-extrabold">
-      {{ maintitle | uppercase }}
-
+  <div class="flex gap-2 justify-center items-center relative">
+    <div class="flex gap-2 cursor-pointer" routerLink="/main">
+      <img src="assets/icons/youtube.svg">
+      <div class="text-black text-xl font-extrabold">
+        {{ maintitle | uppercase }}
+      </div>
     </div>
+    <div *ngIf="isLoggedIn$ === true" class="myAbsoluteStatus border-2 border-black rounded-full p-2 bg-green-500"></div>
+    <!-- <div *ngIf="isLoggedIn$ === true" class="myAbsoluteStatus rounded-full p-2 bg-gray-300"></div> -->
+    <img src="assets/icons/profile.png" class="w-[2.5rem] h-[2.5rem] rounded-full myAbsolute cursor-pointer" routerLink="/" cursor-pointer>
   </div>
   <!-- 제목 -->
   <div class="bg-[#E7E7E7] border border-1 mt-6"></div>
   <!-- 탑바 -->
   <!-- 카테고리 -->
   <div class="flex justify-between items-center">
-    <div class="flex gap-3 mt-3 items-center">
-      <app-category [isSelected]="currentCategory === '전체'" (click)="currentCategory = '전체'" name="전체" value="/"  class="rounded-full"></app-category>
-      <app-category [isSelected]="currentCategory === 'HTML'" (click)="currentCategory = 'HTML'" name="HTML" value="HTML" class="rounded-full">
+    <div class="flex gap-3 mt-3 items-center scrollBar whitespace-nowrap">
+      <app-category [isSelected]="currentCategory === '전체'"  name="전체" value="/"  class="rounded-full"></app-category>
+      <app-category [isSelected]="currentCategory === 'HTML'"  name="HTML" value="HTML" class="rounded-full">
       </app-category>
-      <app-category [isSelected]="currentCategory === 'tailwindcss'" (click)="currentCategory = 'tailwindcss'" name="tailwindcss" value="tailwindcss" class="rounded-full"></app-category>
-      <app-category [isSelected]="currentCategory === 'JavaScript'" (click)="currentCategory = 'JavaScript'" name="JavaScript" value="JavaScript" class="rounded-full">
+      <app-category [isSelected]="currentCategory === 'tailwindcss'"  name="tailwindcss" value="tailwindcss" class="rounded-full"></app-category>
+      <app-category [isSelected]="currentCategory === 'JavaScript'"  name="JavaScript" value="JavaScript" class="rounded-full">
       </app-category>
-      <app-category [isSelected]="currentCategory === 'React'" (click)="currentCategory = 'React'" name="React" value="React" class="rounded-full">
+      <app-category [isSelected]="currentCategory === 'React'"  name="React" value="React" class="rounded-full">
       </app-category>
-      <app-category [isSelected]="currentCategory === 'Angular'" (click)="currentCategory = 'Angular'" name="Angular" value="Angular" class="rounded-full">
+      <app-category [isSelected]="currentCategory === 'Angular'"  name="Angular" value="Angular" class="rounded-full">
       </app-category>
     </div>
-    <div class="text-gray-900 justify-center items-center text-sm font-bold">
+    <div class="text-gray-900 justify-center items-center text-sm font-bold px-1 mt-3">
       >
     </div>
   </div>
   <!-- 카테고리 -->
   <div class="bg-[#E7E7E7] border border-0.5 mt-3"></div>
-  <router-outlet> </router-outlet>
+  <!-- <div *ngIf="isLoggedIn$"> -->
+    <router-outlet> </router-outlet>
+  <!-- </div> -->
 </div>

@@ -39,22 +39,23 @@ export class VideosComponent implements OnInit {
     this.router.navigateByUrl(`/detail/${video.id}?title=${video.category}`);
   }
 
+
   getThumbNailVideos(){
     if(!this.videos){
-      console.log('등록된 영상이 없습니다.')
+      return ;
+      // return console.log('등록된 영상이 없습니다.')
     }
     for (let video of this.videos) {
       video.url = video.url.substring(30)
       video.url = this.thumbNail.concat(video.url + this.defaultImg)
     }
-    console.log(this.videos)
   }
 
   haveSeeAll() {
     if (!this.seeAll) {
       return 'flex flex-wrap gap-6 items-start'
     }
-    return 'scrollBar flex gap-6 items-start'
+    return 'scrollBar h-fit flex gap-6 items-start'
   }
 
 }

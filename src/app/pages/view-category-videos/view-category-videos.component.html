@@ -1,12 +1,13 @@
 <div>
-    <div class="pt-5 flex justify-end pb-7">
-      <app-button name="영상 등록하기" routerLink="/register"></app-button>
-    </div>
-  
-    <div class="w-full h-full">
-      <img *ngIf="isLoading === true" src="assets/icons/spinner.svg" class="myAbsolute w-full h-full">
-      <div class="mt-7 space-y-7" >
-        <app-videos [seeAll]="false" [videos]="videos" [category]="category" [title]="category"></app-videos>
-      </div>
+  <div class="pt-5 flex justify-end pb-7">
+    <app-button name="영상 등록하기" routerLink="/register"></app-button>
+  </div>
+
+  <div class="w-full h-full">
+    <img *ngIf="isLoading === true" src="assets/icons/spinner.svg" class="myAbsolute w-[12rem] h-[12rem] opacity-70">
+    <div class="mt-7 space-y-7">
+      <!-- <div class="mt-7 space-y-7" scrollTracker (scrollingFinished)="refresh()"> -->
+      <app-videos [seeAll]="false" [videos]="videos" [category]="category" [title]="category"></app-videos>
     </div>
   </div>
+</div>

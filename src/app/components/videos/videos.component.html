@@ -1,7 +1,7 @@
 <div class="pb-5">
   <div class="flex justify-between">
     <div class="font-bold text-gray-800 text-2xl">{{ title }}</div>
-    <div class="font-semibold text-blue-500 cursor-pointer " [routerLink]="'videos/'+title">
+    <div class="font-semibold text-blue-500 cursor-pointer " [routerLink]="'/videos/'+title">
       <div *ngIf="seeAll">
         모두보기
       </div>
@@ -12,7 +12,7 @@
         <div class="imgSize cursor-pointer">
           <img class="w-full h-full" [src]="video?.url" />
         </div>
-        <div class="text-gray-900 font-semibold text-sm cursor-pointer">
+        <div class="w-[36vh] text-gray-900 font-semibold text-sm cursor-pointer">
           {{ video?.title }}
         </div>
         <div class="w-fit text-gray-500 font-medium text-xs cursor-pointer">
