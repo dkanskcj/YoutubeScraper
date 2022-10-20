@@ -9,8 +9,8 @@ import { CreateUserDTO } from './dto/create-user.dto';
 export class UserService {
   constructor(private http: HttpClient) { }
 
-  baseUrl = `${environment.server}`;
-  // private baseUrl: string = 'https://youtubescraperdatabase.herokuapp.com';
+  // baseUrl = `${environment.server}`;
+  private baseUrl: string = 'https://youtubescraperdatabase.herokuapp.com';
 
   getUser(id: number){
     return this.http.get(`${this.baseUrl}/user/id`);
