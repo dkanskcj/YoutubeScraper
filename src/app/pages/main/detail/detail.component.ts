@@ -19,7 +19,7 @@ import { VideoService } from 'src/service/video/video.service';
 })
 
 export class DetailComponent implements OnInit {
-  @Select(AuthState) user$:Observable<AuthModel>;
+  @Select(AuthState) user$: Observable<AuthModel>;
 
   @Output() detailCategory: string;
   userName$: string = '';
@@ -63,13 +63,13 @@ export class DetailComponent implements OnInit {
       this.getVideo(this.videoId)
       this.getCommentsWithVideoId(this.videoId)
       this.isLoading = false;
-      this.user$.subscribe(res=>{
+      this.user$.subscribe(res => {
         this.isLoggedIn$ = res.isLoggedIn;
-        if(this.isLoggedIn$ === false){
+        if (this.isLoggedIn$ === false) {
           this.userName$ = null
           this.userPassword$ = null
         }
-        else{
+        else {
           this.userName$ = res.name;
           this.userPassword$ = res.password;
         }
@@ -88,7 +88,7 @@ export class DetailComponent implements OnInit {
   }
 
   isClicked(event, showCategory: string) {
-    if(showCategory === 'in' && this.count === 1){
+    if (showCategory === 'in' && this.count === 1) {
       this.showCategory = false
       this.count = 0;
       event.stopPropagation();
@@ -122,7 +122,7 @@ export class DetailComponent implements OnInit {
       },
     });
   }
-  getUser(id: number){
+  getUser(id: number) {
     this.userService.getUser(id).subscribe({
       next: (res) => {
         // console.log(res)
@@ -140,7 +140,7 @@ export class DetailComponent implements OnInit {
           this.video.url = this.video.url.substring(32);
           this.video.url = this.youtubeLink.concat(this.video.url);
         }
-        else{
+        else {
           this.video.url = this.video.url.substring(17);
           this.video.url = this.youtubeLink.concat(this.video.url)
         }
@@ -159,7 +159,7 @@ export class DetailComponent implements OnInit {
       if (!body.content) {   //if 하고 ! 예외 처리할 때는 return 써서 끝내줘야 된다. !body.content === !''
         return console.log('입력 값이 없습니다.');
       }
-      if(this.isLoggedIn$ === true){
+      if (this.isLoggedIn$ === true) {
         body.name = this.userName$;
         body.password = this.userPassword$;
       }
@@ -208,11 +208,20 @@ export class DetailComponent implements OnInit {
 
   modifyComment(index: number) {
     this.comment = this.comments[index];
-    this.createForm.setValue({
-      name: this.comment.user.name,
-      content: this.comment.content,
-      password: ''
-    })
+    if (this.isLoggedIn$ === false) {
+      this.createForm.setValue({
+        name: this.comment.user.name,
+        content: this.comment.content,
+        password: ''
+      })
+    }
+    if (this.isLoggedIn$ === true) {
+      this.createForm.setValue({
+        name: this.userName$,
+        content: this.comment.content,
+        password: this.userPassword$
+      })
+    }
     document.documentElement.scrollIntoView({ behavior: 'smooth' });
     this.buttonName = '수정'
   }
@@ -226,27 +235,46 @@ export class DetailComponent implements OnInit {
       password: ''
     })
     this.comment = this.comments[index];
-    const password = window.prompt('이 댓글을 삭제하시려면 비밀번호를 입력해 주세요.')
-    // console.log(password);
-    const body = {
-      name: this.comment.user.name,
-      password: password
-    }
-    if (!password) {
-      document.documentElement.scrollIntoView({ behavior: 'smooth' });
-      return alert('비밀번호를 입력해 주시기 바랍니다.')
-    }
-    this.commentService.deleteComment(body, this.comment.id).subscribe({
-      next: (res) => {
-        this.getCommentsWithVideoId(this.videoId)
-        document.documentElement.scrollIntoView({ behavior: 'smooth' });
-        window.alert('삭제가 완료되었습니다.');
-      },
-      error: (err) => {
-        window.alert('비밀번호가 올바르지 않습니다.')
-        console.log(err)
+    if (this.isLoggedIn$ === true) {
+      const body = {
+        name: this.userName$,
+        password: this.userPassword$
       }
-    });
+      this.commentService.deleteComment(body, this.comment.id).subscribe({
+        next: (res) => {
+          this.getCommentsWithVideoId(this.videoId)
+          document.documentElement.scrollIntoView({ behavior: 'smooth' });
+          window.alert('삭제가 완료되었습니다.');
+        },
+        error: (err) => {
+          window.alert('비밀번호가 올바르지 않습니다.')
+          console.log(err)
+        }
+      });
+    }
+    else {
+      const password = window.prompt('이 댓글을 삭제하시려면 비밀번호를 입력해 주세요.')
+      const body = {
+        name: this.comment.user.name,
+        password: password
+      }
+      if (!password) {
+        document.documentElement.scrollIntoView({ behavior: 'smooth' });
+        return alert('비밀번호를 입력해 주시기 바랍니다.')
+      }
+      // console.log(body)
+      this.commentService.deleteComment(body, this.comment.id).subscribe({
+        next: (res) => {
+          this.getCommentsWithVideoId(this.videoId)
+          document.documentElement.scrollIntoView({ behavior: 'smooth' });
+          window.alert('삭제가 완료되었습니다.');
+        },
+        error: (err) => {
+          window.alert('비밀번호가 올바르지 않습니다.')
+          console.log(err)
+        }
+      });
+    }
   }
 
   updateVideo() {
@@ -273,8 +301,8 @@ export class DetailComponent implements OnInit {
     this.videoService.getVideosThumbNail(query).subscribe({
       next: (res: ICreateVideoDTO[]) => {
         this.categoryWithVideos = res
-        for(let video of this.categoryWithVideos){
-          if(!video){
+        for (let video of this.categoryWithVideos) {
+          if (!video) {
             console.log('t')
           }
           // video.url = video.url.substring(8)
@@ -287,23 +315,23 @@ export class DetailComponent implements OnInit {
     });
   }
 
-  navigateDetail(video:ICreateVideoDTO){
+  navigateDetail(video: ICreateVideoDTO) {
     this.router.navigateByUrl(`/detail/${video.id}?title=${video?.category}`)
     this.getVideo(Number(video.id))
     this.getCommentsWithVideoId(Number(video.id))
   }
 
-  currentVideo(video: ICreateVideoDTO){
+  currentVideo(video: ICreateVideoDTO) {
     // index = Number(this.video.id);
-    if(this.video.id === video.id){
+    if (this.video.id === video.id) {
       return 'flex space-y-2 gap-2 hover:bg-gray-200 cursor-pointer bg-gray-100'
     }
-    else{
+    else {
       return 'flex space-y-2 gap-2 hover:bg-gray-200 cursor-pointer'
     }
   }
 
-  
+
 
 
 }
