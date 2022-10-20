@@ -13,7 +13,7 @@
                         비밀번호
                     </div>
                     <input formControlName="password" class="border box-border shadow rounded-md px-3 py-2"
-                        type="password">
+                        type="password" (keyup)="keyupEnter($event)">
                 </div>
             </div>
         </form>

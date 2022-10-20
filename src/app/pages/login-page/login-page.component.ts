@@ -100,4 +100,10 @@ export class LoginPageComponent implements OnInit {
       });
     }
   }
+
+  keyupEnter(e: Event){
+    if(e['key'] === 'Enter'){
+      this.login();
+    }
+  }
 }
