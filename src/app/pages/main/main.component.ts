@@ -44,4 +44,8 @@ export class MainComponent implements OnInit {  //카테고리 any 안 좋음.
     });
   }
 
+
+  scrolledFinish(){
+    
+  }
 }

@@ -1,9 +1,7 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ICreateVideoDTO } from './dto/create-video.dto';
+import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { IGetVideosDTO } from './dto/get-videos.dto';
-import { IUpdateVideoDTO } from './dto/update-video.dto';
+import { ICreateVideoDTO } from './dto/create-video.dto';
 
 export type VideosResult = {
   angular:[];
@@ -21,6 +19,9 @@ export class VideoService {
   
   // baseUrl = `${environment.server}`;
   private baseUrl: string = 'https://youtubescraperdatabase.herokuapp.com';
+
+
+  
   getVideo(id: number) {
     return this.http.get(`${this.baseUrl}/video/${id}`);
   }
