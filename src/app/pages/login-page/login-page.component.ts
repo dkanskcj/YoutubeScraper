@@ -54,6 +54,8 @@ export class LoginPageComponent implements OnInit {
       next: (res: ILoginUserDTO) => {
         this.user = res;
         console.log(this.user, 'ttt')
+        console.log(this.user.password)
+        console.log(body.password)
         this.store.dispatch(new AuthActions.getInputs(this.user));
         this.createForm.setValue({
           name: '',

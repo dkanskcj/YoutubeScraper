@@ -288,7 +288,7 @@ export class DetailComponent implements OnInit {
     }
     this.videoService.deleteVideo(this.videoId).subscribe({
       next: (res) => {
-        this.router.navigateByUrl('/');
+        this.router.navigateByUrl('/main');
         // console.log(res)
       },
       error: (err) => {

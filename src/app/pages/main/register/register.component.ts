@@ -62,7 +62,7 @@ export class RegisterComponent implements OnInit {
       this.videoService.createVideo(body).subscribe({
         next: (res) => {
           console.log(res)
-          this.router.navigateByUrl('/')
+          this.router.navigateByUrl('/main')
         },
         error: (e) => {
           console.log(e)

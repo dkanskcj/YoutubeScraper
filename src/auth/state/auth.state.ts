@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Action, State, StateContext, StateToken } from "@ngxs/store";
+import { UserService } from "src/service/user/user.service";
 import { AuthActions } from "./auth.action";
 
 
@@ -24,12 +25,21 @@ export class AuthState {
 
 
     constructor(
+        private userService: UserService,
     ) { }
 
 
 
     @Action(AuthActions.getInputs)
     getInputs(state: StateContext<AuthModel>, formData: any) {
+        // this.userService.loginUser(formData.formData.password).subscribe({
+        //     next: (res) => {
+        //         console.log(res, '!!!')
+        //     },
+        //     error: (err) => {
+        //         console.log(err, ' !!!')
+        //     }
+        // });
         state.patchState({
             name: formData.formData.name,
             password: formData.formData.password,
